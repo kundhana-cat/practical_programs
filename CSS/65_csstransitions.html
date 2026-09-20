@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Transitions</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #243b7a,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    #63258f,
+                    transparent 35%
+                ),
+                #0b1020;
+
+            color: white;
+
+            padding: 30px;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+
+            padding: 40px 20px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            color: #93c5fd;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+
+            margin-bottom: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #7dd3fc
+                );
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        header p {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #aab4d0;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           DEMO GRID
+        ========================= */
+
+        .demo-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           DEMO CARD
+        ========================= */
+
+        .demo-card {
+
+            padding: 30px;
+
+            min-height: 300px;
+
+            border-radius: 24px;
+
+            background:
+                rgba(255, 255, 255, 0.07);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.25);
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+        .demo-card h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .demo-card p {
+
+            color: #9da8c2;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           DEMO AREA
+        ========================= */
+
+        .demo-area {
+
+            min-height: 120px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(0, 0, 0, 0.18);
+
+            border:
+                1px dashed rgba(255, 255, 255, 0.15);
+        }
+
+
+        /* =========================
+           1. BUTTON TRANSITION
+        ========================= */
+
+        .transition-button {
+
+            padding: 14px 28px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.4s ease,
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .transition-button:hover {
+
+            background: #7c3aed;
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 25px rgba(124, 58, 237, 0.4);
+        }
+
+
+        /* =========================
+           2. BOX TRANSITION
+        ========================= */
+
+        .transition-box {
+
+            width: 75px;
+            height: 75px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            transition:
+                width 0.6s ease,
+                transform 0.6s ease,
+                border-radius 0.6s ease;
+        }
+
+        .transition-box:hover {
+
+            width: 160px;
+
+            transform:
+                rotate(8deg);
+
+            border-radius: 50px;
+        }
+
+
+        /* =========================
+           3. COLOR TRANSITION
+        ========================= */
+
+        .color-card {
+
+            width: 120px;
+            height: 70px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 15px;
+
+            background: #2563eb;
+
+            font-weight: 700;
+
+            transition:
+                background 0.8s ease,
+                color 0.8s ease;
+        }
+
+        .color-card:hover {
+
+            background: #f59e0b;
+
+            color: #111827;
+        }
+
+
+        /* =========================
+           4. IMAGE TRANSITION
+        ========================= */
+
+        .image-wrapper {
+
+            width: 180px;
+            height: 110px;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+        }
+
+        .image-wrapper img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform 0.7s ease,
+                filter 0.7s ease;
+        }
+
+        .image-wrapper:hover img {
+
+            transform:
+                scale(1.15);
+
+            filter:
+                brightness(0.7);
+        }
+
+
+        /* =========================
+           CODE SECTION
+        ========================= */
+
+        .code-section {
+
+            margin-top: 25px;
+
+            padding: 25px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255, 255, 255, 0.05);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-section h2 {
+
+            font-size: 19px;
+
+            margin-bottom: 15px;
+        }
+
+        pre {
+
+            overflow-x: auto;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            background: #070b16;
+
+            color: #93c5fd;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 30px 10px 10px;
+
+            color: #78839e;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            body {
+                padding: 18px;
+            }
+
+            .demo-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .demo-card {
+
+                min-height: 280px;
+
+                padding: 23px;
+            }
+
+            header {
+
+                padding: 30px 10px;
+            }
+
+            pre {
+
+                font-size: 12px;
+            }
+        }
+
+
+        @media (max-width: 400px) {
+
+            h1 {
+
+                font-size: 2rem;
+            }
+
+            .transition-button {
+
+                padding: 12px 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- HEADER -->
+
+        <header>
+
+            <span class="badge">
+                CSS PRACTICAL • EXPERIMENT 65
+            </span>
+
+            <h1>
+                CSS Transitions
+            </h1>
+
+            <p>
+                Explore smooth visual changes using CSS
+                transitions. Hover over the examples below
+                to see different transition effects.
+            </p>
+
+        </header>
+
+
+        <!-- DEMONSTRATIONS -->
+
+        <section class="demo-grid">
+
+
+            <!-- BUTTON -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Button Transition
+                    </h2>
+
+                    <p>
+                        The button smoothly changes its
+                        background, position and shadow
+                        when you hover over it.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <button class="transition-button">
+                        Hover Me
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- BOX -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Size & Shape Transition
+                    </h2>
+
+                    <p>
+                        The box smoothly changes its width,
+                        rotation and border radius.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="transition-box"></div>
+
+                </div>
+
+            </article>
+
+
+            <!-- COLOR -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Color Transition
+                    </h2>
+
+                    <p>
+                        The background and text colors
+                        smoothly change when the element
+                        is hovered.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="color-card">
+                        Hover Me
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- IMAGE -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Image Transition
+                    </h2>
+
+                    <p>
+                        The image smoothly zooms and changes
+                        brightness using CSS transitions.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="image-wrapper">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
+                            alt="Mountain landscape"
+                        >
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- CSS CODE -->
+
+        <section class="code-section">
+
+            <h2>
+                Transition Syntax
+            </h2>
+
+            <pre>
+.element {
+    transition:
+        property duration timing-function;
+}
+
+.element:hover {
+    transform: translateY(-5px);
+    background: #7c3aed;
+}
+            </pre>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            CSS Transitions • HTML + CSS Practical Program
+
+        </footer>
+
+
+    </div>
+
+
+</body>
+
+</html>

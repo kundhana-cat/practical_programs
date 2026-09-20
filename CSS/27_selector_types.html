@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Selectors Demonstration</title>
+
+    <style>
+        /* ==================================================
+           1. UNIVERSAL SELECTOR
+           Applies to every element on the page
+        ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* ==================================================
+           GENERAL STYLING
+        ================================================== */
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, #4f46e5, transparent 30%),
+                radial-gradient(circle at bottom right, #9333ea, transparent 30%),
+                #0f172a;
+            color: white;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: min(1100px, 100%);
+            margin: auto;
+        }
+
+        /* ==================================================
+           2. ELEMENT SELECTOR
+           Targets all elements of a particular type
+        ================================================== */
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+
+        /* ==================================================
+           HEADER
+        ================================================== */
+
+        .header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 15px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #c7d2fe;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            max-width: 700px;
+            margin: auto;
+        }
+
+
+        /* ==================================================
+           CARD
+        ================================================== */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            padding: 28px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 21px;
+        }
+
+
+        /* ==================================================
+           3. CLASS SELECTOR
+           Targets elements with a specific class
+        ================================================== */
+
+        .highlight {
+            color: #a5b4fc;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+
+        /* ==================================================
+           4. ID SELECTOR
+           Targets one element with a specific ID
+        ================================================== */
+
+        #special-heading {
+            color: #f472b6;
+            border-left: 4px solid #f472b6;
+            padding-left: 15px;
+        }
+
+
+        /* ==================================================
+           5. ATTRIBUTE SELECTOR
+           Targets elements based on attributes
+        ================================================== */
+
+        input[type="text"] {
+            border: 2px solid #60a5fa;
+        }
+
+        input[type="email"] {
+            border: 2px solid #a78bfa;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+
+        /* ==================================================
+           6. GROUPING SELECTOR
+           Applies the same style to multiple selectors
+        ================================================== */
+
+        .group-title,
+        .group-text,
+        .group-button {
+            margin-bottom: 12px;
+        }
+
+        .group-title {
+            color: #67e8f9;
+        }
+
+        .group-text {
+            color: #cbd5e1;
+        }
+
+        .group-button {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #4f46e5;
+            color: white;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+
+        /* ==================================================
+           SELECTOR SUMMARY
+        ================================================== */
+
+        .selector-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .selector-list li {
+            padding: 13px 15px;
+            margin-bottom: 9px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+        }
+
+        .selector-list code {
+            color: #a5b4fc;
+            font-weight: bold;
+        }
+
+
+        /* ==================================================
+           CODE BOX
+        ================================================== */
+
+        .code-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #020617;
+            border: 1px solid #1e293b;
+            overflow-x: auto;
+        }
+
+        .code-box code {
+            color: #a5b4fc;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+            text-align: center;
+            margin-top: 45px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+
+        /* ==================================================
+           RESPONSIVE DESIGN
+        ================================================== */
+
+        @media (max-width: 750px) {
+
+            body {
+                padding: 30px 15px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            h1 {
+                font-size: 29px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <span class="tag">CSS PRACTICAL</span>
+
+            <h1>CSS Selectors</h1>
+
+            <p>
+                A practical demonstration of Universal, Element, Class,
+                ID, Attribute and Grouping selectors.
+            </p>
+
+        </header>
+
+
+        <!-- SELECTOR DEMOS -->
+
+        <main class="grid">
+
+            <!-- UNIVERSAL SELECTOR -->
+
+            <section class="card">
+
+                <h2>1. Universal Selector</h2>
+
+                <p>
+                    The universal selector is represented by
+                    <strong>*</strong> and targets every element.
+                </p>
+
+                <div class="highlight">
+                    * {
+                        box-sizing: border-box;
+                    }
+                </div>
+
+            </section>
+
+
+            <!-- ELEMENT SELECTOR -->
+
+            <section class="card">
+
+                <h2>2. Element Selector</h2>
+
+                <p>
+                    An element selector targets all elements of a
+                    particular HTML type.
+                </p>
+
+                <div class="highlight">
+                    p {
+                        color: #cbd5e1;
+                    }
+                </div>
+
+            </section>
+
+
+            <!-- CLASS SELECTOR -->
+
+            <section class="card">
+
+                <h2>3. Class Selector</h2>
+
+                <p class="highlight">
+                    This paragraph uses the
+                    <strong>.highlight</strong> class selector.
+                </p>
+
+                <p>
+                    Classes can be reused on multiple elements.
+                </p>
+
+            </section>
+
+
+            <!-- ID SELECTOR -->
+
+            <section class="card">
+
+                <h2 id="special-heading">
+                    4. ID Selector
+                </h2>
+
+                <p>
+                    The heading above is styled using
+                    <strong>#special-heading</strong>.
+                </p>
+
+            </section>
+
+
+            <!-- ATTRIBUTE SELECTOR -->
+
+            <section class="card">
+
+                <h2>5. Attribute Selector</h2>
+
+                <p>
+                    Attribute selectors target elements based on
+                    their attributes or attribute values.
+                </p>
+
+                <form>
+
+                    <label for="name">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                    >
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                    >
+
+                </form>
+
+            </section>
+
+
+            <!-- GROUPING SELECTOR -->
+
+            <section class="card">
+
+                <h2>6. Grouping Selector</h2>
+
+                <h3 class="group-title">
+                    Grouped Heading
+                </h3>
+
+                <p class="group-text">
+                    Multiple selectors can share the same CSS rule.
+                </p>
+
+                <button class="group-button">
+                    Grouped Style
+                </button>
+
+            </section>
+
+        </main>
+
+
+        <!-- SUMMARY -->
+
+        <section class="card" style="margin-top: 22px;">
+
+            <h2>Selector Summary</h2>
+
+            <ul class="selector-list">
+
+                <li>
+                    <code>*</code> — Universal Selector
+                </li>
+
+                <li>
+                    <code>p</code> — Element Selector
+                </li>
+
+                <li>
+                    <code>.highlight</code> — Class Selector
+                </li>
+
+                <li>
+                    <code>#special-heading</code> — ID Selector
+                </li>
+
+                <li>
+                    <code>input[type="email"]</code> — Attribute Selector
+                </li>
+
+                <li>
+                    <code>h1, h2, p</code> — Grouping Selector
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- CODE -->
+
+        <section class="card" style="margin-top: 22px;">
+
+            <h2>Example CSS</h2>
+
+            <div class="code-box">
+
+                <code>
+                    * { box-sizing: border-box; }<br><br>
+
+                    p { color: gray; }<br><br>
+
+                    .highlight { color: blue; }<br><br>
+
+                    #special-heading { color: pink; }<br><br>
+
+                    input[type="email"] { border: 2px solid purple; }<br><br>
+
+                    h1, h2, p { font-family: Arial; }
+                </code>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            CSS Selectors Demonstration • HTML & CSS Practical
+        </footer>
+
+    </div>
+
+</body>
+</html>

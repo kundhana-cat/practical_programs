@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Card Layout | CSS</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, #4f46e5 0%, transparent 30%),
+                radial-gradient(circle at bottom right, #9333ea 0%, transparent 30%),
+                #0f172a;
+            color: #ffffff;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .header .tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #cbd5e1;
+            font-size: 16px;
+        }
+
+        /* Product Grid */
+        .product-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        /* Product Card */
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 24px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Product Image */
+        .image-box {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .image-box img {
+            transform: scale(1.08);
+        }
+
+        /* Badge */
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 7px 13px;
+            border-radius: 20px;
+            background: #ffffff;
+            color: #111827;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Wishlist */
+        .wishlist {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.45);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .wishlist:hover {
+            background: #ffffff;
+            color: #ef4444;
+        }
+
+        /* Product Content */
+        .product-content {
+            padding: 24px;
+        }
+
+        .category {
+            color: #a5b4fc;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+        }
+
+        .product-content h2 {
+            font-size: 22px;
+            margin: 8px 0;
+        }
+
+        .description {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        /* Rating */
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .stars {
+            color: #facc15;
+            letter-spacing: 2px;
+        }
+
+        .rating span {
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        /* Price */
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .price {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .old-price {
+            font-size: 13px;
+            color: #94a3b8;
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+
+        /* Button */
+        .cart-btn {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #111827;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.05);
+            background: #c7d2fe;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* Tablet */
+        @media (max-width: 900px) {
+            .product-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header h1 {
+                font-size: 34px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .product-container {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            .image-box {
+                height: 230px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <span class="tag">CSS PRACTICAL</span>
+        <h1>Product Collection</h1>
+        <p>A modern responsive product card layout using CSS.</p>
+    </header>
+
+    <main class="product-container">
+
+        <!-- Product 1 -->
+        <article class="product-card">
+
+            <div class="image-box">
+                <img
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+                    alt="Red running shoes"
+                >
+
+                <span class="badge">NEW</span>
+
+                <button class="wishlist" aria-label="Add to wishlist">
+                    ♡
+                </button>
+            </div>
+
+            <div class="product-content">
+
+                <span class="category">Footwear</span>
+
+                <h2>Urban Runner</h2>
+
+                <p class="description">
+                    Lightweight running shoes designed for everyday comfort
+                    and active lifestyles.
+                </p>
+
+                <div class="rating">
+                    <span class="stars">★★★★★</span>
+                    <span>4.8 (124)</span>
+                </div>
+
+                <div class="price-row">
+                    <div>
+                        <span class="price">₹2,499</span>
+                        <span class="old-price">₹3,499</span>
+                    </div>
+
+                    <button class="cart-btn">
+                        Add to Cart
+                    </button>
+                </div>
+
+            </div>
+        </article>
+
+
+        <!-- Product 2 -->
+        <article class="product-card">
+
+            <div class="image-box">
+                <img
+                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+                    alt="Modern wrist watch"
+                >
+
+                <span class="badge">POPULAR</span>
+
+                <button class="wishlist" aria-label="Add to wishlist">
+                    ♡
+                </button>
+            </div>
+
+            <div class="product-content">
+
+                <span class="category">Accessories</span>
+
+                <h2>Classic Watch</h2>
+
+                <p class="description">
+                    A timeless minimalist watch with a premium design
+                    suitable for everyday wear.
+                </p>
+
+                <div class="rating">
+                    <span class="stars">★★★★★</span>
+                    <span>4.7 (98)</span>
+                </div>
+
+                <div class="price-row">
+                    <div>
+                        <span class="price">₹3,999</span>
+                        <span class="old-price">₹5,499</span>
+                    </div>
+
+                    <button class="cart-btn">
+                        Add to Cart
+                    </button>
+                </div>
+
+            </div>
+        </article>
+
+
+        <!-- Product 3 -->
+        <article class="product-card">
+
+            <div class="image-box">
+                <img
+                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+                    alt="Wireless headphones"
+                >
+
+                <span class="badge">SALE</span>
+
+                <button class="wishlist" aria-label="Add to wishlist">
+                    ♡
+                </button>
+            </div>
+
+            <div class="product-content">
+
+                <span class="category">Electronics</span>
+
+                <h2>Sound Pro</h2>
+
+                <p class="description">
+                    Wireless headphones with immersive sound, comfortable
+                    cushions and long-lasting battery life.
+                </p>
+
+                <div class="rating">
+                    <span class="stars">★★★★★</span>
+                    <span>4.9 (210)</span>
+                </div>
+
+                <div class="price-row">
+                    <div>
+                        <span class="price">₹4,499</span>
+                        <span class="old-price">₹6,999</span>
+                    </div>
+
+                    <button class="cart-btn">
+                        Add to Cart
+                    </button>
+                </div>
+
+            </div>
+        </article>
+
+    </main>
+
+    <footer class="footer">
+        <p>CSS Product Card Layout • Responsive Design</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Technology Web - HTML, CSS and JavaScript Practical Programs">
+
+<meta name="keywords"
+      content="HTML programs, CSS programs, JavaScript programs, web technology practicals">
+
+<title>Technology Web | Practical Programs</title>
+
+<style>
+
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================================
+   BODY
+================================ */
+
+body {
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    min-height: 100vh;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(80,140,255,.25),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(220,80,255,.22),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255,120,80,.20),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #080b18,
+            #101326,
+            #080a16
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* ================================
+   BACKGROUND GLOW
+================================ */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 400px;
+    height: 400px;
+
+    border-radius: 50%;
+
+    background: rgba(80,130,255,.12);
+
+    filter: blur(90px);
+
+    top: -100px;
+    left: -100px;
+
+    z-index: -1;
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 400px;
+    height: 400px;
+
+    border-radius: 50%;
+
+    background: rgba(210,80,255,.10);
+
+    filter: blur(100px);
+
+    right: -120px;
+    bottom: -100px;
+
+    z-index: -1;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+nav {
+
+    width: 100%;
+
+    padding: 20px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgba(255,255,255,.06);
+
+    backdrop-filter: blur(20px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.10);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.logo {
+
+    font-size: 25px;
+
+    font-weight: 800;
+}
+
+
+.logo span {
+
+    background:
+        linear-gradient(
+            90deg,
+            #69a8ff,
+            #c77dff,
+            #ff8fab
+        );
+
+    background-clip: text;
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.nav-text {
+
+    color: rgba(255,255,255,.55);
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+
+    text-align: center;
+
+    padding: 90px 20px 50px;
+}
+
+
+.badge {
+
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.07);
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    color: rgba(255,255,255,.75);
+
+    font-size: 13px;
+
+    margin-bottom: 22px;
+
+    backdrop-filter: blur(15px);
+}
+
+
+.hero h1 {
+
+    font-size: clamp(42px,7vw,78px);
+
+    line-height: 1.05;
+
+    margin-bottom: 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #9ecbff,
+            #d7a4ff,
+            #ffb0c6
+        );
+
+    background-clip: text;
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.hero p {
+
+    max-width: 720px;
+
+    margin: auto;
+
+    color: rgba(255,255,255,.60);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   STATISTICS
+================================ */
+
+.stats {
+
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 25px auto 55px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 15px;
+}
+
+
+.stat {
+
+    padding: 20px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.055);
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    backdrop-filter: blur(18px);
+}
+
+
+.stat h2 {
+
+    font-size: 27px;
+
+    margin-bottom: 5px;
+}
+
+
+.stat p {
+
+    color: rgba(255,255,255,.45);
+
+    font-size: 12px;
+}
+
+
+/* ================================
+   PROGRAM SECTION
+================================ */
+
+.program-section {
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: auto;
+}
+
+
+.section-heading {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.section-heading h2 {
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+
+.section-heading p {
+
+    color: rgba(255,255,255,.45);
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   CARDS
+================================ */
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 25px;
+}
+
+
+.card {
+
+    position: relative;
+
+    padding: 35px 28px;
+
+    min-height: 390px;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    background: rgba(255,255,255,.065);
+
+    backdrop-filter: blur(22px);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.22);
+
+    transition: .4s ease;
+}
+
+
+.card:hover {
+
+    transform: translateY(-10px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
+}
+
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    filter: blur(60px);
+
+    opacity: .25;
+
+    top: -100px;
+    right: -80px;
+}
+
+
+.html-card::before {
+    background: #ff8a4c;
+}
+
+
+.css-card::before {
+    background: #398cff;
+}
+
+
+.js-card::before {
+    background: #b84dff;
+}
+
+
+/* ================================
+   ICONS
+================================ */
+
+.icon {
+
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 20px;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    margin-bottom: 25px;
+}
+
+
+.html-icon {
+
+    background:
+        rgba(255,102,50,.15);
+
+    border:
+        1px solid rgba(255,130,70,.25);
+
+    color: #ff9b70;
+}
+
+
+.css-icon {
+
+    background:
+        rgba(60,130,255,.15);
+
+    border:
+        1px solid rgba(80,150,255,.25);
+
+    color: #78aaff;
+}
+
+
+.js-icon {
+
+    background:
+        rgba(190,70,255,.15);
+
+    border:
+        1px solid rgba(200,100,255,.25);
+
+    color: #d18cff;
+}
+
+
+/* ================================
+   CARD CONTENT
+================================ */
+
+.card h3 {
+
+    font-size: 26px;
+
+    margin-bottom: 13px;
+}
+
+
+.card p {
+
+    color: rgba(255,255,255,.53);
+
+    line-height: 1.7;
+
+    font-size: 14px;
+
+    min-height: 75px;
+}
+
+
+.program-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 25px 0;
+
+    padding: 12px 15px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.045);
+}
+
+
+.program-info span:first-child {
+
+    color: rgba(255,255,255,.45);
+
+    font-size: 12px;
+}
+
+
+.program-info span:last-child {
+
+    font-weight: 700;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.open-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    color: white;
+
+    display: block;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    background:
+        rgba(255,255,255,.07);
+
+    transition: .3s ease;
+}
+
+
+.html-card .open-btn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9a68,
+            #ff6f91
+        );
+}
+
+
+.css-card .open-btn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #579aff,
+            #756dff
+        );
+}
+
+
+.js-card .open-btn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #b86cff,
+            #ed70d8
+        );
+}
+
+
+/* ================================
+   FEATURES
+================================ */
+
+.features {
+
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 80px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+}
+
+
+.feature {
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(15px);
+}
+
+
+.feature-icon {
+
+    font-size: 25px;
+
+    margin-bottom: 13px;
+}
+
+
+.feature h3 {
+
+    font-size: 16px;
+
+    margin-bottom: 8px;
+}
+
+
+.feature p {
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: rgba(255,255,255,.42);
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+
+    margin-top: 70px;
+
+    padding: 35px 20px 45px;
+
+    text-align: center;
+
+    border-top:
+        1px solid rgba(255,255,255,.07);
+
+    color: rgba(255,255,255,.38);
+
+    font-size: 13px;
+}
+
+
+footer strong {
+
+    color: rgba(255,255,255,.7);
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:950px) {
+
+    .cards {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:650px) {
+
+    .nav-text {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 20px 40px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .stats,
+    .cards,
+    .features {
+
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+
+        min-height: auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        Technology<span>Web</span>
+    </div>
+
+    <div class="nav-text">
+        HTML • CSS • JavaScript
+    </div>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="badge">
+        Web Technology Practical Laboratory
+    </div>
+
+    <h1>
+        Learn. Build. Explore.
+    </h1>
+
+    <p>
+        A complete collection of HTML, CSS and JavaScript
+        practical programs designed for learning,
+        experimenting and building web development skills.
+    </p>
+
+</section>
+
+
+<section class="stats">
+
+    <div class="stat">
+
+        <h2>15</h2>
+
+        <p>
+            HTML Programs
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>75</h2>
+
+        <p>
+            CSS Programs
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>120</h2>
+
+        <p>
+            JavaScript Programs
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="program-section">
+
+
+    <div class="section-heading">
+
+        <h2>
+            Practical Programs
+        </h2>
+
+        <p>
+            Choose a technology to explore its complete
+            collection of programs.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <!-- HTML -->
+
+        <div class="card html-card">
+
+            <div class="icon html-icon">
+                HTML
+            </div>
+
+            <h3>
+                HTML Programs
+            </h3>
+
+            <p>
+                Learn headings, lists, tables, forms,
+                multimedia, semantic elements and
+                complete webpages.
+            </p>
+
+            <div class="program-info">
+
+                <span>
+                    Available Programs
+                </span>
+
+                <span>
+                    15 Programs
+                </span>
+
+            </div>
+
+            <a
+                href="html.html"
+                class="open-btn"
+            >
+                View HTML Programs →
+            </a>
+
+        </div>
+
+
+        <!-- CSS -->
+
+        <div class="card css-card">
+
+            <div class="icon css-icon">
+                CSS
+            </div>
+
+            <h3>
+                CSS Programs
+            </h3>
+
+            <p>
+                Practice selectors, layouts, flexbox,
+                grid, animations, transitions,
+                responsive design and effects.
+            </p>
+
+            <div class="program-info">
+
+                <span>
+                    Available Programs
+                </span>
+
+                <span>
+                    75 Programs
+                </span>
+
+            </div>
+
+            <a
+                href="css.html"
+                class="open-btn"
+            >
+                View CSS Programs →
+            </a>
+
+        </div>
+
+
+        <!-- JAVASCRIPT -->
+
+        <div class="card js-card">
+
+            <div class="icon js-icon">
+                JS
+            </div>
+
+            <h3>
+                JavaScript Programs
+            </h3>
+
+            <p>
+                Explore JavaScript basics, arrays,
+                functions, DOM, events, forms,
+                APIs and mini projects.
+            </p>
+
+            <div class="program-info">
+
+                <span>
+                    Available Programs
+                </span>
+
+                <span>
+                    120 Programs
+                </span>
+
+            </div>
+
+            <a
+                href="javascript.html"
+                class="open-btn"
+            >
+                View JavaScript Programs →
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ◇
+        </div>
+
+        <h3>
+            Interactive
+        </h3>
+
+        <p>
+            Open each practical program and
+            view its actual webpage output.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ✦
+        </div>
+
+        <h3>
+            Organized
+        </h3>
+
+        <p>
+            HTML, CSS and JavaScript programs
+            are separated into dedicated sections.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ◎
+        </div>
+
+        <h3>
+            Responsive
+        </h3>
+
+        <p>
+            The interface works across desktop,
+            tablet and mobile screens.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<footer>
+
+    <strong>
+        Technology Web
+    </strong>
+
+    <br><br>
+
+    HTML • CSS • JavaScript Practical Programs
+
+    <br><br>
+
+    Built for learning and web development practice.
+
+</footer>
+
+
+</body>
+
+</html>

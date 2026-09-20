@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>2D & 3D CSS Transformations</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #243b7a,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    #63258f,
+                    transparent 35%
+                ),
+                #0b1020;
+
+            color: white;
+            padding: 30px;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            color: #93c5fd;
+
+            font-size: 13px;
+            letter-spacing: 1px;
+
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            margin-bottom: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #7dd3fc
+                );
+
+            background-clip: text;
+            color: transparent;
+        }
+
+        header p {
+            max-width: 700px;
+            margin: auto;
+
+            color: #aab4d0;
+
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .section-title {
+            margin: 30px 0 18px;
+
+            font-size: 24px;
+        }
+
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .demo-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+
+        /* =========================
+           DEMO CARD
+        ========================= */
+
+        .demo-card {
+            min-height: 360px;
+
+            padding: 28px;
+
+            border-radius: 24px;
+
+            background:
+                rgba(255, 255, 255, 0.07);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.25);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .demo-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .demo-card p {
+            color: #9da8c2;
+
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           DEMO AREA
+        ========================= */
+
+        .demo-area {
+            height: 190px;
+
+            margin-top: 20px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(0, 0, 0, 0.2);
+
+            border:
+                1px dashed rgba(255, 255, 255, 0.15);
+
+            perspective: 800px;
+        }
+
+
+        /* =========================
+           2D TRANSLATE
+        ========================= */
+
+        .translate-box {
+            width: 80px;
+            height: 80px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: transform 0.6s ease;
+        }
+
+        .translate-box:hover {
+            transform:
+                translate(55px, -20px);
+        }
+
+
+        /* =========================
+           2D ROTATE
+        ========================= */
+
+        .rotate-box {
+            width: 90px;
+            height: 90px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #06b6d4,
+                    #2563eb
+                );
+
+            font-weight: 700;
+
+            transition:
+                transform 0.7s ease;
+        }
+
+        .rotate-box:hover {
+            transform:
+                rotate(180deg);
+        }
+
+
+        /* =========================
+           2D SCALE
+        ========================= */
+
+        .scale-box {
+            width: 80px;
+            height: 80px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f97316,
+                    #ef4444
+                );
+
+            font-weight: 700;
+
+            transition:
+                transform 0.6s ease;
+        }
+
+        .scale-box:hover {
+            transform:
+                scale(1.6);
+        }
+
+
+        /* =========================
+           2D SKEW
+        ========================= */
+
+        .skew-box {
+            width: 110px;
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #10b981,
+                    #059669
+                );
+
+            font-weight: 700;
+
+            transition:
+                transform 0.6s ease;
+        }
+
+        .skew-box:hover {
+            transform:
+                skew(20deg, 8deg);
+        }
+
+
+        /* =========================
+           3D ROTATE X
+        ========================= */
+
+        .rotate-x {
+            width: 110px;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #ec4899
+                );
+
+            font-weight: 700;
+
+            transition:
+                transform 0.8s ease;
+        }
+
+        .rotate-x:hover {
+            transform:
+                rotateX(180deg);
+        }
+
+
+        /* =========================
+           3D ROTATE Y
+        ========================= */
+
+        .rotate-y {
+            width: 110px;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #14b8a6,
+                    #0f766e
+                );
+
+            font-weight: 700;
+
+            transition:
+                transform 0.8s ease;
+        }
+
+        .rotate-y:hover {
+            transform:
+                rotateY(180deg);
+        }
+
+
+        /* =========================
+           3D ROTATE Z
+        ========================= */
+
+        .rotate-z {
+            width: 110px;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eab308,
+                    #f97316
+                );
+
+            font-weight: 700;
+
+            transition:
+                transform 0.8s ease;
+        }
+
+        .rotate-z:hover {
+            transform:
+                rotateZ(180deg);
+        }
+
+
+        /* =========================
+           3D SCALE
+        ========================= */
+
+        .scale-3d {
+            width: 100px;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef4444,
+                    #be123c
+                );
+
+            font-weight: 700;
+
+            transition:
+                transform 0.8s ease;
+        }
+
+        .scale-3d:hover {
+            transform:
+                scale3d(1.5, 1.5, 1.5);
+        }
+
+
+        /* =========================
+           COMBINED TRANSFORMATION
+        ========================= */
+
+        .combined {
+            width: 100px;
+            height: 100px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #ec4899
+                );
+
+            font-weight: 700;
+
+            transition:
+                transform 1s ease;
+        }
+
+        .combined:hover {
+            transform:
+                translateY(-15px)
+                rotateY(180deg)
+                scale(1.2);
+        }
+
+
+        /* =========================
+           CODE SECTION
+        ========================= */
+
+        .code-section {
+            margin-top: 30px;
+
+            padding: 25px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255, 255, 255, 0.05);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-section h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            overflow-x: auto;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            background: #070b16;
+
+            color: #93c5fd;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 30px 10px 10px;
+
+            color: #78839e;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            body {
+                padding: 18px;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-card {
+                min-height: 330px;
+                padding: 23px;
+            }
+
+            header {
+                padding: 30px 10px;
+            }
+
+            pre {
+                font-size: 12px;
+            }
+        }
+
+
+        @media (max-width: 400px) {
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .demo-area {
+                height: 170px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <header>
+
+            <span class="badge">
+                CSS PRACTICAL • EXPERIMENT 66
+            </span>
+
+            <h1>
+                2D & 3D Transformations
+            </h1>
+
+            <p>
+                Explore the power of CSS transforms.
+                Hover over each element to see 2D and 3D
+                transformations in action.
+            </p>
+
+        </header>
+
+
+        <!-- =========================
+             2D TRANSFORMATIONS
+        ========================= -->
+
+        <h2 class="section-title">
+            2D Transformations
+        </h2>
+
+
+        <section class="demo-grid">
+
+
+            <!-- TRANSLATE -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Translate
+                    </h3>
+
+                    <p>
+                        Moves an element horizontally and
+                        vertically using translate().
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="translate-box">
+                        Move
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ROTATE -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Rotate
+                    </h3>
+
+                    <p>
+                        Rotates an element around its center
+                        using rotate().
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="rotate-box">
+                        Rotate
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SCALE -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Scale
+                    </h3>
+
+                    <p>
+                        Increases or decreases the size of an
+                        element using scale().
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="scale-box">
+                        Scale
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SKEW -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Skew
+                    </h3>
+
+                    <p>
+                        Tilts an element along the X and Y
+                        axes using skew().
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="skew-box">
+                        Skew
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =========================
+             3D TRANSFORMATIONS
+        ========================= -->
+
+        <h2 class="section-title">
+            3D Transformations
+        </h2>
+
+
+        <section class="demo-grid">
+
+
+            <!-- ROTATE X -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Rotate X
+                    </h3>
+
+                    <p>
+                        Rotates an element around the
+                        horizontal X-axis.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="rotate-x">
+                        Rotate X
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ROTATE Y -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Rotate Y
+                    </h3>
+
+                    <p>
+                        Rotates an element around the
+                        vertical Y-axis.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="rotate-y">
+                        Rotate Y
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ROTATE Z -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Rotate Z
+                    </h3>
+
+                    <p>
+                        Rotates an element around the
+                        Z-axis, creating a 3D-style effect.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="rotate-z">
+                        Rotate Z
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SCALE 3D -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Scale 3D
+                    </h3>
+
+                    <p>
+                        Changes the size of an element across
+                        the X, Y and Z axes.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="scale-3d">
+                        Scale 3D
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- COMBINED -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h3>
+                        Combined Transform
+                    </h3>
+
+                    <p>
+                        Multiple transformations can be
+                        combined to create advanced effects.
+                    </p>
+
+                </div>
+
+
+                <div class="demo-area">
+
+                    <div class="combined">
+                        3D
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- =========================
+             CODE
+        ========================= -->
+
+        <section class="code-section">
+
+            <h2>
+                Transformation Syntax
+            </h2>
+
+            <pre>
+/* 2D Transformations */
+
+.box {
+    transform: translate(50px, 20px);
+    transform: rotate(180deg);
+    transform: scale(1.5);
+    transform: skew(20deg);
+}
+
+
+/* 3D Transformations */
+
+.box {
+    transform: rotateX(180deg);
+    transform: rotateY(180deg);
+    transform: rotateZ(180deg);
+    transform: scale3d(1.5, 1.5, 1.5);
+}
+            </pre>
+
+        </section>
+
+
+        <!-- =========================
+             FOOTER
+        ========================= -->
+
+        <footer>
+
+            2D & 3D CSS Transformations • Practical Program
+
+        </footer>
+
+
+    </div>
+
+</body>
+
+</html>

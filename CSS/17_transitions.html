@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Transitions & Transformations</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #111827, #4338ca);
+            color: white;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4338ca;
+            font-weight: 600;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ec4899;
+        }
+
+        /* Main */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            font-size: 2rem;
+            color: #312e81;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #64748b;
+        }
+
+        /* Demo Grid */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .demo-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .demo-card h3 {
+            color: #4338ca;
+            margin-bottom: 10px;
+        }
+
+        .demo-card p {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .demo-area {
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* 1. Button Transition */
+        .transition-btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            background: #4338ca;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+
+            transition: background 0.4s ease,
+                        transform 0.4s ease,
+                        box-shadow 0.4s ease;
+        }
+
+        .transition-btn:hover {
+            background: #ec4899;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+        }
+
+        /* 2. Scale */
+        .scale-box {
+            width: 90px;
+            height: 90px;
+            background: #6366f1;
+            border-radius: 15px;
+            transition: transform 0.5s ease;
+        }
+
+        .scale-box:hover {
+            transform: scale(1.35);
+        }
+
+        /* 3. Rotate */
+        .rotate-box {
+            width: 90px;
+            height: 90px;
+            background: #f97316;
+            border-radius: 15px;
+            transition: transform 0.6s ease;
+        }
+
+        .rotate-box:hover {
+            transform: rotate(45deg);
+        }
+
+        /* 4. Translate */
+        .translate-box {
+            width: 90px;
+            height: 90px;
+            background: #10b981;
+            border-radius: 15px;
+            transition: transform 0.6s ease;
+        }
+
+        .translate-box:hover {
+            transform: translate(70px, -20px);
+        }
+
+        /* 5. Skew */
+        .skew-box {
+            width: 110px;
+            height: 80px;
+            background: #e11d48;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+
+        .skew-box:hover {
+            transform: skew(15deg, 8deg);
+        }
+
+        /* 6. Multiple Transformations */
+        .combo-box {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border-radius: 18px;
+            transition: transform 0.7s ease;
+        }
+
+        .combo-box:hover {
+            transform: translateY(-15px) rotate(20deg) scale(1.2);
+        }
+
+        /* Code Section */
+        .code-section {
+            margin-top: 50px;
+            background: #111827;
+            color: #e5e7eb;
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .code-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background: #020617;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+            color: #a5b4fc;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 30px 15px;
+            }
+
+            header {
+                padding: 35px 15px;
+            }
+
+            header h1 {
+                font-size: 1.7rem;
+            }
+
+            .demo-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>CSS Transitions & Transformations</h1>
+        <p>Interactive demonstrations of smooth CSS effects</p>
+    </header>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="#transitions">Transitions</a>
+        <a href="#transformations">Transformations</a>
+        <a href="#code">Code</a>
+    </nav>
+
+    <main>
+
+        <section class="intro">
+            <h2>Explore CSS Effects</h2>
+            <p>
+                Hover over the elements below to see CSS transitions
+                and transformations in action.
+            </p>
+        </section>
+
+        <!-- Transitions -->
+        <section id="transitions">
+
+            <div class="intro">
+                <h2>CSS Transitions</h2>
+                <p>
+                    Transitions create smooth changes between different
+                    CSS property values.
+                </p>
+            </div>
+
+            <div class="demo-grid">
+
+                <div class="demo-card">
+                    <h3>Button Transition</h3>
+                    <p>Hover to smoothly change the button.</p>
+
+                    <div class="demo-area">
+                        <button class="transition-btn">
+                            Hover Me
+                        </button>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <h3>Scale Transformation</h3>
+                    <p>The element grows when hovered.</p>
+
+                    <div class="demo-area">
+                        <div class="scale-box"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Transformations -->
+        <section id="transformations" style="margin-top: 50px;">
+
+            <div class="intro">
+                <h2>CSS Transformations</h2>
+                <p>
+                    Transformations allow elements to move, rotate,
+                    scale, or skew.
+                </p>
+            </div>
+
+            <div class="demo-grid">
+
+                <div class="demo-card">
+                    <h3>Rotate</h3>
+                    <p>Rotates the element by 45 degrees.</p>
+
+                    <div class="demo-area">
+                        <div class="rotate-box"></div>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <h3>Translate</h3>
+                    <p>Moves the element horizontally and vertically.</p>
+
+                    <div class="demo-area">
+                        <div class="translate-box"></div>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <h3>Skew</h3>
+                    <p>Slants the element along the X and Y axes.</p>
+
+                    <div class="demo-area">
+                        <div class="skew-box"></div>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <h3>Multiple Transformations</h3>
+                    <p>Combines translate, rotate and scale.</p>
+
+                    <div class="demo-area">
+                        <div class="combo-box"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Code -->
+        <section id="code" class="code-section">
+
+            <h2>Basic CSS Syntax</h2>
+
+            <pre><code>/* Transition */
+
+.button {
+    transition: all 0.4s ease;
+}
+
+.button:hover {
+    background: pink;
+    transform: translateY(-5px);
+}
+
+
+/* Transformations */
+
+.box:hover {
+    transform: scale(1.2);
+}
+
+.box:hover {
+    transform: rotate(45deg);
+}
+
+.box:hover {
+    transform: translate(50px, 20px);
+}
+
+.box:hover {
+    transform: skew(15deg);
+}</code></pre>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>CSS Practical Program • Transitions & Transformations</p>
+    </footer>
+
+</body>
+</html>

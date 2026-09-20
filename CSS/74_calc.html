@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS calc() Function | CSS Practical</title>
+    <meta name="description" content="A practical demonstration of the CSS calc() function using responsive layouts, spacing, widths and typography.">
+    <meta name="keywords" content="CSS calc, CSS practical, CSS3, responsive design">
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            background: #0f172a;
+            color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            /*
+                calc() example:
+                Full viewport height minus header height
+            */
+
+            min-height: calc(100vh - 72px);
+
+            display: flex;
+            align-items: center;
+
+            padding: 60px 6%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a
+                );
+
+            color: white;
+        }
+
+        .hero-content {
+            width: calc(100% - 40px);
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 7px 15px;
+
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.12);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            color: #bfdbfe;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+
+            /*
+                calc() combines viewport width
+                with a fixed value
+            */
+
+            font-size: clamp(
+                2.5rem,
+                calc(2rem + 3vw),
+                5rem
+            );
+
+            line-height: 1.05;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #60a5fa;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+
+            color: #cbd5e1;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 80px 6%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: #64748b;
+        }
+
+
+        /* =========================
+           CALC DEMO
+        ========================= */
+
+        .calc-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .demo-card {
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 12px 35px rgba(15,23,42,0.08);
+
+            margin-bottom: 30px;
+        }
+
+        .demo-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .demo-card > p {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           WIDTH CALCULATION
+        ========================= */
+
+        .width-demo {
+            width: calc(100% - 80px);
+
+            margin: auto;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            background: #dbeafe;
+
+            border: 2px solid #3b82f6;
+
+            text-align: center;
+        }
+
+        .width-demo strong {
+            color: #1d4ed8;
+        }
+
+
+        /* =========================
+           TWO COLUMN CALC
+        ========================= */
+
+        .two-columns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            padding: 25px;
+
+            border-radius: 15px;
+
+            color: white;
+        }
+
+        .column-one {
+            /*
+                50% of container minus half
+                of the gap
+            */
+
+            width: calc(50% - 10px);
+
+            background: #2563eb;
+        }
+
+        .column-two {
+            width: calc(50% - 10px);
+
+            background: #7c3aed;
+        }
+
+
+        /* =========================
+           CARD GRID
+        ========================= */
+
+        .cards {
+            display: grid;
+
+            /*
+                Three cards:
+                available width divided equally
+                with gaps removed
+            */
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    calc((100% - 40px) / 3)
+                );
+
+            gap: 20px;
+        }
+
+        .card {
+            padding: 25px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 15px;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 25px rgba(15,23,42,0.08);
+        }
+
+        .card-number {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #dbeafe;
+
+            color: #2563eb;
+
+            font-weight: 800;
+
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           SIDEBAR + CONTENT
+        ========================= */
+
+        .layout-demo {
+            display: flex;
+            gap: 20px;
+
+            min-height: 250px;
+        }
+
+        .sidebar {
+            /*
+                Sidebar takes fixed 220px
+                content gets remaining width
+            */
+
+            width: 220px;
+
+            padding: 25px;
+
+            background: #0f172a;
+
+            color: white;
+
+            border-radius: 15px;
+        }
+
+        .main-content {
+            /*
+                Remaining available width
+            */
+
+            width: calc(100% - 240px);
+
+            padding: 25px;
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            border-radius: 15px;
+        }
+
+        .main-content p {
+            color: #475569;
+        }
+
+
+        /* =========================
+           SPACING CALC
+        ========================= */
+
+        .spacing-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .spacing-box {
+            width: calc(33.333% - 14px);
+
+            min-height: 130px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: calc(10px + 1vw);
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dbeafe,
+                    #ede9fe
+                );
+
+            border: 1px solid #c4b5fd;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-demo {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-demo input {
+            /*
+                Input takes remaining width
+                after button width
+            */
+
+            width: calc(100% - 130px);
+
+            padding: 14px 16px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        .form-demo input:focus {
+            border-color: #2563eb;
+        }
+
+        .form-demo button {
+            width: 115px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .form-demo button:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* =========================
+           CODE BOX
+        ========================= */
+
+        .code-box {
+            background: #0f172a;
+
+            color: #cbd5e1;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            overflow-x: auto;
+
+            font-family: Consolas, monospace;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+        .code-blue {
+            color: #60a5fa;
+        }
+
+        .code-green {
+            color: #86efac;
+        }
+
+        .code-yellow {
+            color: #fde68a;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px;
+
+            text-align: center;
+
+            background: #0f172a;
+
+            color: #94a3b8;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .cards {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .spacing-box {
+                width: calc(50% - 10px);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .hero {
+                padding: 50px 5%;
+            }
+
+            .hero-content {
+                width: calc(100% - 20px);
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .demo-card {
+                padding: 22px;
+            }
+
+            .two-columns {
+                flex-direction: column;
+            }
+
+            .column-one,
+            .column-two {
+                width: 100%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .layout-demo {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .main-content {
+                width: 100%;
+            }
+
+            .spacing-box {
+                width: 100%;
+            }
+
+            .form-demo {
+                flex-direction: column;
+            }
+
+            .form-demo input,
+            .form-demo button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+            CSS<span>Calc</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#examples">Examples</a>
+            <a href="#code">Code</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <span class="badge">
+                CSS3 Practical Experiment
+            </span>
+
+            <h1>
+                Understanding
+                <span>calc()</span>
+            </h1>
+
+            <p>
+                The CSS calc() function allows you to perform mathematical
+                calculations directly inside CSS properties. It is especially
+                useful for creating flexible and responsive layouts.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EXAMPLES
+    ========================= -->
+
+    <section id="examples">
+
+        <div class="calc-container">
+
+            <div class="section-heading">
+
+                <h2>
+                    CSS calc() Examples
+                </h2>
+
+                <p>
+                    Real-world examples of how calc() can be used
+                    in responsive web design.
+                </p>
+
+            </div>
+
+
+            <!-- Width Example -->
+
+            <div class="demo-card">
+
+                <h3>
+                    1. Calculating Width
+                </h3>
+
+                <p>
+                    The box below uses
+                    <strong>width: calc(100% - 80px)</strong>.
+                </p>
+
+                <div class="width-demo">
+
+                    <strong>
+                        width: calc(100% - 80px)
+                    </strong>
+
+                    <br>
+
+                    This element is 80px narrower than its parent.
+
+                </div>
+
+            </div>
+
+
+            <!-- Two Columns -->
+
+            <div class="demo-card">
+
+                <h3>
+                    2. Two-Column Layout
+                </h3>
+
+                <p>
+                    Each column uses
+                    <strong>calc(50% - 10px)</strong>
+                    to account for the 20px gap.
+                </p>
+
+
+                <div class="two-columns">
+
+                    <div class="column column-one">
+
+                        <h3>
+                            Column One
+                        </h3>
+
+                        <p>
+                            width: calc(50% - 10px)
+                        </p>
+
+                    </div>
+
+
+                    <div class="column column-two">
+
+                        <h3>
+                            Column Two
+                        </h3>
+
+                        <p>
+                            width: calc(50% - 10px)
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Grid -->
+
+            <div class="demo-card">
+
+                <h3>
+                    3. Responsive Card Grid
+                </h3>
+
+                <p>
+                    Three cards share the available space using
+                    <strong>calc()</strong>.
+                </p>
+
+
+                <div class="cards">
+
+                    <div class="card">
+
+                        <div class="card-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Flexible
+                        </h3>
+
+                        <p>
+                            calc() allows elements to adapt to the
+                            available space.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Responsive
+                        </h3>
+
+                        <p>
+                            Combine calc() with media queries for
+                            responsive layouts.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Precise
+                        </h3>
+
+                        <p>
+                            Mix percentages with fixed pixel values
+                            when required.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Sidebar -->
+
+            <div class="demo-card">
+
+                <h3>
+                    4. Sidebar Layout
+                </h3>
+
+                <p>
+                    The main content uses
+                    <strong>calc(100% - 240px)</strong>
+                    after reserving 220px for the sidebar and 20px for the gap.
+                </p>
+
+
+                <div class="layout-demo">
+
+                    <aside class="sidebar">
+
+                        <h3>
+                            Sidebar
+                        </h3>
+
+                        <p>
+                            Width: 220px
+                        </p>
+
+                    </aside>
+
+
+                    <div class="main-content">
+
+                        <h3>
+                            Main Content
+                        </h3>
+
+                        <p>
+                            Width:
+                            <strong>
+                                calc(100% - 240px)
+                            </strong>
+                        </p>
+
+                        <p>
+                            The remaining width automatically adjusts
+                            when the parent container changes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Spacing -->
+
+            <div class="demo-card">
+
+                <h3>
+                    5. Dynamic Padding
+                </h3>
+
+                <p>
+                    Padding can combine fixed values and viewport units
+                    using calc().
+                </p>
+
+
+                <div class="spacing-demo">
+
+                    <div class="spacing-box">
+                        padding:<br>
+                        calc(10px + 1vw)
+                    </div>
+
+                    <div class="spacing-box">
+                        padding:<br>
+                        calc(10px + 1vw)
+                    </div>
+
+                    <div class="spacing-box">
+                        padding:<br>
+                        calc(10px + 1vw)
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Form -->
+
+            <div class="demo-card">
+
+                <h3>
+                    6. Input + Button
+                </h3>
+
+                <p>
+                    The input uses
+                    <strong>calc(100% - 130px)</strong>
+                    to leave space for the button.
+                </p>
+
+
+                <div class="form-demo">
+
+                    <input
+                        type="text"
+                        placeholder="Enter your email"
+                    >
+
+                    <button>
+                        Subscribe
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Code -->
+
+            <div class="demo-card" id="code">
+
+                <h3>
+                    Basic calc() Syntax
+                </h3>
+
+                <p>
+                    The general syntax of the CSS calc() function is:
+                </p>
+
+
+                <div class="code-box">
+
+                    <span class="code-blue">width</span>:
+                    <span class="code-green">calc</span>(
+
+                    <span class="code-yellow">100%</span>
+                    -
+                    <span class="code-yellow">40px</span>
+                    );
+
+                    <br>
+
+                    <span class="code-blue">padding</span>:
+                    <span class="code-green">calc</span>(
+
+                    <span class="code-yellow">20px</span>
+                    +
+                    <span class="code-yellow">2vw</span>
+                    );
+
+                    <br>
+
+                    <span class="code-blue">font-size</span>:
+                    <span class="code-green">calc</span>(
+
+                    <span class="code-yellow">1rem</span>
+                    +
+                    <span class="code-yellow">1vw</span>
+                    );
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            CSS Practical Programs |
+            <strong>Experiment 74</strong>
+        </p>
+
+        <p>
+            Demonstrating the CSS calc() function
+        </p>
+
+    </footer>
+
+
+</body>
+</html>

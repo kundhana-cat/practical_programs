@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Responsive CSS Grid Layout</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #243b7a,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    #63258f,
+                    transparent 35%
+                ),
+                #0b1020;
+
+            color: white;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+
+            padding: 70px 20px 45px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.08);
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            color: #93c5fd;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+
+            margin-bottom: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #7dd3fc
+                );
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        header p {
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #aab4d0;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           GRID CONTAINER
+        ========================= */
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            padding-bottom: 50px;
+        }
+
+
+        /* =========================
+           GRID CARDS
+        ========================= */
+
+        .card {
+
+            min-height: 230px;
+
+            padding: 28px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.25);
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .card:hover {
+
+            transform:
+                translateY(-8px);
+
+            background:
+                rgba(255,255,255,0.11);
+        }
+
+
+        /* =========================
+           CARD ICON
+        ========================= */
+
+        .icon {
+
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           CARD TEXT
+        ========================= */
+
+        .card h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .card p {
+
+            color: #9da8c2;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           SPECIAL GRID ITEMS
+        ========================= */
+
+        .large {
+
+            grid-column:
+                span 2;
+        }
+
+        .wide {
+
+            grid-column:
+                span 2;
+        }
+
+
+        /* =========================
+           RESPONSIVE TABLET
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .large,
+            .wide {
+
+                grid-column:
+                    span 1;
+            }
+
+        }
+
+
+        /* =========================
+           RESPONSIVE MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .container {
+
+                width: 92%;
+            }
+
+            header {
+
+                padding-top: 45px;
+            }
+
+            .grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 16px;
+            }
+
+            .large,
+            .wide {
+
+                grid-column:
+                    span 1;
+            }
+
+            .card {
+
+                min-height: 200px;
+
+                padding: 23px;
+            }
+
+        }
+
+
+        /* =========================
+           EXTRA SMALL DEVICES
+        ========================= */
+
+        @media (max-width: 400px) {
+
+            h1 {
+
+                font-size: 2rem;
+            }
+
+            header p {
+
+                font-size: 14px;
+            }
+
+            .card h2 {
+
+                font-size: 18px;
+            }
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.1);
+
+            color: #78839e;
+
+            font-size: 13px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="container">
+
+            <span class="badge">
+                CSS PRACTICAL • RESPONSIVE DESIGN
+            </span>
+
+            <h1>
+                Responsive Grid Layout
+            </h1>
+
+            <p>
+                A modern responsive webpage created using
+                CSS Grid and media queries. Resize the browser
+                window to see the layout automatically adapt
+                to different screen sizes.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         GRID
+    ========================= -->
+
+    <main class="container">
+
+        <section class="grid">
+
+
+            <!-- CARD 1 -->
+
+            <article class="card large">
+
+                <div>
+
+                    <div class="icon">
+                        📱
+                    </div>
+
+                    <h2>
+                        Responsive Design
+                    </h2>
+
+                    <p>
+                        The layout automatically changes
+                        according to the screen width using
+                        CSS media queries.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 2 -->
+
+            <article class="card">
+
+                <div>
+
+                    <div class="icon">
+                        🧩
+                    </div>
+
+                    <h2>
+                        CSS Grid
+                    </h2>
+
+                    <p>
+                        CSS Grid creates flexible rows and
+                        columns for organizing webpage content.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 3 -->
+
+            <article class="card">
+
+                <div>
+
+                    <div class="icon">
+                        ⚡
+                    </div>
+
+                    <h2>
+                        Flexible Layout
+                    </h2>
+
+                    <p>
+                        Grid columns automatically adjust
+                        based on available screen space.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 4 -->
+
+            <article class="card">
+
+                <div>
+
+                    <div class="icon">
+                        💻
+                    </div>
+
+                    <h2>
+                        Desktop View
+                    </h2>
+
+                    <p>
+                        On large screens, the cards are
+                        displayed in multiple columns.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 5 -->
+
+            <article class="card wide">
+
+                <div>
+
+                    <div class="icon">
+                        📐
+                    </div>
+
+                    <h2>
+                        Tablet View
+                    </h2>
+
+                    <p>
+                        At medium screen sizes, media queries
+                        reduce the number of columns to create
+                        a comfortable two-column layout.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 6 -->
+
+            <article class="card">
+
+                <div>
+
+                    <div class="icon">
+                        📲
+                    </div>
+
+                    <h2>
+                        Mobile View
+                    </h2>
+
+                    <p>
+                        On smaller screens, the grid changes
+                        into a single-column layout.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 7 -->
+
+            <article class="card">
+
+                <div>
+
+                    <div class="icon">
+                        🎯
+                    </div>
+
+                    <h2>
+                        Clean Structure
+                    </h2>
+
+                    <p>
+                        Grid makes it easy to create organized
+                        and maintainable webpage layouts.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            Responsive Layout • CSS Grid + Media Queries
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Filters Demonstration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #07111f;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            padding: 20px 8%;
+            background: rgba(10, 25, 45, 0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #61dafb;
+        }
+
+        nav a {
+            color: #dbeafe;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #61dafb;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+            padding: 85px 20px 65px;
+            background:
+                radial-gradient(circle at top, #163452, transparent 60%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #61dafb;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+            color: #9eb1c8;
+            font-size: 1.05rem;
+        }
+
+        /* ================= MAIN ================= */
+
+        main {
+            width: min(1150px, 90%);
+            margin: auto;
+            padding-bottom: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #91a4ba;
+        }
+
+        /* ================= FILTER GRID ================= */
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .filter-card {
+            background: #0c1c2f;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .image-container {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ================= FILTERS ================= */
+
+        .blur img {
+            filter: blur(5px);
+        }
+
+        .grayscale img {
+            filter: grayscale(100%);
+        }
+
+        .brightness img {
+            filter: brightness(150%);
+        }
+
+        .contrast img {
+            filter: contrast(180%);
+        }
+
+        .sepia img {
+            filter: sepia(100%);
+        }
+
+        .saturate img {
+            filter: saturate(250%);
+        }
+
+        .invert img {
+            filter: invert(100%);
+        }
+
+        .shadow img {
+            filter: drop-shadow(12px 12px 8px rgba(0,0,0,0.7));
+        }
+
+        /* ================= CARD CONTENT ================= */
+
+        .card-content {
+            padding: 23px;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: #94a9bf;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .code-tag {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 20px;
+            background: rgba(97, 218, 251, 0.1);
+            color: #61dafb;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        /* ================= COMPARISON ================= */
+
+        .comparison {
+            margin-top: 75px;
+        }
+
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .comparison-card {
+            background: #0c1c2f;
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .comparison-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .comparison-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .filtered-image {
+            filter: grayscale(100%) contrast(150%);
+        }
+
+        /* ================= CODE ================= */
+
+        .code-section {
+            margin-top: 70px;
+            background: #0c1c2f;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .code-section h2 {
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background: #050b13;
+            color: #bfeeff;
+            padding: 25px;
+            border-radius: 15px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #050b13;
+            color: #8193a8;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            .filter-grid,
+            .comparison-box {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .image-container {
+                height: 270px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .image-container {
+                height: 230px;
+            }
+
+            .comparison-card img {
+                height: 220px;
+            }
+
+            pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+        <nav>
+            <div class="logo">
+                CSS<span>Studio</span>
+            </div>
+
+            <div>
+                <a href="#home">Home</a>
+                <a href="#filters">Filters</a>
+                <a href="#code">Code</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <h1>
+            CSS <span>Filters</span>
+        </h1>
+
+        <p>
+            Explore powerful CSS filter functions such as blur,
+            grayscale, brightness, contrast, sepia, saturation
+            and inversion.
+        </p>
+
+    </section>
+
+
+    <main>
+
+        <!-- FILTERS -->
+
+        <section id="filters">
+
+            <div class="section-title">
+
+                <h2>Filter Effects</h2>
+
+                <p>
+                    Each image below demonstrates a different
+                    CSS filter property.
+                </p>
+
+            </div>
+
+
+            <div class="filter-grid">
+
+                <!-- BLUR -->
+
+                <article class="filter-card">
+
+                    <div class="image-container blur">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
+                            alt="Mountain landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Blur</h3>
+
+                        <p>
+                            Makes an image appear soft or out of focus.
+                        </p>
+
+                        <span class="code-tag">
+                            filter: blur(5px);
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- GRAYSCALE -->
+
+                <article class="filter-card">
+
+                    <div class="image-container grayscale">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80"
+                            alt="Ocean beach"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Grayscale</h3>
+
+                        <p>
+                            Removes color from the image and creates
+                            a black-and-white appearance.
+                        </p>
+
+                        <span class="code-tag">
+                            filter: grayscale(100%);
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BRIGHTNESS -->
+
+                <article class="filter-card">
+
+                    <div class="image-container brightness">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1000&q=80"
+                            alt="City skyline"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Brightness</h3>
+
+                        <p>
+                            Increases or decreases the brightness
+                            of the image.
+                        </p>
+
+                        <span class="code-tag">
+                            filter: brightness(150%);
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CONTRAST -->
+
+                <article class="filter-card">
+
+                    <div class="image-container contrast">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=80"
+                            alt="Green forest"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Contrast</h3>
+
+                        <p>
+                            Increases the difference between light
+                            and dark areas.
+                        </p>
+
+                        <span class="code-tag">
+                            filter: contrast(180%);
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- SEPIA -->
+
+                <article class="filter-card">
+
+                    <div class="image-container sepia">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80"
+                            alt="Snowy mountain"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Sepia</h3>
+
+                        <p>
+                            Adds a warm brown tone to an image.
+                        </p>
+
+                        <span class="code-tag">
+                            filter: sepia(100%);
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- SATURATE -->
+
+                <article class="filter-card">
+
+                    <div class="image-container saturate">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80"
+                            alt="Nature landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Saturation</h3>
+
+                        <p>
+                            Makes the colors more or less intense.
+                        </p>
+
+                        <span class="code-tag">
+                            filter: saturate(250%);
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- INVERT -->
+
+                <article class="filter-card">
+
+                    <div class="image-container invert">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
+                            alt="Mountain scenery"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Invert</h3>
+
+                        <p>
+                            Reverses the colors of an image.
+                        </p>
+
+                        <span class="code-tag">
+                            filter: invert(100%);
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DROP SHADOW -->
+
+                <article class="filter-card">
+
+                    <div class="image-container shadow">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80"
+                            alt="Beach scenery"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Drop Shadow</h3>
+
+                        <p>
+                            Creates a shadow around the visible
+                            shape of an image.
+                        </p>
+
+                        <span class="code-tag">
+                            filter: drop-shadow();
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMPARISON -->
+
+        <section class="comparison">
+
+            <div class="section-title">
+
+                <h2>Before & After</h2>
+
+                <p>
+                    Multiple filter functions can be combined.
+                </p>
+
+            </div>
+
+
+            <div class="comparison-box">
+
+                <div class="comparison-card">
+
+                    <h3>Original Image</h3>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
+                        alt="Original mountain landscape"
+                    >
+
+                </div>
+
+
+                <div class="comparison-card">
+
+                    <h3>Filtered Image</h3>
+
+                    <img
+                        class="filtered-image"
+                        src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
+                        alt="Filtered mountain landscape"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CODE -->
+
+        <section class="code-section" id="code">
+
+            <h2>CSS Filter Syntax</h2>
+
+<pre>
+/* Blur */
+.image {
+    filter: blur(5px);
+}
+
+/* Grayscale */
+.image {
+    filter: grayscale(100%);
+}
+
+/* Brightness */
+.image {
+    filter: brightness(150%);
+}
+
+/* Contrast */
+.image {
+    filter: contrast(180%);
+}
+
+/* Multiple filters */
+.image {
+    filter: grayscale(100%) contrast(150%);
+}
+</pre>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            CSS Practical Program • CSS Filters
+        </p>
+
+    </footer>
+
+</body>
+</html>

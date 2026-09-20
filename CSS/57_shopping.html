@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopora - Online Shopping</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            background: #111827;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 70px;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .search {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 13px 45px 13px 18px;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+
+        .search button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background: #38bdf8;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-actions a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-actions a:hover {
+            color: #38bdf8;
+        }
+
+        .cart {
+            position: relative;
+            font-size: 22px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -9px;
+            right: -10px;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 60px 50px;
+            border-radius: 25px;
+            background:
+                linear-gradient(90deg, rgba(15,23,42,0.95), rgba(15,23,42,0.35)),
+                url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80")
+                center/cover;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 550px;
+        }
+
+        .hero small {
+            color: #38bdf8;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin: 15px 0;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            color: #e5e7eb;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: #38bdf8;
+            color: #0f172a;
+            padding: 13px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .shop-btn:hover {
+            transform: translateY(-3px);
+            background: white;
+        }
+
+        /* ================= MAIN ================= */
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 25px 50px;
+        }
+
+        .section-title {
+            margin: 45px 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+        }
+
+        .section-title a {
+            color: #0284c7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* ================= CATEGORIES ================= */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+        }
+
+        .category {
+            background: white;
+            padding: 22px 10px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+        }
+
+        .category .icon {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .category h3 {
+            font-size: 14px;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            transition: 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .product:hover img {
+            transform: scale(1.08);
+        }
+
+        .discount {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ef4444;
+            color: white;
+            padding: 6px 9px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .heart {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .product-info {
+            padding: 17px;
+        }
+
+        .product-info small {
+            color: #64748b;
+        }
+
+        .product-info h3 {
+            margin: 7px 0;
+            font-size: 17px;
+        }
+
+        .rating {
+            color: #f59e0b;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .current {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .old {
+            color: #94a3b8;
+            text-decoration: line-through;
+            font-size: 13px;
+        }
+
+        .add-cart {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            border-radius: 9px;
+            background: #111827;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-cart:hover {
+            background: #0284c7;
+        }
+
+        /* ================= OFFER ================= */
+
+        .offer {
+            margin-top: 45px;
+            padding: 35px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #0f172a, #0369a1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .offer h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .offer p {
+            color: #dbeafe;
+        }
+
+        .offer-btn {
+            background: white;
+            color: #0f172a;
+            padding: 12px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            margin-top: 30px;
+            background: #0f172a;
+            color: white;
+            padding: 45px 25px 20px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-col p {
+            color: #94a3b8;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #38bdf8;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 35px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 750px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 15px 20px;
+            }
+
+            .search {
+                order: 3;
+                flex-basis: 100%;
+                max-width: none;
+            }
+
+            .hero {
+                margin: 15px;
+                padding: 45px 25px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .offer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .nav-actions a {
+                display: none;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 260px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                Shop<span>ora</span>
+            </div>
+
+            <div class="search">
+                <input type="text" placeholder="Search for products...">
+                <button>⌕</button>
+            </div>
+
+            <div class="nav-actions">
+                <a href="#">Home</a>
+                <a href="#">Orders</a>
+                <a href="#">Account</a>
+
+                <a href="#" class="cart">
+                    🛒
+                    <span class="cart-count">2</span>
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <small>NEW SEASON COLLECTION</small>
+
+            <h1>
+                Shop Smart.<br>
+                Live Better.
+            </h1>
+
+            <p>
+                Discover trending fashion, electronics, accessories
+                and lifestyle products at amazing prices.
+            </p>
+
+            <a href="#products" class="shop-btn">
+                Shop Now →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <main>
+
+        <!-- CATEGORIES -->
+        <div class="section-title">
+            <h2>Shop by Category</h2>
+            <a href="#">View All →</a>
+        </div>
+
+        <section class="categories">
+
+            <div class="category">
+                <div class="icon">👗</div>
+                <h3>Fashion</h3>
+            </div>
+
+            <div class="category">
+                <div class="icon">📱</div>
+                <h3>Electronics</h3>
+            </div>
+
+            <div class="category">
+                <div class="icon">👟</div>
+                <h3>Footwear</h3>
+            </div>
+
+            <div class="category">
+                <div class="icon">🎧</div>
+                <h3>Accessories</h3>
+            </div>
+
+            <div class="category">
+                <div class="icon">🏠</div>
+                <h3>Home</h3>
+            </div>
+
+            <div class="category">
+                <div class="icon">💄</div>
+                <h3>Beauty</h3>
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTS -->
+        <div class="section-title" id="products">
+            <h2>Trending Products</h2>
+            <a href="#">View All →</a>
+        </div>
+
+        <section class="products">
+
+            <!-- PRODUCT 1 -->
+            <article class="product">
+
+                <div class="product-image">
+
+                    <span class="discount">30% OFF</span>
+
+                    <button class="heart">♡</button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
+                        alt="White T-shirt"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <small>Fashion</small>
+
+                    <h3>Classic Cotton T-Shirt</h3>
+
+                    <div class="rating">
+                        ★★★★★ <span>(124)</span>
+                    </div>
+
+                    <div class="price">
+                        <span class="current">₹699</span>
+                        <span class="old">₹999</span>
+                    </div>
+
+                    <button class="add-cart">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 2 -->
+            <article class="product">
+
+                <div class="product-image">
+
+                    <span class="discount">20% OFF</span>
+
+                    <button class="heart">♡</button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=700&q=80"
+                        alt="Wireless headphones"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <small>Electronics</small>
+
+                    <h3>Wireless Headphones</h3>
+
+                    <div class="rating">
+                        ★★★★☆ <span>(89)</span>
+                    </div>
+
+                    <div class="price">
+                        <span class="current">₹1,599</span>
+                        <span class="old">₹1,999</span>
+                    </div>
+
+                    <button class="add-cart">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 3 -->
+            <article class="product">
+
+                <div class="product-image">
+
+                    <span class="discount">25% OFF</span>
+
+                    <button class="heart">♡</button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
+                        alt="Running shoes"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <small>Footwear</small>
+
+                    <h3>Urban Running Shoes</h3>
+
+                    <div class="rating">
+                        ★★★★★ <span>(210)</span>
+                    </div>
+
+                    <div class="price">
+                        <span class="current">₹2,249</span>
+                        <span class="old">₹2,999</span>
+                    </div>
+
+                    <button class="add-cart">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 4 -->
+            <article class="product">
+
+                <div class="product-image">
+
+                    <span class="discount">15% OFF</span>
+
+                    <button class="heart">♡</button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80"
+                        alt="Smart watch"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <small>Accessories</small>
+
+                    <h3>Smart Fitness Watch</h3>
+
+                    <div class="rating">
+                        ★★★★☆ <span>(76)</span>
+                    </div>
+
+                    <div class="price">
+                        <span class="current">₹2,999</span>
+                        <span class="old">₹3,499</span>
+                    </div>
+
+                    <button class="add-cart">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- OFFER -->
+        <section class="offer">
+
+            <div>
+                <h2>Extra 20% OFF</h2>
+                <p>
+                    Get additional savings on selected products.
+                    Limited-time shopping offer.
+                </p>
+            </div>
+
+            <a href="#" class="offer-btn">
+                Explore Deals
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-grid">
+
+            <div class="footer-col">
+
+                <h3>Shopora</h3>
+
+                <p>
+                    Your modern online shopping destination for
+                    fashion, electronics, lifestyle and everyday essentials.
+                </p>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h3>Shop</h3>
+
+                <a href="#">Fashion</a>
+                <a href="#">Electronics</a>
+                <a href="#">Footwear</a>
+                <a href="#">Accessories</a>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h3>Help</h3>
+
+                <a href="#">Contact Us</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">FAQ</a>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h3>Follow Us</h3>
+
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">YouTube</a>
+                <a href="#">Pinterest</a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Shopora. All Rights Reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>

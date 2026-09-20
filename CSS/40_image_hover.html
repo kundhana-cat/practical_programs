@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Image Hover Effects</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #07111f;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            padding: 20px 8%;
+            background: rgba(10, 25, 45, 0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #61dafb;
+        }
+
+        nav a {
+            color: #dbeafe;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #61dafb;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background:
+                radial-gradient(circle at top, #163452, transparent 55%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #61dafb;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #9eb1c8;
+            font-size: 1.05rem;
+        }
+
+        /* MAIN */
+
+        main {
+            width: min(1150px, 90%);
+            margin: auto;
+            padding-bottom: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #91a4ba;
+        }
+
+        /* GALLERY */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .card {
+            background: #0c1c2f;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .image-box {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: 0.6s ease;
+        }
+
+        /* EFFECT 1 - ZOOM */
+
+        .zoom:hover img {
+            transform: scale(1.18);
+        }
+
+        /* EFFECT 2 - GRAYSCALE TO COLOR */
+
+        .grayscale img {
+            filter: grayscale(100%);
+        }
+
+        .grayscale:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.08);
+        }
+
+        /* EFFECT 3 - OVERLAY */
+
+        .overlay::after {
+            content: "Explore Nature";
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(0, 0, 0, 0.65);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+
+            opacity: 0;
+            transition: 0.5s ease;
+        }
+
+        .overlay:hover::after {
+            opacity: 1;
+        }
+
+        .overlay:hover img {
+            transform: scale(1.1);
+        }
+
+        /* EFFECT 4 - ROTATE */
+
+        .rotate:hover img {
+            transform: scale(1.12) rotate(4deg);
+        }
+
+        /* EFFECT 5 - BRIGHTNESS */
+
+        .brightness img {
+            filter: brightness(60%);
+        }
+
+        .brightness:hover img {
+            filter: brightness(100%);
+            transform: scale(1.08);
+        }
+
+        /* EFFECT 6 - BLUR */
+
+        .blur img {
+            filter: blur(3px);
+            transform: scale(1.03);
+        }
+
+        .blur:hover img {
+            filter: blur(0);
+            transform: scale(1.08);
+        }
+
+        /* CARD CONTENT */
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card-content h3 {
+            font-size: 1.35rem;
+            margin-bottom: 7px;
+        }
+
+        .card-content p {
+            color: #94a9bf;
+            font-size: 0.95rem;
+        }
+
+        .effect-name {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(97, 218, 251, 0.1);
+            color: #61dafb;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* CODE */
+
+        .code-section {
+            margin-top: 70px;
+            background: #0c1c2f;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .code-section h2 {
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background: #050b13;
+            color: #bfeeff;
+            padding: 25px;
+            border-radius: 15px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #050b13;
+            color: #8193a8;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 750px) {
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .image-box {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .image-box {
+                height: 230px;
+            }
+
+            pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+        <nav>
+            <div class="logo">
+                CSS<span>Studio</span>
+            </div>
+
+            <div>
+                <a href="#home">Home</a>
+                <a href="#effects">Effects</a>
+                <a href="#code">Code</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <h1>
+            Image <span>Hover Effects</span>
+        </h1>
+
+        <p>
+            Create interactive and attractive image effects
+            using CSS transitions, transforms and filters.
+        </p>
+
+    </section>
+
+
+    <main>
+
+        <!-- EFFECTS -->
+
+        <section id="effects">
+
+            <div class="section-title">
+
+                <h2>Hover Effect Gallery</h2>
+
+                <p>
+                    Move your mouse over each image to see the CSS effect.
+                </p>
+
+            </div>
+
+
+            <div class="gallery">
+
+                <!-- ZOOM -->
+
+                <article class="card">
+
+                    <div class="image-box zoom">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
+                            alt="Mountain landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Zoom Effect</h3>
+
+                        <p>
+                            The image smoothly enlarges when the
+                            cursor moves over it.
+                        </p>
+
+                        <span class="effect-name">
+                            transform: scale()
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- GRAYSCALE -->
+
+                <article class="card">
+
+                    <div class="image-box grayscale">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80"
+                            alt="Ocean beach"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Grayscale to Color</h3>
+
+                        <p>
+                            The image starts in grayscale and
+                            becomes colorful on hover.
+                        </p>
+
+                        <span class="effect-name">
+                            filter: grayscale()
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- OVERLAY -->
+
+                <article class="card">
+
+                    <div class="image-box overlay">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=80"
+                            alt="Green forest"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Overlay Effect</h3>
+
+                        <p>
+                            A dark overlay and text appear when
+                            the image is hovered.
+                        </p>
+
+                        <span class="effect-name">
+                            ::after + opacity
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ROTATE -->
+
+                <article class="card">
+
+                    <div class="image-box rotate">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80"
+                            alt="Snowy mountains"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Rotate Effect</h3>
+
+                        <p>
+                            The image slightly rotates while
+                            zooming on hover.
+                        </p>
+
+                        <span class="effect-name">
+                            rotate() + scale()
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BRIGHTNESS -->
+
+                <article class="card">
+
+                    <div class="image-box brightness">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1000&q=80"
+                            alt="City skyline"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Brightness Effect</h3>
+
+                        <p>
+                            The image becomes brighter and
+                            clearer when hovered.
+                        </p>
+
+                        <span class="effect-name">
+                            filter: brightness()
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BLUR -->
+
+                <article class="card">
+
+                    <div class="image-box blur">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
+                            alt="Scenic landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Blur Effect</h3>
+
+                        <p>
+                            The image becomes sharp when the
+                            user hovers over it.
+                        </p>
+
+                        <span class="effect-name">
+                            filter: blur()
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CODE -->
+
+        <section class="code-section" id="code">
+
+            <h2>Basic Hover Effect Code</h2>
+
+<pre>
+.image-box {
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    transition: 0.5s ease;
+}
+
+.image-box:hover img {
+    transform: scale(1.1);
+}
+</pre>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            CSS Practical Program • Image Hover Effects
+        </p>
+
+    </footer>
+
+</body>
+</html>

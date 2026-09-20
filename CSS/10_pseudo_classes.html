@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Pseudo-Classes</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            color: #172033;
+
+            background:
+                radial-gradient(circle at top left, #dfe7ff, transparent 35%),
+                radial-gradient(circle at bottom right, #eadfff, transparent 35%),
+                #f7f8fc;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            padding: 65px 20px 75px;
+            text-align: center;
+            color: white;
+
+            background:
+                linear-gradient(135deg, #172554, #3730a3, #6d28d9);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-bottom: 18px;
+
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.1);
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        header h1 {
+            font-size: clamp(38px, 6vw, 62px);
+            margin-bottom: 15px;
+        }
+
+        header h1 span {
+            color: #c4b5fd;
+        }
+
+        header p {
+            max-width: 680px;
+            margin: auto;
+
+            color: #dfe3ff;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* ================= MAIN ================= */
+
+        main {
+            width: 92%;
+            max-width: 1100px;
+            margin: -45px auto 70px;
+        }
+
+        .intro {
+            padding: 30px;
+            margin-bottom: 25px;
+
+            border: 1px solid #e5e8f2;
+            border-radius: 20px;
+
+            background: white;
+
+            box-shadow: 0 12px 35px rgba(30, 40, 80, 0.08);
+        }
+
+        .intro h2 {
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .intro p {
+            color: #697286;
+            font-size: 14px;
+        }
+
+        /* ================= GRID ================= */
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .demo-card {
+            padding: 30px;
+
+            border: 1px solid #e5e8f2;
+            border-radius: 20px;
+
+            background: white;
+
+            box-shadow: 0 10px 30px rgba(30, 40, 80, 0.06);
+        }
+
+        .number {
+            width: 40px;
+            height: 40px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 18px;
+
+            border-radius: 12px;
+
+            background: #eef0ff;
+            color: #4338ca;
+
+            font-weight: 800;
+        }
+
+        .demo-card h3 {
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        .description {
+            margin-bottom: 22px;
+            color: #70798d;
+            font-size: 14px;
+        }
+
+        .code-label {
+            display: inline-block;
+
+            margin-bottom: 15px;
+            padding: 5px 10px;
+
+            border-radius: 6px;
+
+            background: #f0f1f6;
+            color: #4b5568;
+
+            font-family: Consolas, monospace;
+            font-size: 12px;
+        }
+
+        /* ================= HOVER ================= */
+
+        .hover-box {
+            padding: 18px;
+
+            border: 2px solid #dfe3f0;
+            border-radius: 12px;
+
+            text-align: center;
+
+            background: #f9faff;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .hover-box:hover {
+            transform: translateY(-5px);
+
+            border-color: #6366f1;
+
+            background: #eef0ff;
+
+            color: #3730a3;
+
+            box-shadow: 0 12px 25px rgba(67, 56, 202, 0.15);
+        }
+
+        /* ================= ACTIVE ================= */
+
+        .active-button {
+            width: 100%;
+
+            padding: 15px 20px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #4338ca;
+            color: white;
+
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.15s;
+        }
+
+        .active-button:hover {
+            background: #312e81;
+        }
+
+        .active-button:active {
+            transform: scale(0.94);
+            background: #1e1b4b;
+        }
+
+        /* ================= FOCUS ================= */
+
+        .focus-input {
+            width: 100%;
+
+            padding: 15px;
+
+            border: 2px solid #dce0eb;
+            border-radius: 12px;
+
+            outline: none;
+
+            background: #fafbfe;
+
+            color: #172033;
+
+            font-family: inherit;
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .focus-input::placeholder {
+            color: #9aa2b4;
+        }
+
+        .focus-input:focus {
+            border-color: #6366f1;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(99, 102, 241, 0.12);
+        }
+
+        /* ================= VISITED ================= */
+
+        .link-area {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-area a {
+            display: block;
+
+            padding: 13px 16px;
+
+            border-radius: 10px;
+
+            background: #f4f5fa;
+
+            color: #4338ca;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .link-area a:hover {
+            background: #eef0ff;
+            transform: translateX(5px);
+        }
+
+        .link-area a:visited {
+            color: #9333a8;
+        }
+
+        /* ================= EXTRA PSEUDO CLASSES ================= */
+
+        .list-demo {
+            list-style: none;
+        }
+
+        .list-demo li {
+            padding: 13px 16px;
+            margin-bottom: 8px;
+
+            border-radius: 10px;
+
+            background: #f5f6fa;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .list-demo li:first-child {
+            border-left: 4px solid #6366f1;
+        }
+
+        .list-demo li:last-child {
+            margin-bottom: 0;
+            border-left: 4px solid #9333ea;
+        }
+
+        .list-demo li:nth-child(2) {
+            border-left: 4px solid #06b6d4;
+        }
+
+        .list-demo li:hover {
+            transform: translateX(6px);
+            background: #eef0ff;
+        }
+
+        /* ================= CODE ================= */
+
+        .code-section {
+            margin-top: 25px;
+            padding: 30px;
+
+            border-radius: 20px;
+
+            background: #111827;
+            color: #d1d5db;
+
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .code-section h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        pre {
+            overflow-x: auto;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+            background: #080d19;
+
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .selector {
+            color: #c4b5fd;
+        }
+
+        .property {
+            color: #67e8f9;
+        }
+
+        .value {
+            color: #86efac;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 25px;
+
+            text-align: center;
+
+            background: #10172f;
+            color: #9299b2;
+
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 55px 20px 65px;
+            }
+
+            main {
+                width: 94%;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            header h1 {
+                font-size: 37px;
+            }
+
+            header p {
+                font-size: 14px;
+            }
+
+            .intro,
+            .demo-card,
+            .code-section {
+                padding: 22px;
+            }
+
+            pre {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <span class="badge">
+            CSS PRACTICAL • EXPERIMENT 10
+        </span>
+
+        <h1>
+            CSS <span>Pseudo-Classes</span>
+        </h1>
+
+        <p>
+            Explore interactive CSS states using :hover, :active,
+            :focus and :visited pseudo-classes.
+        </p>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <section class="intro">
+
+            <h2>What are Pseudo-Classes?</h2>
+
+            <p>
+                CSS pseudo-classes allow elements to be styled based
+                on their current state or user interaction.
+                Try each example below to see the effect.
+            </p>
+
+        </section>
+
+
+        <section class="demo-grid">
+
+            <!-- ================= HOVER ================= -->
+
+            <article class="demo-card">
+
+                <div class="number">01</div>
+
+                <h3>:hover</h3>
+
+                <p class="description">
+                    Applies styles when the mouse pointer moves
+                    over an element.
+                </p>
+
+                <span class="code-label">
+                    .box:hover
+                </span>
+
+                <div class="hover-box">
+                    Move your mouse over me
+                </div>
+
+            </article>
+
+
+            <!-- ================= ACTIVE ================= -->
+
+            <article class="demo-card">
+
+                <div class="number">02</div>
+
+                <h3>:active</h3>
+
+                <p class="description">
+                    Applies styles while an element is being
+                    actively clicked or pressed.
+                </p>
+
+                <span class="code-label">
+                    button:active
+                </span>
+
+                <button class="active-button">
+                    Press and Hold Me
+                </button>
+
+            </article>
+
+
+            <!-- ================= FOCUS ================= -->
+
+            <article class="demo-card">
+
+                <div class="number">03</div>
+
+                <h3>:focus</h3>
+
+                <p class="description">
+                    Applies styles when an input or interactive
+                    element receives keyboard or mouse focus.
+                </p>
+
+                <span class="code-label">
+                    input:focus
+                </span>
+
+                <input
+                    type="text"
+                    class="focus-input"
+                    placeholder="Click here and start typing...">
+
+            </article>
+
+
+            <!-- ================= VISITED ================= -->
+
+            <article class="demo-card">
+
+                <div class="number">04</div>
+
+                <h3>:visited</h3>
+
+                <p class="description">
+                    Applies styles to links that the browser
+                    recognizes as already visited.
+                </p>
+
+                <span class="code-label">
+                    a:visited
+                </span>
+
+                <div class="link-area">
+
+                    <a
+                        href="https://www.wikipedia.org/"
+                        target="_blank">
+                        Visit Wikipedia →
+                    </a>
+
+                    <a
+                        href="https://www.w3schools.com/"
+                        target="_blank">
+                        Visit W3Schools →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- ================= EXTRA ================= -->
+
+            <article class="demo-card">
+
+                <div class="number">05</div>
+
+                <h3>Other Pseudo-Classes</h3>
+
+                <p class="description">
+                    CSS provides many other useful pseudo-classes
+                    for selecting elements based on their position.
+                </p>
+
+                <span class="code-label">
+                    :first-child • :last-child • :nth-child()
+                </span>
+
+                <ul class="list-demo">
+
+                    <li>First Item</li>
+
+                    <li>Second Item</li>
+
+                    <li>Third Item</li>
+
+                    <li>Last Item</li>
+
+                </ul>
+
+            </article>
+
+
+            <!-- ================= COMBINATION ================= -->
+
+            <article class="demo-card">
+
+                <div class="number">06</div>
+
+                <h3>Combined Interaction</h3>
+
+                <p class="description">
+                    Multiple pseudo-classes can be used together
+                    to create richer interactive experiences.
+                </p>
+
+                <span class="code-label">
+                    hover + active + focus
+                </span>
+
+                <button
+                    class="active-button"
+                    onclick="showMessage()">
+                    Try Interactive Button
+                </button>
+
+            </article>
+
+        </section>
+
+
+        <!-- ================= CODE ================= -->
+
+        <section class="code-section">
+
+            <h2>CSS Syntax</h2>
+
+<pre><span class="selector">.button:hover</span> {
+    <span class="property">background</span>: <span class="value">blue</span>;
+}
+
+<span class="selector">.button:active</span> {
+    <span class="property">transform</span>: <span class="value">scale(0.95)</span>;
+}
+
+<span class="selector">input:focus</span> {
+    <span class="property">border-color</span>: <span class="value">purple</span>;
+}
+
+<span class="selector">a:visited</span> {
+    <span class="property">color</span>: <span class="value">purple</span>;
+}</pre>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        CSS Pseudo-Classes • Experiment 10
+
+    </footer>
+
+
+    <script>
+
+        function showMessage() {
+
+            alert(
+                "This button demonstrates CSS pseudo-class interactions!"
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>

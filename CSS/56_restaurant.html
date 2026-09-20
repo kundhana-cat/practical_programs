@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La Tavola - Restaurant</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #0d0b0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 18px 7%;
+            background: rgba(13, 11, 10, 0.92);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e8b56a;
+        }
+
+        .logo small {
+            display: block;
+            font-family: "Segoe UI", sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 4px;
+            color: #aaa;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #e8b56a;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border: 1px solid #e8b56a;
+            border-radius: 25px;
+            color: #e8b56a;
+        }
+
+        .nav-btn:hover {
+            background: #e8b56a;
+            color: #0d0b0a;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 88vh;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.48),
+                    rgba(0,0,0,0.78)
+                ),
+                url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1800&q=85");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            color: #e8b56a;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            color: #ddd;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: auto;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: #e8b56a;
+            color: #17100b;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(232,181,106,0.25);
+        }
+
+        .outline-btn {
+            border: 1px solid #fff;
+            color: #fff;
+        }
+
+        .outline-btn:hover {
+            background: #fff;
+            color: #111;
+        }
+
+        /* ================= GENERAL ================= */
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .section-heading span {
+            color: #e8b56a;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .section-heading h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin: 10px 0 15px;
+        }
+
+        .section-heading p {
+            color: #aaa;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -25px;
+            right: -25px;
+            width: 130px;
+            height: 130px;
+            background: #e8b56a;
+            color: #17100b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            font-family: Georgia, serif;
+        }
+
+        .about-text span {
+            color: #e8b56a;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+        }
+
+        .about-text h2 {
+            font-family: Georgia, serif;
+            font-size: 3rem;
+            line-height: 1.2;
+            margin: 15px 0 20px;
+        }
+
+        .about-text p {
+            color: #aaa;
+            margin-bottom: 18px;
+        }
+
+        .signature {
+            font-family: cursive;
+            color: #e8b56a;
+            font-size: 1.6rem;
+            margin-top: 25px;
+        }
+
+        /* ================= MENU ================= */
+
+        .menu-section {
+            background: #15110e;
+        }
+
+        .menu-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .menu-item h3 {
+            font-family: Georgia, serif;
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+
+        .menu-item p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            color: #e8b56a;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* ================= FOOD CARDS ================= */
+
+        .food-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .food-card {
+            background: #15110e;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .food-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .food-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .food-info {
+            padding: 22px;
+        }
+
+        .food-info h3 {
+            font-family: Georgia, serif;
+            font-size: 1.35rem;
+            margin-bottom: 7px;
+        }
+
+        .food-info p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats {
+            padding: 60px 7%;
+            background:
+                linear-gradient(
+                    rgba(13,11,10,0.8),
+                    rgba(13,11,10,0.8)
+                ),
+                url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 30px;
+        }
+
+        .stat h3 {
+            color: #e8b56a;
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+        }
+
+        .stat p {
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+
+        /* ================= RESERVATION ================= */
+
+        .reservation {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .reservation-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            background: #15110e;
+            padding: 35px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #aaa;
+            margin-bottom: 7px;
+            font-size: 0.85rem;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            background: #0d0b0a;
+            color: #fff;
+            border: 1px solid #332b25;
+            outline: none;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #e8b56a;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .form-button {
+            grid-column: 1 / -1;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #080706;
+            padding: 60px 7% 25px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand h2 {
+            font-family: Georgia, serif;
+            color: #e8b56a;
+            margin-bottom: 12px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        footer p,
+        footer a {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            display: block;
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #e8b56a;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #211e1b;
+            text-align: center;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .about-image img {
+                height: 450px;
+            }
+
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                display: none;
+            }
+
+            section {
+                padding: 65px 5%;
+            }
+
+            .menu-grid,
+            .food-grid,
+            .reservation-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .form-button {
+                grid-column: auto;
+            }
+
+            .about-text h2 {
+                font-size: 2.4rem;
+            }
+
+            .about-badge {
+                right: 10px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .hero {
+                min-height: 75vh;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-form {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+        <nav>
+
+            <div class="logo">
+                La Tavola
+                <small>FINE DINING</small>
+            </div>
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#specials">Specials</a></li>
+                <li><a href="#reservation">Contact</a></li>
+            </ul>
+
+            <a href="#reservation" class="nav-btn">
+                Reserve
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="hero-subtitle">
+                Welcome to La Tavola
+            </div>
+
+            <h1>
+                Taste the Art<br>
+                of Fine Dining
+            </h1>
+
+            <p>
+                An elegant dining experience where fresh ingredients,
+                creative recipes and warm hospitality come together.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#menu" class="btn primary-btn">
+                    Explore Menu
+                </a>
+
+                <a href="#reservation" class="btn outline-btn">
+                    Reserve a Table
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about">
+
+        <div class="about">
+
+            <div class="about-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85"
+                    alt="Elegant restaurant dining"
+                >
+
+                <div class="about-badge">
+                    Since<br>2012
+                </div>
+
+            </div>
+
+
+            <div class="about-text">
+
+                <span>Our Story</span>
+
+                <h2>
+                    Where every meal<br>
+                    becomes a memory.
+                </h2>
+
+                <p>
+                    La Tavola was created with one simple idea:
+                    great food should bring people together.
+                </p>
+
+                <p>
+                    Our kitchen combines traditional techniques
+                    with modern creativity, using carefully selected
+                    seasonal ingredients to create memorable dishes.
+                </p>
+
+                <p>
+                    From an intimate dinner to a special celebration,
+                    every detail is designed to make your experience
+                    exceptional.
+                </p>
+
+                <div class="signature">
+                    — The La Tavola Team
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <section class="menu-section" id="menu">
+
+        <div class="section-heading">
+
+            <span>Our Menu</span>
+
+            <h2>Made with passion</h2>
+
+            <p>
+                Discover our selection of carefully prepared
+                dishes made from fresh ingredients.
+            </p>
+
+        </div>
+
+
+        <div class="menu-grid">
+
+            <div class="menu-item">
+
+                <div>
+                    <h3>Truffle Mushroom Risotto</h3>
+                    <p>
+                        Arborio rice, wild mushrooms and parmesan.
+                    </p>
+                </div>
+
+                <div class="price">₹480</div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+                    <h3>Classic Margherita</h3>
+                    <p>
+                        Tomato, fresh mozzarella and basil.
+                    </p>
+                </div>
+
+                <div class="price">₹360</div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+                    <h3>Creamy Alfredo Pasta</h3>
+                    <p>
+                        Handmade pasta with parmesan cream sauce.
+                    </p>
+                </div>
+
+                <div class="price">₹420</div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+                    <h3>Grilled Herb Chicken</h3>
+                    <p>
+                        Herb-marinated chicken with seasonal vegetables.
+                    </p>
+                </div>
+
+                <div class="price">₹550</div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+                    <h3>Garden Fresh Salad</h3>
+                    <p>
+                        Seasonal greens, vegetables and house dressing.
+                    </p>
+                </div>
+
+                <div class="price">₹280</div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+                    <h3>Chocolate Lava Cake</h3>
+                    <p>
+                        Warm chocolate cake with vanilla ice cream.
+                    </p>
+                </div>
+
+                <div class="price">₹320</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SPECIALS ================= -->
+
+    <section id="specials">
+
+        <div class="section-heading">
+
+            <span>Chef's Selection</span>
+
+            <h2>Our Signature Dishes</h2>
+
+            <p>
+                A few of our guests' favorite creations.
+            </p>
+
+        </div>
+
+
+        <div class="food-grid">
+
+            <article class="food-card">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85"
+                        alt="Italian pasta dish"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Signature Pasta</h3>
+
+                    <p>
+                        Fresh pasta tossed with herbs,
+                        vegetables and our signature sauce.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="food-card">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=85"
+                        alt="Fresh healthy salad"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Garden Bowl</h3>
+
+                    <p>
+                        Fresh seasonal vegetables with
+                        homemade dressing and herbs.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="food-card">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85"
+                        alt="Delicious dessert"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Sweet Finale</h3>
+
+                    <p>
+                        A delicious dessert crafted to
+                        finish your dining experience.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STATS ================= -->
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3>12+</h3>
+            <p>Years of Experience</p>
+        </div>
+
+        <div class="stat">
+            <h3>50+</h3>
+            <p>Signature Dishes</p>
+        </div>
+
+        <div class="stat">
+            <h3>25K+</h3>
+            <p>Happy Guests</p>
+        </div>
+
+        <div class="stat">
+            <h3>4.9</h3>
+            <p>Guest Rating</p>
+        </div>
+
+    </div>
+
+
+    <!-- ================= RESERVATION ================= -->
+
+    <section id="reservation">
+
+        <div class="reservation">
+
+            <div class="section-heading">
+
+                <span>Reservations</span>
+
+                <h2>Reserve Your Table</h2>
+
+                <p>
+                    Planning a special evening? Book your table
+                    and let us take care of the rest.
+                </p>
+
+            </div>
+
+
+            <form class="reservation-form">
+
+                <div class="form-group">
+
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Your name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="date">Date</label>
+
+                    <input
+                        type="date"
+                        id="date"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="guests">Guests</label>
+
+                    <select id="guests">
+
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4 Guests</option>
+                        <option>5+ Guests</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="message">
+                        Special Request
+                    </label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Any special requests?"
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn primary-btn form-button"
+                >
+                    Request Reservation
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+
+                <h2>La Tavola</h2>
+
+                <p>
+                    Fine dining, memorable moments and
+                    food made with passion.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Explore</h3>
+
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#menu">Menu</a>
+                <a href="#specials">Specials</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>Visit Us</h3>
+
+                <p>123 Gourmet Street</p>
+                <p>Hyderabad, India</p>
+                <p>+91 98765 43210</p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Opening Hours</h3>
+
+                <p>Mon - Fri: 12 PM - 11 PM</p>
+                <p>Sat - Sun: 11 AM - 11 PM</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 La Tavola Restaurant. All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

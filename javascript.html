@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="JavaScript Practical Programs">
+
+<meta name="keywords"
+      content="JavaScript programs, JavaScript practicals, JavaScript experiments">
+
+<title>JavaScript Programs | Technology Web</title>
+
+
+<style>
+
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================================
+   BODY
+================================ */
+
+body {
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    min-height: 100vh;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(170,80,255,.25),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(255,80,190,.20),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(100,80,255,.20),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #12091d,
+            #1b0e28,
+            #0b0917
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+nav {
+
+    padding: 18px 6%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgba(255,255,255,.07);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.12);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.logo {
+
+    font-size: 24px;
+
+    font-weight: 800;
+}
+
+
+.logo span {
+
+    color: #d18cff;
+}
+
+
+.home-btn {
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.09);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    transition: .3s;
+}
+
+
+.home-btn:hover {
+
+    background: rgba(255,255,255,.18);
+
+    transform: translateY(-2px);
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+
+    text-align: center;
+
+    padding: 65px 20px 35px;
+}
+
+
+.badge {
+
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(190,80,255,.12);
+
+    border:
+        1px solid rgba(200,100,255,.25);
+
+    color: #dda5ff;
+
+    font-size: 14px;
+
+    margin-bottom: 18px;
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(38px,6vw,68px);
+
+    margin-bottom: 15px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #d4a0ff,
+            #ff9cdb
+        );
+
+    background-clip: text;
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.hero p {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    color: rgba(255,255,255,.65);
+
+    line-height: 1.7;
+
+    font-size: 16px;
+}
+
+
+/* ================================
+   CONTROLS
+================================ */
+
+.controls {
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: 25px auto;
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+
+.search {
+
+    flex: 1;
+
+    min-width: 250px;
+
+    max-width: 500px;
+
+    padding: 14px 20px;
+
+    border-radius: 30px;
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    background:
+        rgba(255,255,255,.07);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+
+.search::placeholder {
+
+    color: rgba(255,255,255,.45);
+}
+
+
+.filter {
+
+    padding: 12px 17px;
+
+    border-radius: 25px;
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    background:
+        rgba(255,255,255,.07);
+
+    color:
+        rgba(255,255,255,.75);
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.filter.active,
+.filter:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #a766ff,
+            #ed6ed8
+        );
+
+    color: white;
+
+    border-color: transparent;
+
+}
+
+
+/* ================================
+   PROGRAM SECTION
+================================ */
+
+.program-section {
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: 40px auto;
+}
+
+
+.heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.heading h2 {
+
+    font-size: 25px;
+}
+
+
+.count {
+
+    color: rgba(255,255,255,.5);
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   PROGRAM GRID
+================================ */
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(270px,1fr));
+
+    gap: 20px;
+}
+
+
+.card {
+
+    padding: 24px;
+
+    min-height: 215px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    backdrop-filter: blur(20px);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.18);
+
+    transition: .35s;
+}
+
+
+.card:hover {
+
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(205,120,255,.4);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.3);
+}
+
+
+.number {
+
+    display: inline-flex;
+
+    width: 42px;
+
+    height: 42px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        rgba(190,80,255,.15);
+
+    color: #dba2ff;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+
+.card h3 {
+
+    font-size: 18px;
+
+    margin-bottom: 10px;
+
+    line-height: 1.35;
+}
+
+
+.card p {
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    min-height: 40px;
+}
+
+
+.view {
+
+    margin-top: 17px;
+
+    padding: 10px 17px;
+
+    border-radius: 20px;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    background:
+        rgba(255,255,255,.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.view:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #a766ff,
+            #ed6ed8
+        );
+
+    border-color: transparent;
+
+    transform: translateX(3px);
+}
+
+
+/* ================================
+   OUTPUT
+================================ */
+
+.output {
+
+    width: 92%;
+
+    max-width: 1350px;
+
+    margin: 70px auto;
+
+    padding: 25px;
+
+    border-radius: 28px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    backdrop-filter: blur(22px);
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+}
+
+
+.output h2 {
+
+    margin-bottom: 5px;
+
+    font-size: 23px;
+}
+
+
+.output small {
+
+    color:
+        rgba(255,255,255,.5);
+
+    font-size: 13px;
+}
+
+
+.frame {
+
+    width: 100%;
+
+    height: 620px;
+
+    margin-top: 20px;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background: white;
+}
+
+
+iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    background: white;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+
+    text-align: center;
+
+    padding: 35px;
+
+    color:
+        rgba(255,255,255,.45);
+
+    font-size: 13px;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:700px) {
+
+    .heading {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+    }
+
+
+    .grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .output {
+
+        width: 94%;
+
+        padding: 15px;
+    }
+
+
+    .frame {
+
+        height: 500px;
+    }
+
+
+    .controls {
+
+        width: 94%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+
+        Technology<span>Web</span>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="home-btn"
+    >
+        ← Dashboard
+    </a>
+
+</nav>
+
+
+<section class="hero">
+
+
+    <div class="badge">
+
+        JavaScript Practical Programs
+
+    </div>
+
+
+    <h1>
+
+        JavaScript Laboratory
+
+    </h1>
+
+
+    <p>
+
+        Explore JavaScript basics, arrays, functions,
+        DOM manipulation, events, forms, APIs,
+        browser storage and interactive projects.
+
+    </p>
+
+
+</section>
+
+
+<div class="controls">
+
+
+    <input
+        class="search"
+        id="search"
+        type="text"
+        placeholder="Search JavaScript programs..."
+        oninput="render()"
+    >
+
+
+    <button
+        class="filter active"
+        onclick="setFilter('all', this)"
+    >
+        All
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="setFilter('basics', this)"
+    >
+        Basics
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="setFilter('dom', this)"
+    >
+        DOM
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="setFilter('algorithms', this)"
+    >
+        Algorithms
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="setFilter('forms', this)"
+    >
+        Forms
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="setFilter('browser', this)"
+    >
+        Browser
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="setFilter('projects', this)"
+    >
+        Projects
+    </button>
+
+
+</div>
+
+
+<section class="program-section">
+
+
+    <div class="heading">
+
+        <h2>
+            JavaScript Programs
+        </h2>
+
+
+        <span
+            class="count"
+            id="count"
+        >
+            120 Programs
+        </span>
+
+    </div>
+
+
+    <div
+        class="grid"
+        id="grid"
+    ></div>
+
+
+</section>
+
+
+<section class="output">
+
+
+    <h2 id="title">
+        Live Program Output
+    </h2>
+
+
+    <small id="file">
+
+        Select a JavaScript program above.
+
+    </small>
+
+
+    <div
+        class="frame"
+        id="frame"
+    >
+
+        <iframe
+            src="about:blank"
+            title="JavaScript Program Output"
+        ></iframe>
+
+    </div>
+
+
+</section>
+
+
+<footer>
+
+    Technology Web • JavaScript Practical Laboratory
+
+</footer>
+
+
+<script>
+
+
+const files = [
+
+    "001-hello-world.html",
+    "002-arithmetic-operations.html",
+    "003-largest-of-three-numbers.html",
+    "004-even-or-odd.html",
+    "005-positive-negative-or-zero.html",
+    "006-factorial.html",
+    "007-fibonacci-series.html",
+    "008-prime-number.html",
+    "009-number-palindrome.html",
+    "010-reverse-number.html",
+    "011-sum-of-digits.html",
+    "012-largest-and-smallest-in-array.html",
+    "013-sort-an-array.html",
+    "014-sum-and-average-of-array.html",
+    "015-javascript-functions.html",
+    "016-arrow-functions.html",
+    "017-strings-and-string-methods.html",
+    "018-arrays-and-array-methods.html",
+    "019-objects-in-javascript.html",
+    "020-date-and-math-objects.html",
+    "021-change-text.html",
+    "022-change-background-color.html",
+    "023-button-click-event.html",
+    "024-show-hide-element.html",
+    "025-change-image-on-button-click.html",
+    "026-digital-clock.html",
+    "027-simple-calculator.html",
+    "028-number-guessing-game.html",
+    "029-form-validation.html",
+    "030-validate-name-email-phone-password.html",
+    "031-to-do-list.html",
+    "032-simple-quiz-application.html",
+    "033-counter-application.html",
+    "034-stopwatch.html",
+    "035-countdown-timer.html",
+    "036-es6-let-const-template-literals-destructuring.html",
+    "037-spread-and-rest-operators.html",
+    "038-classes-and-objects.html",
+    "039-inheritance.html",
+    "040-callbacks-promises-async-await.html",
+    "041-fetch-api.html",
+    "042-display-api-data-dynamically.html",
+    "043-localstorage-store-and-retrieve.html",
+    "044-responsive-login-form.html",
+    "045-complete-interactive-webpage.html",
+    "046-swap-two-numbers.html",
+    "047-gcd-of-two-numbers.html",
+    "048-lcm-of-two-numbers.html",
+    "049-armstrong-number.html",
+    "050-perfect-number.html",
+    "051-multiplication-table.html",
+    "052-power-of-a-number.html",
+    "053-count-number-of-digits.html",
+    "054-second-largest-array-element.html",
+    "055-remove-duplicate-elements.html",
+    "056-merge-two-arrays.html",
+    "057-frequency-of-array-elements.html",
+    "058-common-elements-in-two-arrays.html",
+    "059-reverse-a-string.html",
+    "060-string-palindrome.html",
+    "061-count-vowels-and-consonants.html",
+    "062-count-words-in-string.html",
+    "063-frequency-of-characters.html",
+    "064-regular-expressions.html",
+    "065-validate-email-using-regex.html",
+    "066-add-new-elements-dynamically.html",
+    "067-remove-html-elements-dynamically.html",
+    "068-change-css-styles-using-javascript.html",
+    "069-change-multiple-html-elements.html",
+    "070-getelementbyid-and-getelementsbyclassname.html",
+    "071-queryselector-and-queryselectorall.html",
+    "072-create-and-remove-css-classes-dynamically.html",
+    "073-dynamic-table.html",
+    "074-add-and-delete-table-rows.html",
+    "075-search-filter-table-records.html",
+    "076-live-character-counter.html",
+    "077-password-show-hide.html",
+    "078-dynamic-dropdown-list.html",
+    "079-dependent-country-state-city-dropdown.html",
+    "080-image-slideshow-carousel.html",
+    "081-mouse-events.html",
+    "082-keyboard-events.html",
+    "083-form-events-submit-change-focus-blur.html",
+    "084-double-click-event.html",
+    "085-event-bubbling-and-capturing.html",
+    "086-event-delegation.html",
+    "087-keyboard-controlled-webpage.html",
+    "088-drag-and-drop-application.html",
+    "089-student-registration-form-validation.html",
+    "090-login-form-validation.html",
+    "091-password-strength-checker.html",
+    "092-signup-password-confirmation.html",
+    "093-feedback-form-validation.html",
+    "094-college-admission-validation.html",
+    "095-dynamic-validation-errors.html",
+    "096-window-object.html",
+    "097-navigator-object.html",
+    "098-location-object.html",
+    "099-history-object.html",
+    "100-localstorage-program.html",
+    "101-sessionstorage-program.html",
+    "102-shopping-cart-using-localstorage.html",
+    "103-theme-switcher-using-localstorage.html",
+    "104-digital-calculator.html",
+    "105-digital-clock-mini-project.html",
+    "106-stopwatch-mini-project.html",
+    "107-countdown-timer-mini-project.html",
+    "108-to-do-list-mini-project.html",
+    "109-weather-application-using-api.html",
+    "110-quiz-application-mini-project.html",
+    "111-number-guessing-game-mini-project.html",
+    "112-tic-tac-toe-game.html",
+    "113-simple-expense-tracker.html",
+    "114-student-marks-grade-calculator.html",
+    "115-simple-shopping-cart.html",
+    "116-notes-application-using-localstorage.html",
+    "117-random-password-generator.html",
+    "118-bmi-calculator.html",
+    "119-currency-converter-using-api.html",
+    "120-complete-interactive-portfolio-website.html"
+
+];
+
+
+let currentFilter = "all";
+
+
+function getName(file) {
+
+    return file
+        .replace(".html", "")
+        .replace(/^\d+-/, "")
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, c => c.toUpperCase());
+
+}
+
+
+function category(index) {
+
+    if (index < 20) {
+
+        return "basics";
+
+    }
+
+    if (index < 45) {
+
+        return "dom";
+
+    }
+
+    if (index < 65) {
+
+        return "algorithms";
+
+    }
+
+    if (index < 88) {
+
+        return "dom";
+
+    }
+
+    if (index < 95) {
+
+        return "forms";
+
+    }
+
+    if (index < 103) {
+
+        return "browser";
+
+    }
+
+    return "projects";
+
+}
+
+
+function render() {
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const grid =
+        document.getElementById("grid");
+
+
+    grid.innerHTML = "";
+
+
+    let count = 0;
+
+
+    files.forEach((file, index) => {
+
+        const name = getName(file);
+
+        const cat = category(index);
+
+
+        const matchesSearch =
+
+            name
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            file
+                .toLowerCase()
+                .includes(search);
+
+
+        const matchesFilter =
+
+            currentFilter === "all"
+
+            ||
+
+            cat === currentFilter;
+
+
+        if (
+            matchesSearch &&
+            matchesFilter
+        ) {
+
+            count++;
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className = "card";
+
+
+            card.innerHTML = `
+
+                <div class="number">
+
+                    ${String(index + 1)
+                        .padStart(3, "0")}
+
+                </div>
+
+
+                <h3>
+
+                    ${name}
+
+                </h3>
+
+
+                <p>
+
+                    JavaScript practical program
+                    ${index + 1}
+
+                </p>
+
+
+                <button
+                    class="view"
+                    onclick="openProgram(
+                        '${file}',
+                        '${name}'
+                    )"
+                >
+
+                    View Program →
+
+                </button>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+
+    });
+
+
+    document.getElementById("count")
+        .textContent =
+        `${count} Program${count !== 1 ? "s" : ""}`;
+
+}
+
+
+function setFilter(filter, button) {
+
+    currentFilter = filter;
+
+
+    document
+        .querySelectorAll(".filter")
+        .forEach(buttonElement => {
+
+            buttonElement.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    render();
+
+}
+
+
+function openProgram(file, name) {
+
+    document.getElementById("title")
+        .textContent = name;
+
+
+    document.getElementById("file")
+        .textContent = `js/${file}`;
+
+
+    document.getElementById("frame")
+        .innerHTML = `
+
+            <iframe
+                src="js/${file}"
+                title="${name}"
+            ></iframe>
+
+        `;
+
+
+    document
+        .querySelector(".output")
+        .scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
+
+}
+
+
+render();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internal & External CSS | HTML Practical</title>
+
+    <!-- EXTERNAL CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- INTERNAL CSS -->
+    <style>
+        .internal-style {
+            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            border-left: 5px solid #f97316;
+        }
+
+        .internal-style h3 {
+            color: #c2410c;
+        }
+
+        .internal-style p {
+            color: #7c2d12;
+        }
+
+        .internal-badge {
+            background: #f97316;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="navbar">
+
+            <div class="logo">
+                Style<span>Lab</span>
+            </div>
+
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="html-10.html">Previous</a>
+                <a href="html-12.html">Next</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                HTML + CSS PRACTICAL
+            </span>
+
+            <h1>
+                The Power of
+                <span>CSS Styling</span>
+            </h1>
+
+            <p>
+                Explore how internal and external CSS can transform
+                a simple HTML structure into a beautiful, modern webpage.
+            </p>
+
+            <a href="#styles" class="hero-button">
+                Explore Styling ↓
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN -->
+    <main id="styles">
+
+        <div class="section-heading">
+
+            <span>EXPERIMENT 11</span>
+
+            <h2>
+                Internal & External CSS
+            </h2>
+
+            <p>
+                The cards below demonstrate two different ways of
+                applying CSS styles to HTML elements.
+            </p>
+
+        </div>
+
+
+        <!-- STYLE CARDS -->
+        <section class="style-grid">
+
+
+            <!-- EXTERNAL CSS CARD -->
+
+            <article class="style-card external-style">
+
+                <div class="card-top">
+
+                    <div class="style-icon">
+                        🎨
+                    </div>
+
+                    <span class="badge external-badge">
+                        EXTERNAL CSS
+                    </span>
+
+                </div>
+
+                <h3>
+                    External Styling
+                </h3>
+
+                <p>
+                    External CSS is written in a separate
+                    <strong>.css</strong> file and connected to
+                    the HTML document using the
+                    <strong>&lt;link&gt;</strong> element.
+                </p>
+
+                <div class="code-box">
+                    <code>
+                        &lt;link rel="stylesheet"
+                        href="style.css"&gt;
+                    </code>
+                </div>
+
+                <div class="benefit">
+                    ✓ Reusable across multiple pages
+                </div>
+
+            </article>
+
+
+            <!-- INTERNAL CSS CARD -->
+
+            <article class="style-card internal-style">
+
+                <div class="card-top">
+
+                    <div class="style-icon">
+                        ✨
+                    </div>
+
+                    <span class="badge internal-badge">
+                        INTERNAL CSS
+                    </span>
+
+                </div>
+
+                <h3>
+                    Internal Styling
+                </h3>
+
+                <p>
+                    Internal CSS is written inside the
+                    <strong>&lt;style&gt;</strong> element within
+                    the HTML document's
+                    <strong>&lt;head&gt;</strong>.
+                </p>
+
+                <div class="code-box orange-code">
+                    <code>
+                        &lt;style&gt;<br>
+                        &nbsp;&nbsp;.card {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;color: blue;<br>
+                        &nbsp;&nbsp;}<br>
+                        &lt;/style&gt;
+                    </code>
+                </div>
+
+                <div class="benefit orange-benefit">
+                    ✓ Useful for page-specific styling
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- COMPARISON -->
+        <section class="comparison">
+
+            <div class="comparison-heading">
+
+                <span>
+                    CSS METHODS
+                </span>
+
+                <h2>
+                    How They Work
+                </h2>
+
+            </div>
+
+
+            <div class="comparison-grid">
+
+                <div class="comparison-item">
+
+                    <div class="number">
+                        01
+                    </div>
+
+                    <div>
+                        <h3>
+                            Create HTML
+                        </h3>
+
+                        <p>
+                            Build the structure of your webpage
+                            using HTML elements.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-item">
+
+                    <div class="number">
+                        02
+                    </div>
+
+                    <div>
+                        <h3>
+                            Add Internal CSS
+                        </h3>
+
+                        <p>
+                            Place page-specific styles inside
+                            the HTML document.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-item">
+
+                    <div class="number">
+                        03
+                    </div>
+
+                    <div>
+                        <h3>
+                            Add External CSS
+                        </h3>
+
+                        <p>
+                            Connect a separate CSS file using
+                            the link element.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-item">
+
+                    <div class="number">
+                        04
+                    </div>
+
+                    <div>
+                        <h3>
+                            Browser Applies Styles
+                        </h3>
+
+                        <p>
+                            The browser combines the HTML structure
+                            with the defined CSS rules.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEMO -->
+        <section class="demo-section">
+
+            <div class="demo-content">
+
+                <span class="demo-label">
+                    LIVE DEMONSTRATION
+                </span>
+
+                <h2>
+                    One Page, Two Styling Methods
+                </h2>
+
+                <p>
+                    The blue card receives its main styling from
+                    <strong>style.css</strong>, while the orange card
+                    receives additional styles from the internal
+                    <strong>&lt;style&gt;</strong> element.
+                </p>
+
+                <div class="tags">
+
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>Internal CSS</span>
+                    <span>External CSS</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <h3>
+                    Style<span>Lab</span>
+                </h3>
+
+                <p>
+                    A practical demonstration of HTML and CSS
+                    styling techniques.
+                </p>
+            </div>
+
+            <div>
+                <h4>
+                    Practical
+                </h4>
+
+                <p>
+                    Experiment 11<br>
+                    Internal & External CSS
+                </p>
+            </div>
+
+            <div>
+                <h4>
+                    Navigation
+                </h4>
+
+                <p>
+                    <a href="../index.html">Home</a> ·
+                    <a href="html-10.html">Previous</a> ·
+                    <a href="html-12.html">Next</a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            HTML Practical Programs © 2026
+        </div>
+
+    </footer>
+
+</body>
+</html>

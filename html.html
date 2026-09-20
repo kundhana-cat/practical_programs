@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="HTML Practical Programs">
+
+<meta name="keywords"
+      content="HTML programs, HTML practicals, HTML experiments">
+
+<title>HTML Programs | Technology Web</title>
+
+
+<style>
+
+/* ================================
+   RESET
+================================ */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ================================
+   BODY
+================================ */
+
+body {
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    min-height: 100vh;
+
+    color: white;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(255,145,77,.25),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(255,80,120,.20),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255,190,100,.18),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #160b18,
+            #24101d,
+            #130d1b
+        );
+
+    overflow-x: hidden;
+
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+nav {
+
+    width: 100%;
+
+    padding: 18px 6%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgba(255,255,255,.07);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.12);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+}
+
+
+.logo {
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+}
+
+
+.logo span {
+
+    color: #ffad73;
+
+}
+
+
+.home-btn {
+
+    text-decoration: none;
+
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.09);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    transition: .3s;
+
+}
+
+
+.home-btn:hover {
+
+    background: rgba(255,255,255,.18);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+
+    text-align: center;
+
+    padding: 65px 20px 35px;
+
+}
+
+
+.hero-badge {
+
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,157,92,.12);
+
+    border:
+        1px solid rgba(255,172,115,.25);
+
+    color: #ffc18f;
+
+    font-size: 14px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(38px,6vw,68px);
+
+    margin-bottom: 15px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffc18f,
+            #ff8f70
+        );
+
+    background-clip: text;
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+}
+
+
+.hero p {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    color: rgba(255,255,255,.68);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+}
+
+
+/* ================================
+   CONTROLS
+================================ */
+
+.controls {
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: 25px auto;
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+}
+
+
+.search-box {
+
+    flex: 1;
+
+    min-width: 250px;
+
+    max-width: 500px;
+
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border-radius: 30px;
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    background: rgba(255,255,255,.07);
+
+    backdrop-filter: blur(15px);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 15px;
+
+}
+
+
+.search-box input::placeholder {
+
+    color: rgba(255,255,255,.5);
+
+}
+
+
+.filter-btn {
+
+    padding: 12px 18px;
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.07);
+
+    color: rgba(255,255,255,.75);
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+.filter-btn:hover,
+.filter-btn.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,145,77,.9),
+            rgba(255,91,119,.85)
+        );
+
+    color: white;
+
+    border-color: transparent;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ================================
+   PROGRAM SECTION
+================================ */
+
+.program-section {
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: 40px auto;
+
+}
+
+
+.section-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.section-title h2 {
+
+    font-size: 25px;
+
+}
+
+
+.program-count {
+
+    color: rgba(255,255,255,.5);
+
+    font-size: 14px;
+
+}
+
+
+/* ================================
+   PROGRAM GRID
+================================ */
+
+.program-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(270px,1fr));
+
+    gap: 20px;
+
+}
+
+
+.program-card {
+
+    padding: 24px;
+
+    min-height: 210px;
+
+    border-radius: 24px;
+
+    background: rgba(255,255,255,.075);
+
+    backdrop-filter: blur(20px);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.20);
+
+    transition: .35s;
+
+}
+
+
+.program-card:hover {
+
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(255,177,125,.35);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.30);
+
+}
+
+
+.number {
+
+    display: inline-flex;
+
+    width: 42px;
+
+    height: 42px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,157,92,.25),
+            rgba(255,90,120,.18)
+        );
+
+    color: #ffc18f;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+
+}
+
+
+.program-card h3 {
+
+    font-size: 18px;
+
+    margin-bottom: 9px;
+
+    line-height: 1.35;
+
+}
+
+
+.program-card p {
+
+    font-size: 13px;
+
+    color: rgba(255,255,255,.55);
+
+    line-height: 1.6;
+
+    min-height: 42px;
+
+}
+
+
+.view-btn {
+
+    display: inline-block;
+
+    margin-top: 18px;
+
+    padding: 10px 17px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.09);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    color: white;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+.view-btn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff986b,
+            #ff6f91
+        );
+
+    border-color: transparent;
+
+    transform: translateX(3px);
+
+}
+
+
+/* ================================
+   OUTPUT
+================================ */
+
+.output-section {
+
+    width: 92%;
+
+    max-width: 1350px;
+
+    margin: 70px auto;
+
+    padding: 25px;
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,.06);
+
+    backdrop-filter: blur(22px);
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+
+}
+
+
+.output-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.output-header h2 {
+
+    font-size: 23px;
+
+}
+
+
+.output-header span {
+
+    font-size: 13px;
+
+    color: rgba(255,255,255,.5);
+
+}
+
+
+.output-container {
+
+    width: 100%;
+
+    height: 620px;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background: white;
+
+}
+
+
+iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    background: white;
+
+}
+
+
+.empty-output {
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #444;
+
+    text-align: center;
+
+}
+
+
+.empty-output h3 {
+
+    margin-bottom: 8px;
+
+}
+
+
+.empty-output p {
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+.no-results {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 50px;
+
+    color: rgba(255,255,255,.5);
+
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+
+    text-align: center;
+
+    padding: 35px 20px 45px;
+
+    color: rgba(255,255,255,.45);
+
+    font-size: 13px;
+
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:700px) {
+
+    .program-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .output-section {
+
+        width: 94%;
+
+        padding: 15px;
+
+    }
+
+    .output-container {
+
+        height: 500px;
+
+    }
+
+    .section-title {
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+        flex-direction: column;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+
+        Technology<span>Web</span>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="home-btn"
+    >
+        ← Dashboard
+    </a>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="hero-badge">
+        HTML Practical Programs
+    </div>
+
+    <h1>
+        HTML Laboratory
+    </h1>
+
+    <p>
+        Explore all HTML practical programs with an
+        interactive live-output viewer.
+    </p>
+
+</section>
+
+
+<div class="controls">
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search HTML programs..."
+            onkeyup="searchPrograms()"
+        >
+
+    </div>
+
+
+    <button
+        class="filter-btn active"
+        onclick="filterPrograms('all',this)"
+    >
+        All
+    </button>
+
+
+    <button
+        class="filter-btn"
+        onclick="filterPrograms('basics',this)"
+    >
+        Basics
+    </button>
+
+
+    <button
+        class="filter-btn"
+        onclick="filterPrograms('forms',this)"
+    >
+        Forms
+    </button>
+
+
+    <button
+        class="filter-btn"
+        onclick="filterPrograms('media',this)"
+    >
+        Media
+    </button>
+
+
+    <button
+        class="filter-btn"
+        onclick="filterPrograms('advanced',this)"
+    >
+        Advanced
+    </button>
+
+
+    <button
+        class="filter-btn"
+        onclick="filterPrograms('projects',this)"
+    >
+        Projects
+    </button>
+
+
+</div>
+
+
+<section class="program-section">
+
+
+    <div class="section-title">
+
+        <h2>
+            HTML Programs
+        </h2>
+
+        <span
+            class="program-count"
+            id="programCount"
+        >
+            15 Programs
+        </span>
+
+    </div>
+
+
+    <div
+        class="program-grid"
+        id="programGrid"
+    ></div>
+
+
+    <div
+        class="no-results"
+        id="noResults"
+    >
+
+        <h3>
+            No programs found
+        </h3>
+
+        <p>
+            Try searching with a different keyword.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<section
+    class="output-section"
+    id="outputSection"
+>
+
+
+    <div class="output-header">
+
+        <div>
+
+            <h2 id="outputTitle">
+                Live Program Output
+            </h2>
+
+            <span id="outputFile">
+                Select a program above to view its output.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="output-container"
+        id="outputContainer"
+    >
+
+        <div class="empty-output">
+
+            <h3>
+                HTML Program Preview
+            </h3>
+
+            <p>
+                Click "View Program" to display its output here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<footer>
+
+    Technology Web • HTML Practical Laboratory
+
+</footer>
+
+
+<script>
+
+
+const programs = [
+
+    ["01","01_basic.html","Basic HTML",
+     "Learn the basic structure and elements of HTML.",
+     "basics"],
+
+    ["02","02_lists.html","HTML Lists",
+     "Ordered and unordered HTML lists.",
+     "basics"],
+
+    ["03","03_table_merged.html","Tables with Merged Cells",
+     "Create tables using merged cells.",
+     "basics"],
+
+    ["04","04_images_links.html","Images and Links",
+     "Add images and hyperlinks using HTML.",
+     "basics"],
+
+    ["05","05_student_registration.html","Student Registration Form",
+     "Create a student registration form.",
+     "forms"],
+
+    ["06","06_audio_video.html","Audio and Video",
+     "Embed audio and video content.",
+     "media"],
+
+    ["07","07_iframe.html","HTML Iframe",
+     "Embed another webpage using iframe.",
+     "advanced"],
+
+    ["08","08_semantic.html","Semantic HTML",
+     "Use semantic HTML elements.",
+     "advanced"],
+
+    ["09","09_html5_inputs.html","HTML5 Input Types",
+     "Explore HTML5 form inputs.",
+     "forms"],
+
+    ["10","10_college_timetable.html","College Timetable",
+     "Create a college timetable.",
+     "projects"],
+
+    ["11","11_internal_external_css.html",
+     "Internal and External CSS",
+     "Use CSS with HTML.",
+     "advanced"],
+
+    ["12","12_css_properties.html",
+     "CSS Properties",
+     "Demonstrate CSS properties.",
+     "advanced"],
+
+    ["13","13_responsive_media_query.html",
+     "Responsive Media Query",
+     "Create responsive webpages.",
+     "advanced"],
+
+    ["14","14_bootstrap.html",
+     "Bootstrap Webpage",
+     "Create a webpage using Bootstrap.",
+     "advanced"],
+
+    ["15","15_portfolio.html",
+     "Portfolio Website",
+     "Create a personal portfolio.",
+     "projects"]
+
+];
+
+
+let currentFilter = "all";
+
+
+function displayPrograms(list) {
+
+
+    const grid =
+        document.getElementById("programGrid");
+
+
+    const count =
+        document.getElementById("programCount");
+
+
+    const noResults =
+        document.getElementById("noResults");
+
+
+    grid.innerHTML = "";
+
+
+    count.textContent =
+        `${list.length} Program${list.length !== 1 ? "s" : ""}`;
+
+
+    noResults.style.display =
+        list.length ? "none" : "block";
+
+
+    list.forEach(program => {
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "program-card";
+
+
+        card.innerHTML = `
+
+            <div class="number">
+                ${program[0]}
+            </div>
+
+            <h3>
+                ${program[2]}
+            </h3>
+
+            <p>
+                ${program[3]}
+            </p>
+
+            <button
+                class="view-btn"
+                onclick="openProgram(
+                    '${program[1]}',
+                    '${program[2]}'
+                )"
+            >
+                View Program →
+            </button>
+
+        `;
+
+
+        grid.appendChild(card);
+
+
+    });
+
+}
+
+
+function openProgram(file,title) {
+
+
+    document.getElementById("outputTitle")
+        .textContent = title;
+
+
+    document.getElementById("outputFile")
+        .textContent = `HTML/${file}`;
+
+
+    document.getElementById("outputContainer")
+        .innerHTML = `
+
+            <iframe
+                src="HTML/${file}"
+                title="${title}"
+            ></iframe>
+
+        `;
+
+
+    document.getElementById("outputSection")
+        .scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
+
+}
+
+
+function searchPrograms() {
+
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        programs.filter(program => {
+
+
+            const matchesSearch =
+
+                program[2]
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                program[3]
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                program[1]
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const matchesCategory =
+
+                currentFilter === "all"
+
+                ||
+
+                program[4] === currentFilter;
+
+
+            return matchesSearch &&
+                   matchesCategory;
+
+        });
+
+
+    displayPrograms(filtered);
+
+}
+
+
+function filterPrograms(category,button) {
+
+
+    currentFilter = category;
+
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+    button.classList.add("active");
+
+
+    searchPrograms();
+
+}
+
+
+displayPrograms(programs);
+
+
+</script>
+
+
+</body>
+
+</html>

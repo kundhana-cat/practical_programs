@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Responsive Login & Signup</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+
+            background:
+                radial-gradient(circle at top left, #293b91, transparent 35%),
+                radial-gradient(circle at bottom right, #6d3fc4, transparent 35%),
+                #0c1228;
+
+            color: #ffffff;
+        }
+
+        /* ================= MAIN CONTAINER ================= */
+
+        .auth-wrapper {
+            width: 100%;
+            max-width: 1050px;
+            min-height: 650px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 28px;
+
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.35);
+        }
+
+        /* ================= LEFT PANEL ================= */
+
+        .welcome-panel {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 60px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(60,78,190,0.9),
+                    rgba(110,61,190,0.82)
+                );
+        }
+
+        .welcome-panel::before {
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.08);
+
+            top: -80px;
+            right: -80px;
+        }
+
+        .welcome-panel::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.06);
+
+            bottom: -60px;
+            left: -60px;
+        }
+
+        .brand {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 45px;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background: rgba(255,255,255,0.18);
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .brand-name {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-content .tag {
+            display: inline-block;
+
+            padding: 7px 14px;
+            margin-bottom: 20px;
+
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.1);
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .welcome-content h1 {
+            max-width: 450px;
+
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1.08;
+
+            margin-bottom: 22px;
+        }
+
+        .welcome-content p {
+            max-width: 450px;
+
+            color: #e3e6ff;
+
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .benefits {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 35px;
+
+            list-style: none;
+        }
+
+        .benefits li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin: 13px 0;
+
+            color: #eef0ff;
+            font-size: 14px;
+        }
+
+        .check {
+            width: 25px;
+            height: 25px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.14);
+
+            font-size: 12px;
+        }
+
+        /* ================= FORM PANEL ================= */
+
+        .form-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 55px;
+
+            background: rgba(10,15,35,0.72);
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #9da5bd;
+            font-size: 14px;
+        }
+
+        /* ================= FORM SWITCH ================= */
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            padding: 5px;
+            margin-bottom: 28px;
+
+            border-radius: 12px;
+
+            background: rgba(255,255,255,0.06);
+        }
+
+        .tab {
+            padding: 11px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: transparent;
+
+            color: #929ab2;
+
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .tab.active {
+            background: #ffffff;
+            color: #303d9c;
+        }
+
+        /* ================= FORM ================= */
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #dce0ed;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+
+            padding: 14px 45px 14px 15px;
+
+            border: 1px solid #2d3552;
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #151b35;
+            color: white;
+
+            font-family: inherit;
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #68718b;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #6976ed;
+
+            box-shadow:
+                0 0 0 3px rgba(105,118,237,0.12);
+        }
+
+        .input-icon {
+            position: absolute;
+
+            right: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #747d98;
+
+            font-size: 15px;
+        }
+
+        /* ================= OPTIONS ================= */
+
+        .options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin: 5px 0 22px;
+
+            font-size: 12px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            color: #929ab2;
+        }
+
+        .remember input {
+            accent-color: #6976ed;
+        }
+
+        .forgot {
+            color: #8994ef;
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .submit-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+            border-radius: 11px;
+
+            background:
+                linear-gradient(135deg, #5564e8, #7950d9);
+
+            color: white;
+
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(80,80,200,0.25);
+        }
+
+        /* ================= DIVIDER ================= */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin: 25px 0;
+
+            color: #626b84;
+
+            font-size: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #2b334d;
+        }
+
+        /* ================= SOCIAL ================= */
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .social-btn {
+            padding: 11px;
+
+            border: 1px solid #2d3552;
+            border-radius: 10px;
+
+            background: #151b35;
+
+            color: #dce0ed;
+
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            background: #1c2442;
+            border-color: #414b70;
+        }
+
+        .bottom-text {
+            margin-top: 24px;
+
+            text-align: center;
+
+            color: #737c96;
+
+            font-size: 12px;
+        }
+
+        .bottom-text span {
+            color: #8994ef;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 850px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .auth-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 520px;
+            }
+
+            .welcome-panel {
+                min-height: 350px;
+                padding: 40px;
+            }
+
+            .brand {
+                margin-bottom: 25px;
+            }
+
+            .welcome-content h1 {
+                font-size: 40px;
+            }
+
+            .benefits {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+
+            .form-panel {
+                padding: 45px 35px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .auth-wrapper {
+                border-radius: 20px;
+            }
+
+            .welcome-panel {
+                min-height: auto;
+                padding: 30px 25px;
+            }
+
+            .brand {
+                margin-bottom: 30px;
+            }
+
+            .welcome-content h1 {
+                font-size: 34px;
+            }
+
+            .welcome-content p {
+                font-size: 14px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .form-panel {
+                padding: 35px 25px;
+            }
+
+            .form-header h2 {
+                font-size: 28px;
+            }
+
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 360px) {
+
+            .welcome-panel {
+                padding: 25px 20px;
+            }
+
+            .form-panel {
+                padding: 30px 20px;
+            }
+
+            .welcome-content h1 {
+                font-size: 30px;
+            }
+
+            .options {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="auth-wrapper">
+
+        <!-- ================= WELCOME PANEL ================= -->
+
+        <section class="welcome-panel">
+
+            <div class="brand">
+                <div class="brand-icon">E</div>
+                <div class="brand-name">EduNova</div>
+            </div>
+
+            <div class="welcome-content">
+
+                <span class="tag">Welcome Back</span>
+
+                <h1>
+                    Your journey starts here.
+                </h1>
+
+                <p>
+                    Access your personalized learning space, explore
+                    courses and continue building your future with EduNova.
+                </p>
+
+                <ul class="benefits">
+
+                    <li>
+                        <span class="check">✓</span>
+                        Personalized learning
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Track your progress
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Connect with your community
+                    </li>
+
+                    <li>
+                        <span class="check">✓</span>
+                        Access learning resources
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FORM PANEL ================= -->
+
+        <section class="form-panel">
+
+            <div class="form-container">
+
+                <!-- Tabs -->
+
+                <div class="tabs">
+
+                    <button
+                        class="tab active"
+                        onclick="showForm('login', this)">
+                        Login
+                    </button>
+
+                    <button
+                        class="tab"
+                        onclick="showForm('signup', this)">
+                        Sign Up
+                    </button>
+
+                </div>
+
+
+                <!-- ================= LOGIN ================= -->
+
+                <form class="form active" id="login">
+
+                    <div class="form-header">
+
+                        <h2>Welcome back</h2>
+
+                        <p>
+                            Enter your details to access your account.
+                        </p>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="login-email">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="email"
+                                id="login-email"
+                                placeholder="you@example.com"
+                                required>
+
+                            <span class="input-icon">✉</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="login-password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="password"
+                                id="login-password"
+                                placeholder="Enter your password"
+                                required>
+
+                            <span
+                                class="input-icon"
+                                onclick="togglePassword('login-password', this)"
+                                style="cursor:pointer;">
+                                👁
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="options">
+
+                        <label class="remember">
+
+                            <input type="checkbox">
+
+                            Remember me
+
+                        </label>
+
+                        <a href="#" class="forgot">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <button class="submit-btn" type="submit">
+                        Login to Account
+                    </button>
+
+
+                    <div class="divider">
+                        OR CONTINUE WITH
+                    </div>
+
+
+                    <div class="social-buttons">
+
+                        <button type="button" class="social-btn">
+                            Google
+                        </button>
+
+                        <button type="button" class="social-btn">
+                            GitHub
+                        </button>
+
+                    </div>
+
+
+                    <div class="bottom-text">
+                        Don't have an account?
+                        <span onclick="showFormByName('signup')">
+                            Create one
+                        </span>
+                    </div>
+
+                </form>
+
+
+                <!-- ================= SIGNUP ================= -->
+
+                <form class="form" id="signup">
+
+                    <div class="form-header">
+
+                        <h2>Create account</h2>
+
+                        <p>
+                            Join EduNova and start your learning journey.
+                        </p>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="signup-name">
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="text"
+                                id="signup-name"
+                                placeholder="Enter your full name"
+                                required>
+
+                            <span class="input-icon">👤</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="signup-email">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="email"
+                                id="signup-email"
+                                placeholder="you@example.com"
+                                required>
+
+                            <span class="input-icon">✉</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="signup-password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="password"
+                                id="signup-password"
+                                placeholder="Create a password"
+                                required>
+
+                            <span
+                                class="input-icon"
+                                onclick="togglePassword('signup-password', this)"
+                                style="cursor:pointer;">
+                                👁
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="confirm-password">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="password"
+                                id="confirm-password"
+                                placeholder="Confirm your password"
+                                required>
+
+                            <span
+                                class="input-icon"
+                                onclick="togglePassword('confirm-password', this)"
+                                style="cursor:pointer;">
+                                👁
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="options">
+
+                        <label class="remember">
+
+                            <input type="checkbox" required>
+
+                            I agree to the terms
+
+                        </label>
+
+                    </div>
+
+
+                    <button class="submit-btn" type="submit">
+                        Create Account
+                    </button>
+
+
+                    <div class="bottom-text">
+                        Already have an account?
+                        <span onclick="showFormByName('login')">
+                            Login
+                        </span>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        function showForm(formName, clickedTab) {
+
+            document.querySelectorAll(".form").forEach(function(form) {
+                form.classList.remove("active");
+            });
+
+            document.getElementById(formName).classList.add("active");
+
+            document.querySelectorAll(".tab").forEach(function(tab) {
+                tab.classList.remove("active");
+            });
+
+            clickedTab.classList.add("active");
+        }
+
+
+        function showFormByName(formName) {
+
+            const tabs = document.querySelectorAll(".tab");
+
+            if (formName === "login") {
+                tabs[0].click();
+            } else {
+                tabs[1].click();
+            }
+        }
+
+
+        function togglePassword(inputId, icon) {
+
+            const input = document.getElementById(inputId);
+
+            if (input.type === "password") {
+
+                input.type = "text";
+                icon.textContent = "🙈";
+
+            } else {
+
+                input.type = "password";
+                icon.textContent = "👁";
+            }
+        }
+
+
+        document.getElementById("login").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            alert("Login form submitted successfully!");
+
+        });
+
+
+        document.getElementById("signup").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const password =
+                document.getElementById("signup-password").value;
+
+            const confirmPassword =
+                document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+
+                alert("Passwords do not match.");
+
+                return;
+            }
+
+            alert("Account created successfully!");
+
+        });
+
+    </script>
+
+</body>
+</html>

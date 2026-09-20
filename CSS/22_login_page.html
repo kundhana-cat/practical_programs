@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Glass Login Page</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.45), transparent 30%),
+                radial-gradient(circle at 85% 80%, rgba(6, 182, 212, 0.35), transparent 30%),
+                linear-gradient(135deg, #080b18, #111827);
+
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Decorative circles */
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.7;
+        }
+
+        .circle.one {
+            width: 220px;
+            height: 220px;
+            background: #7c3aed;
+            top: -70px;
+            left: -70px;
+        }
+
+        .circle.two {
+            width: 180px;
+            height: 180px;
+            background: #06b6d4;
+            bottom: -50px;
+            right: -40px;
+        }
+
+        /* Login Card */
+
+        .login-card {
+            width: 410px;
+            max-width: 90%;
+            padding: 40px;
+
+            border-radius: 28px;
+
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.45);
+
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Heading */
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #06b6d4
+            );
+
+            font-size: 1.5rem;
+            font-weight: 800;
+
+            box-shadow:
+                0 12px 30px rgba(124, 58, 237, 0.35);
+        }
+
+        .login-header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* Form */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-box span {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            background: rgba(255, 255, 255, 0.07);
+
+            color: white;
+
+            outline: none;
+
+            font-size: 0.95rem;
+
+            transition: 0.3s;
+        }
+
+        .input-box input::placeholder {
+            color: #64748b;
+        }
+
+        .input-box input:focus {
+            border-color: #8b5cf6;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            box-shadow:
+                0 0 0 3px rgba(139, 92, 246, 0.15);
+        }
+
+        /* Options */
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+
+            font-size: 0.85rem;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            color: #94a3b8;
+        }
+
+        .remember input {
+            accent-color: #7c3aed;
+        }
+
+        .forgot {
+            color: #a78bfa;
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        /* Login Button */
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+
+            border: none;
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #4f46e5
+                );
+
+            color: white;
+
+            font-size: 1rem;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 10px 25px rgba(124, 58, 237, 0.25);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 35px rgba(124, 58, 237, 0.4);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Divider */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin: 28px 0;
+
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Social Login */
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .social-btn {
+            padding: 11px;
+
+            border-radius: 10px;
+
+            border: 1px solid rgba(255, 255, 255, 0.13);
+
+            background: rgba(255, 255, 255, 0.05);
+
+            color: #e2e8f0;
+
+            text-align: center;
+
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Signup */
+
+        .signup {
+            text-align: center;
+            margin-top: 25px;
+
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .signup a {
+            color: #a78bfa;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 500px) {
+
+            .login-card {
+                padding: 30px 22px;
+            }
+
+            .login-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .circle.one {
+                width: 150px;
+                height: 150px;
+            }
+
+            .circle.two {
+                width: 130px;
+                height: 130px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Decorative Background -->
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+
+    <!-- Login Card -->
+    <div class="login-card">
+
+        <div class="login-header">
+
+            <div class="logo">
+                KC
+            </div>
+
+            <h1>Welcome Back</h1>
+
+            <p>Sign in to continue to your account</p>
+
+        </div>
+
+
+        <form>
+
+            <!-- Email -->
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <div class="input-box">
+
+                    <span>✉</span>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="input-box">
+
+                    <span>●</span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Options -->
+            <div class="options">
+
+                <label class="remember">
+
+                    <input type="checkbox">
+
+                    Remember me
+
+                </label>
+
+                <a href="#" class="forgot">
+                    Forgot Password?
+                </a>
+
+            </div>
+
+
+            <!-- Login -->
+            <button type="submit" class="login-btn">
+                Sign In
+            </button>
+
+        </form>
+
+
+        <!-- Divider -->
+        <div class="divider">
+            OR CONTINUE WITH
+        </div>
+
+
+        <!-- Social Buttons -->
+        <div class="social-buttons">
+
+            <a href="#" class="social-btn">
+                Google
+            </a>
+
+            <a href="#" class="social-btn">
+                GitHub
+            </a>
+
+        </div>
+
+
+        <!-- Signup -->
+        <div class="signup">
+
+            Don't have an account?
+
+            <a href="#">
+                Create Account
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

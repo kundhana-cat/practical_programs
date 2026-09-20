@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Responsive Image Gallery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #182033;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            padding: 70px 20px 80px;
+            text-align: center;
+            color: white;
+
+            background:
+                linear-gradient(135deg, #172554, #3730a3, #6d28d9);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-bottom: 18px;
+
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.1);
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        header h1 {
+            font-size: clamp(36px, 6vw, 62px);
+            margin-bottom: 15px;
+        }
+
+        header h1 span {
+            color: #c4b5fd;
+        }
+
+        header p {
+            max-width: 650px;
+            margin: auto;
+
+            color: #dddfff;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* ================= GALLERY ================= */
+
+        .gallery-section {
+            width: 92%;
+            max-width: 1250px;
+            margin: -45px auto 80px;
+        }
+
+        .gallery {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            grid-auto-rows: 250px;
+
+            gap: 18px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: #ddd;
+
+            box-shadow:
+                0 10px 30px rgba(20,30,60,0.10);
+
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.6s ease,
+                filter 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+            filter: brightness(0.72);
+        }
+
+        /* ================= FEATURED ITEMS ================= */
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(6) {
+            grid-column: span 2;
+        }
+
+        .gallery-item:nth-child(9) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* ================= OVERLAY ================= */
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 25px;
+
+            opacity: 0;
+
+            background:
+                linear-gradient(
+                    transparent 30%,
+                    rgba(10,15,35,0.9)
+                );
+
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            color: white;
+
+            transform: translateY(15px);
+
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .overlay-content {
+            transform: translateY(0);
+        }
+
+        .overlay h3 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .overlay p {
+            color: #d8dcf0;
+            font-size: 13px;
+        }
+
+        /* ================= GALLERY INFO ================= */
+
+        .gallery-info {
+            margin-top: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 25px 30px;
+
+            border: 1px solid #e5e8f0;
+            border-radius: 18px;
+
+            background: white;
+
+            box-shadow:
+                0 10px 25px rgba(30,40,70,0.05);
+        }
+
+        .gallery-info h2 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .gallery-info p {
+            color: #70788c;
+            font-size: 14px;
+        }
+
+        .gallery-button {
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            background: #4338ca;
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .gallery-button:hover {
+            background: #312e81;
+            transform: translateY(-2px);
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 25px;
+
+            text-align: center;
+
+            background: #10172f;
+            color: #9299b2;
+
+            font-size: 13px;
+        }
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 950px) {
+
+            header {
+                padding: 60px 20px 70px;
+            }
+
+            .gallery {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                grid-auto-rows: 230px;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .gallery-item:nth-child(6) {
+                grid-column: span 1;
+            }
+
+            .gallery-item:nth-child(9) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 50px 20px 65px;
+            }
+
+            header h1 {
+                font-size: 38px;
+            }
+
+            header p {
+                font-size: 14px;
+            }
+
+            .gallery-section {
+                width: 94%;
+                margin-top: -35px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 240px;
+                gap: 14px;
+            }
+
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(6),
+            .gallery-item:nth-child(9) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .overlay {
+                opacity: 1;
+                padding: 20px;
+            }
+
+            .overlay-content {
+                transform: translateY(0);
+            }
+
+            .gallery-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+
+                padding: 22px;
+            }
+
+            .gallery-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* ================= SMALL MOBILE ================= */
+
+        @media (max-width: 380px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .gallery {
+                grid-auto-rows: 210px;
+            }
+
+            .gallery-item {
+                border-radius: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <span class="badge">
+            CSS PRACTICAL • EXPERIMENT 24
+        </span>
+
+        <h1>
+            Responsive <span>Gallery</span>
+        </h1>
+
+        <p>
+            A modern responsive image gallery built using CSS Grid,
+            responsive media queries, hover effects and image overlays.
+        </p>
+
+    </header>
+
+
+    <!-- ================= GALLERY ================= -->
+
+    <main class="gallery-section">
+
+        <div class="gallery">
+
+            <!-- Image 1 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80"
+                    alt="Beautiful mountain landscape">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Mountain Escape</h3>
+
+                        <p>
+                            Peaceful landscapes and endless horizons.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Image 2 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+                    alt="Blue ocean and tropical beach">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Ocean Breeze</h3>
+
+                        <p>
+                            Discover the beauty of the coastline.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Image 3 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80"
+                    alt="Green forest surrounded by trees">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Forest Walk</h3>
+
+                        <p>
+                            A quiet journey through nature.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Image 4 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80"
+                    alt="Travel landscape with mountains">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Adventure</h3>
+
+                        <p>
+                            Every journey creates a story.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Image 5 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80"
+                    alt="Snow covered mountain peaks">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Snow Peaks</h3>
+
+                        <p>
+                            Explore the beauty of the mountains.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Image 6 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1000&q=80"
+                    alt="Sunset over a green landscape">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Golden Sunset</h3>
+
+                        <p>
+                            Beautiful moments captured in nature.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Image 7 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80"
+                    alt="Lake surrounded by mountains">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Lake View</h3>
+
+                        <p>
+                            Calm waters surrounded by nature.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Image 8 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80"
+                    alt="Green mountain valley">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Green Valley</h3>
+
+                        <p>
+                            Nature at its most peaceful.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Image 9 -->
+
+            <article class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80"
+                    alt="Wide mountain landscape">
+
+                <div class="overlay">
+
+                    <div class="overlay-content">
+
+                        <h3>Into The Wild</h3>
+
+                        <p>
+                            Step outside and explore something new.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- ================= INFO ================= -->
+
+        <section class="gallery-info">
+
+            <div>
+
+                <h2>Explore. Capture. Remember.</h2>
+
+                <p>
+                    Resize the browser to see the gallery automatically
+                    adapt to desktop, tablet and mobile screens.
+                </p>
+
+            </div>
+
+            <a href="#" class="gallery-button">
+                Explore Gallery
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        CSS Responsive Image Gallery • Experiment 24
+
+    </footer>
+
+</body>
+</html>

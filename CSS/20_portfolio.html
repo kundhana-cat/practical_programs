@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kundhana Chembeti | Portfolio</title>
+
+    <style>
+        /* =========================
+           GLOBAL
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #f8fafc;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.35), transparent 30%),
+                radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.25), transparent 30%),
+                radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.20), transparent 30%),
+                #080b18;
+            background-attachment: fixed;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================
+           GLASS EFFECT
+        ========================== */
+
+        .glass {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+
+            width: 92%;
+            max-width: 1200px;
+            margin: 15px auto 0;
+
+            padding: 15px 25px;
+            border-radius: 20px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #c4b5fd;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 88vh;
+            max-width: 1200px;
+            margin: auto;
+
+            padding: 80px 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hello {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 50px;
+
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+
+            color: #c4b5fd;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.7rem, 7vw, 5rem);
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(
+                90deg,
+                #a78bfa,
+                #22d3ee,
+                #f472b6
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 1.4rem;
+            color: #cbd5e1;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            max-width: 650px;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 23px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            color: white;
+        }
+
+        .primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .outline {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+            color: #e2e8f0;
+        }
+
+        .outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           PROFILE
+        ========================== */
+
+        .profile-wrapper {
+            position: relative;
+            width: 310px;
+            height: 310px;
+            flex-shrink: 0;
+        }
+
+        .profile-card {
+            width: 100%;
+            height: 100%;
+            border-radius: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139, 92, 246, 0.35),
+                    rgba(34, 211, 238, 0.15)
+                );
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(20px);
+
+            transform: rotate(3deg);
+            transition: 0.5s;
+        }
+
+        .profile-card:hover {
+            transform: rotate(0deg) scale(1.03);
+        }
+
+        .profile-text {
+            text-align: center;
+        }
+
+        .profile-text .initials {
+            width: 125px;
+            height: 125px;
+
+            margin: auto auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 3rem;
+            font-weight: 800;
+
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #06b6d4
+            );
+
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.35);
+        }
+
+        .profile-text h3 {
+            font-size: 1.5rem;
+        }
+
+        .profile-text p {
+            color: #94a3b8;
+        }
+
+        /* =========================
+           COMMON SECTION
+        ========================== */
+
+        section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 90px 30px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-heading span {
+            color: #a78bfa;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .section-heading h2 {
+            font-size: 2.5rem;
+            margin: 8px 0;
+        }
+
+        .section-heading p {
+            color: #94a3b8;
+        }
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about-card {
+            padding: 35px;
+            border-radius: 25px;
+        }
+
+        .about-card p {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .highlight {
+            padding: 20px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .highlight h3 {
+            color: #c4b5fd;
+            margin-bottom: 5px;
+        }
+
+        .highlight p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* =========================
+           SKILLS
+        ========================== */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .skill {
+            padding: 24px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.35s;
+        }
+
+        .skill:hover {
+            transform: translateY(-8px);
+            background: rgba(139, 92, 246, 0.13);
+        }
+
+        .skill-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: #a78bfa;
+        }
+
+        .skill h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .skill p {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================== */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .project {
+            padding: 30px;
+            border-radius: 23px;
+            transition: 0.35s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            border-color: rgba(167, 139, 250, 0.45);
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 5px 11px;
+            border-radius: 20px;
+            background: rgba(124, 58, 237, 0.18);
+            color: #c4b5fd;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+        }
+
+        .project h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            color: #94a3b8;
+            margin-bottom: 18px;
+        }
+
+        .project a {
+            color: #a78bfa;
+            font-weight: 600;
+        }
+
+        /* =========================
+           EDUCATION
+        ========================== */
+
+        .education-card {
+            padding: 32px;
+            border-radius: 23px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .education-card h3 {
+            color: #c4b5fd;
+            font-size: 1.4rem;
+        }
+
+        .education-card p {
+            color: #94a3b8;
+        }
+
+        .education-card .year {
+            display: inline-block;
+            margin-top: 10px;
+            color: #67e8f9;
+        }
+
+        /* =========================
+           CERTIFICATES
+        ========================== */
+
+        .certificates {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .certificate {
+            padding: 22px;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .certificate h3 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .certificate a {
+            color: #67e8f9;
+            font-size: 0.85rem;
+        }
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact-card {
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .contact-card p {
+            color: #94a3b8;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social {
+            padding: 11px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: 0.3s;
+        }
+
+        .social:hover {
+            background: rgba(124, 58, 237, 0.2);
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        footer span {
+            color: #a78bfa;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .certificates {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                width: 94%;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile-wrapper {
+                width: 250px;
+                height: 250px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            section {
+                padding: 65px 18px;
+            }
+
+            .hero {
+                padding: 60px 18px;
+            }
+
+            .hero h1 {
+                font-size: 2.7rem;
+            }
+
+            .skills-grid,
+            .certificates {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card,
+            .project,
+            .contact-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+            Kundhana<span>.</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="hello">
+                Hello, I'm 👋
+            </div>
+
+            <h1>
+                Sri Sai <span>Kundhana</span> Chembeti
+            </h1>
+
+            <h2>
+                Computer & Data Science Student
+            </h2>
+
+            <p>
+                I'm passionate about Cloud Computing, DevOps,
+                Software Development, Data Science and building
+                practical digital solutions with modern technologies.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="assets/Kundhana_Chembeti_Professional_Resume.pdf"
+                    class="btn primary"
+                    target="_blank"
+                >
+                    View Resume
+                </a>
+
+                <a
+                    href="#projects"
+                    class="btn outline"
+                >
+                    Explore Projects
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-wrapper">
+
+            <div class="profile-card">
+
+                <div class="profile-text">
+
+                    <div class="initials">
+                        SC
+                    </div>
+
+                    <h3>Kundhana Chembeti</h3>
+
+                    <p>Tech Enthusiast</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about">
+
+        <div class="section-heading">
+
+            <span>About Me</span>
+
+            <h2>Turning Ideas Into Projects</h2>
+
+            <p>A little about my journey in technology</p>
+
+        </div>
+
+        <div class="about-card glass">
+
+            <p>
+                I am Sri Sai Kundhana Chembeti, a Computer & Data Science
+                student at Sai University with a strong interest in
+                technology and practical software development.
+            </p>
+
+            <p>
+                My interests include Cloud Computing, DevOps,
+                Data Science, Web Development and emerging technologies.
+                I enjoy learning by building real-world projects and
+                experimenting with modern development tools.
+            </p>
+
+            <div class="about-highlights">
+
+                <div class="highlight">
+                    <h3>Cloud & DevOps</h3>
+                    <p>Exploring cloud technologies, deployment and DevOps workflows.</p>
+                </div>
+
+                <div class="highlight">
+                    <h3>Data Science</h3>
+                    <p>Working with Python, data analysis and visualization.</p>
+                </div>
+
+                <div class="highlight">
+                    <h3>Web Development</h3>
+                    <p>Creating responsive and interactive web experiences.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SKILLS ================= -->
+
+    <section id="skills">
+
+        <div class="section-heading">
+
+            <span>My Skills</span>
+
+            <h2>Technology Stack</h2>
+
+            <p>Tools and technologies I work with</p>
+
+        </div>
+
+        <div class="skills-grid">
+
+            <div class="skill glass">
+                <div class="skill-icon">Py</div>
+                <h3>Python</h3>
+                <p>Programming & Data Science</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">C</div>
+                <h3>C</h3>
+                <p>Programming & DSA</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">JS</div>
+                <h3>JavaScript</h3>
+                <p>Web Development</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">&lt;/&gt;</div>
+                <h3>HTML5 & CSS3</h3>
+                <p>Responsive Websites</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">R</div>
+                <h3>React.js</h3>
+                <p>Frontend Development</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">TW</div>
+                <h3>Tailwind CSS</h3>
+                <p>Modern UI Development</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">Pd</div>
+                <h3>Pandas</h3>
+                <p>Data Analysis</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">Git</div>
+                <h3>Git & GitHub</h3>
+                <p>Version Control</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECTS ================= -->
+
+    <section id="projects">
+
+        <div class="section-heading">
+
+            <span>My Work</span>
+
+            <h2>Featured Projects</h2>
+
+            <p>Projects I have built and worked on</p>
+
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- Tripzo -->
+
+            <article class="project glass">
+
+                <span class="project-tag">
+                    AI • Travel • Web
+                </span>
+
+                <h3>Tripzo — AI Smart Tourism</h3>
+
+                <p>
+                    An AI-powered smart tourism and transportation
+                    platform featuring travel planning, dashboards,
+                    transportation information, wishlist functionality,
+                    live chat and automation workflows.
+                </p>
+
+                <a
+                    href="https://tripzo-smart-tourism.netlify.app/"
+                    target="_blank"
+                >
+                    View Live Project →
+                </a>
+
+            </article>
+
+
+            <!-- Wishlisty -->
+
+            <article class="project glass">
+
+                <span class="project-tag">
+                    Full Stack • Productivity
+                </span>
+
+                <h3>Wishlisty</h3>
+
+                <p>
+                    A personal wishlist platform created from a
+                    real-life idea to organize products, places to visit
+                    and goals in one beautiful space.
+                </p>
+
+                <a
+                    href="https://wishlisty-ogya.vercel.app/"
+                    target="_blank"
+                >
+                    View Live Project →
+                </a>
+
+            </article>
+
+
+            <!-- Stock Tracker -->
+
+            <article class="project glass">
+
+                <span class="project-tag">
+                    Data • Finance
+                </span>
+
+                <h3>Stock Portfolio Tracker</h3>
+
+                <p>
+                    A project focused on tracking and presenting
+                    stock portfolio information using data-driven
+                    approaches.
+                </p>
+
+                <a href="#">
+                    Project Details →
+                </a>
+
+            </article>
+
+
+            <!-- Recruitment -->
+
+            <article class="project glass">
+
+                <span class="project-tag">
+                    Web Application
+                </span>
+
+                <h3>Recruitment Management System</h3>
+
+                <p>
+                    A web-based project designed to organize
+                    recruitment-related information and workflows.
+                </p>
+
+                <a href="#">
+                    Project Details →
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EDUCATION ================= -->
+
+    <section id="education">
+
+        <div class="section-heading">
+
+            <span>Education</span>
+
+            <h2>Academic Journey</h2>
+
+        </div>
+
+        <div class="education-card glass">
+
+            <h3>Computer & Data Science</h3>
+
+            <p>
+                Sai University
+            </p>
+
+            <p>
+                Undergraduate Student
+            </p>
+
+            <span class="year">
+                Present
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CERTIFICATES ================= -->
+
+    <section id="certificates">
+
+        <div class="section-heading">
+
+            <span>Achievements</span>
+
+            <h2>Certificates</h2>
+
+            <p>Some of my completed learning achievements</p>
+
+        </div>
+
+        <div class="certificates">
+
+            <div class="certificate glass">
+
+                <h3>
+                    HackerRank Problem Solving
+                </h3>
+
+                <a
+                    href="https://www.hackerrank.com/certificates/b2f50f88faad"
+                    target="_blank"
+                >
+                    View Certificate →
+                </a>
+
+            </div>
+
+
+            <div class="certificate glass">
+
+                <h3>
+                    Python 101 for Data Science
+                </h3>
+
+                <a
+                    href="https://courses.cognitiveclass.ai/certificates/ac7d4fbfadfd4474af7ab88995749c00"
+                    target="_blank"
+                >
+                    View Certificate →
+                </a>
+
+            </div>
+
+
+            <div class="certificate glass">
+
+                <h3>
+                    Tata Data Visualisation
+                </h3>
+
+                <a href="#" target="_blank">
+                    View Certificate →
+                </a>
+
+            </div>
+
+
+            <div class="certificate glass">
+
+                <h3>
+                    Data Science & Analytics
+                </h3>
+
+                <a href="#" target="_blank">
+                    View Certificate →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+        <div class="section-heading">
+
+            <span>Let's Connect</span>
+
+            <h2>Get In Touch</h2>
+
+            <p>
+                Interested in my work? Let's connect and build something.
+            </p>
+
+        </div>
+
+        <div class="contact-card glass">
+
+            <p>
+                You can find me on GitHub and LinkedIn.
+            </p>
+
+            <div class="social-links">
+
+                <a
+                    class="social"
+                    href="https://github.com/kundhana-cat"
+                    target="_blank"
+                >
+                    GitHub
+                </a>
+
+                <a
+                    class="social"
+                    href="https://www.linkedin.com/in/kundhana-chembeti-1133b0371/"
+                    target="_blank"
+                >
+                    LinkedIn
+                </a>
+
+                <a
+                    class="social"
+                    href="https://github.com/kundhana-cat/tripzo"
+                    target="_blank"
+                >
+                    Tripzo GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            Designed & Built by
+            <span>Kundhana Chembeti</span>
+            • 2026
+        </p>
+
+    </footer>
+
+</body>
+</html>

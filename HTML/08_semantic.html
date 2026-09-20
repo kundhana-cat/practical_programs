@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="A semantic HTML demonstration inspired by Sai University, showcasing header, nav, section, article and footer elements.">
+
+    <title>Sai University | Semantic HTML Demonstration</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f6f8fb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-header {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 78px;
+            padding: 0 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(135deg, #0f3d5e, #176b87);
+            color: white;
+
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-text h2 {
+            font-size: 20px;
+            color: #123b55;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: #718096;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================== */
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #176b87;
+        }
+
+        .apply-btn {
+            padding: 10px 18px;
+            border-radius: 25px;
+            background: #123b55;
+            color: white !important;
+        }
+
+        .apply-btn:hover {
+            background: #176b87;
+        }
+
+        /* =========================
+           HERO SECTION
+        ========================== */
+
+        .hero {
+            min-height: 520px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(8, 35, 52, 0.96),
+                    rgba(8, 35, 52, 0.78),
+                    rgba(8, 35, 52, 0.45)
+                ),
+                url("https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=85");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+            padding: 70px 25px;
+            color: white;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 25px;
+
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+
+            color: #d8f3ff;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            max-width: 750px;
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #78d4e8;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #e5edf2;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 13px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: white;
+            color: #123b55;
+        }
+
+        .secondary {
+            border: 1px solid rgba(255,255,255,0.5);
+            color: white;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 25px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading small {
+            color: #176b87;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            font-size: 36px;
+            color: #123b55;
+            margin: 8px 0 12px;
+        }
+
+        .section-heading p {
+            max-width: 700px;
+            margin: auto;
+            color: #6b7280;
+        }
+
+        /* =========================
+           ABOUT SECTION
+        ========================== */
+
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            min-height: 380px;
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    rgba(18,59,85,0.2),
+                    rgba(18,59,85,0.2)
+                ),
+                url("https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=85");
+
+            background-size: cover;
+            background-position: center;
+
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .about-content h2 {
+            color: #123b55;
+            font-size: 32px;
+            margin-bottom: 18px;
+        }
+
+        .about-content p {
+            color: #667085;
+            margin-bottom: 18px;
+        }
+
+        .highlight {
+            margin-top: 25px;
+            padding: 20px;
+
+            border-left: 4px solid #176b87;
+            background: #eef8fb;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .highlight strong {
+            color: #123b55;
+        }
+
+        /* =========================
+           ARTICLE CARDS
+        ========================== */
+
+        .schools {
+            margin-top: 100px;
+        }
+
+        .school-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        article {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+
+            border: 1px solid #e9edf2;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        article:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+        }
+
+        .article-icon {
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #edf7fa;
+            color: #176b87;
+
+            font-size: 23px;
+            margin-bottom: 18px;
+        }
+
+        article h3 {
+            color: #123b55;
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        article p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CAMPUS SECTION
+        ========================== */
+
+        .campus-section {
+            margin-top: 100px;
+            padding: 65px 45px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #123b55,
+                    #176b87
+                );
+
+            color: white;
+        }
+
+        .campus-section h2 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .campus-section > p {
+            max-width: 700px;
+            color: #d9edf4;
+            margin-bottom: 35px;
+        }
+
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .campus-card {
+            padding: 22px;
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .campus-card h3 {
+            margin-bottom: 5px;
+        }
+
+        .campus-card p {
+            font-size: 13px;
+            color: #d8e9ef;
+        }
+
+        /* =========================
+           CONTACT SECTION
+        ========================== */
+
+        .contact-section {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .contact-box {
+            margin-top: 30px;
+            padding: 35px;
+
+            background: white;
+            border-radius: 20px;
+
+            box-shadow: 0 10px 35px rgba(0,0,0,0.07);
+        }
+
+        .contact-box p {
+            color: #667085;
+            margin: 6px;
+        }
+
+        .contact-box strong {
+            color: #123b55;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #0b2536;
+            color: #a9beca;
+            padding: 50px 25px 25px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(255,255,255,0.1);
+
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 950px) {
+
+            .school-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .campus-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            .top-header {
+                flex-direction: column;
+                padding: 18px;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .campus-section {
+                padding: 40px 25px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .school-grid,
+            .campus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 480px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .section-heading h2 {
+                font-size: 29px;
+            }
+
+            main {
+                padding: 55px 18px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header>
+
+        <div class="top-header">
+
+            <div class="logo">
+
+                <div class="logo-box">
+                    SU
+                </div>
+
+                <div class="logo-text">
+                    <h2>Sai University</h2>
+                    <p>CHENNAI • INDIA</p>
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION ELEMENT -->
+
+            <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+
+                    <li>
+                        <a href="#schools">Schools</a>
+                    </li>
+
+                    <li>
+                        <a href="#campus">Campus</a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+
+                    <li>
+                        <a
+                            class="apply-btn"
+                            href="https://www.saiuniversity.edu.in/"
+                            target="_blank">
+                            Visit SaiU
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+         HERO SECTION
+    ====================================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                LIBERAL • MULTIDISCIPLINARY • INTERDISCIPLINARY
+            </div>
+
+            <h1>
+                Shape Your Future
+                <span>Through Learning.</span>
+            </h1>
+
+            <p>
+                Sai University is an interdisciplinary and multidisciplinary
+                university in Chennai focused on liberal education, research,
+                innovation and societal impact.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#schools" class="hero-btn primary">
+                    Explore Schools
+                </a>
+
+                <a
+                    href="https://www.saiuniversity.edu.in/"
+                    target="_blank"
+                    class="hero-btn secondary">
+                    Official Website ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main>
+
+
+        <!-- ABOUT SECTION -->
+
+        <section id="about">
+
+            <div class="about-section">
+
+                <div class="about-image"></div>
+
+
+                <div class="about-content">
+
+                    <h2>
+                        A Multidisciplinary Approach
+                    </h2>
+
+                    <p>
+                        Sai University follows an International Liberal
+                        Education model with multidisciplinary and
+                        interdisciplinary learning.
+                    </p>
+
+                    <p>
+                        Students can explore different academic areas and
+                        build an education pathway aligned with their
+                        interests and aspirations.
+                    </p>
+
+                    <div class="highlight">
+
+                        <strong>
+                            Learning • Research • Societal Impact
+                        </strong>
+
+                        <p>
+                            These three pillars form an important part of
+                            Sai University's educational vision.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SCHOOLS SECTION -->
+
+        <section class="schools" id="schools">
+
+            <div class="section-heading">
+
+                <small>Academic Community</small>
+
+                <h2>
+                    Explore Our Schools
+                </h2>
+
+                <p>
+                    Sai University currently presents eight schools spanning
+                    technology, sciences, law, business, media and health.
+                </p>
+
+            </div>
+
+
+            <div class="school-grid">
+
+
+                <!-- ARTICLE 1 -->
+
+                <article>
+
+                    <div class="article-icon">
+                        💻
+                    </div>
+
+                    <h3>
+                        Computing & Data Science
+                    </h3>
+
+                    <p>
+                        Focuses on computing, data analytics and practical
+                        applications while encouraging interdisciplinary
+                        learning.
+                    </p>
+
+                </article>
+
+
+                <!-- ARTICLE 2 -->
+
+                <article>
+
+                    <div class="article-icon">
+                        🤖
+                    </div>
+
+                    <h3>
+                        Artificial Intelligence
+                    </h3>
+
+                    <p>
+                        Provides future-focused learning combining areas such
+                        as mathematics, computer science and cognitive sciences.
+                    </p>
+
+                </article>
+
+
+                <!-- ARTICLE 3 -->
+
+                <article>
+
+                    <div class="article-icon">
+                        ⚖️
+                    </div>
+
+                    <h3>
+                        School of Law
+                    </h3>
+
+                    <p>
+                        Connects legal education with technology, society and
+                        interdisciplinary learning.
+                    </p>
+
+                </article>
+
+
+                <!-- ARTICLE 4 -->
+
+                <article>
+
+                    <div class="article-icon">
+                        🔬
+                    </div>
+
+                    <h3>
+                        Arts & Sciences
+                    </h3>
+
+                    <p>
+                        Offers research-driven education with disciplinary
+                        depth, critical thinking and global perspectives.
+                    </p>
+
+                </article>
+
+
+                <!-- ARTICLE 5 -->
+
+                <article>
+
+                    <div class="article-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        School of Business
+                    </h3>
+
+                    <p>
+                        Combines business education with critical thinking,
+                        problem-solving, adaptability and leadership.
+                    </p>
+
+                </article>
+
+
+                <!-- ARTICLE 6 -->
+
+                <article>
+
+                    <div class="article-icon">
+                        🎬
+                    </div>
+
+                    <h3>
+                        School of Media
+                    </h3>
+
+                    <p>
+                        Develops creative thinkers and media professionals
+                        through experiential and interdisciplinary learning.
+                    </p>
+
+                </article>
+
+
+                <!-- ARTICLE 7 -->
+
+                <article>
+
+                    <div class="article-icon">
+                        🧪
+                    </div>
+
+                    <h3>
+                        School of Technology
+                    </h3>
+
+                    <p>
+                        Offers technology-focused programs with hands-on labs,
+                        research opportunities and industry collaboration.
+                    </p>
+
+                </article>
+
+
+                <!-- ARTICLE 8 -->
+
+                <article>
+
+                    <div class="article-icon">
+                        🩺
+                    </div>
+
+                    <h3>
+                        Allied Health Sciences
+                    </h3>
+
+                    <p>
+                        Provides industry-integrated healthcare education with
+                        clinical exposure and interdisciplinary knowledge.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAMPUS SECTION -->
+
+        <section class="campus-section" id="campus">
+
+            <h2>
+                Life Beyond the Classroom
+            </h2>
+
+            <p>
+                Sai University's campus environment includes facilities
+                designed to support learning, research, recreation and
+                student life.
+            </p>
+
+
+            <div class="campus-grid">
+
+                <div class="campus-card">
+
+                    <h3>📚 Library</h3>
+
+                    <p>
+                        Digital and print resources for study and research.
+                    </p>
+
+                </div>
+
+
+                <div class="campus-card">
+
+                    <h3>🔬 Modern Labs</h3>
+
+                    <p>
+                        Facilities supporting practical learning and discovery.
+                    </p>
+
+                </div>
+
+
+                <div class="campus-card">
+
+                    <h3>🏠 Residence</h3>
+
+                    <p>
+                        Student accommodation designed for community living.
+                    </p>
+
+                </div>
+
+
+                <div class="campus-card">
+
+                    <h3>⚽ Sports</h3>
+
+                    <p>
+                        Indoor and outdoor facilities for student recreation.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT SECTION -->
+
+        <section class="contact-section" id="contact">
+
+            <div class="section-heading">
+
+                <small>Get In Touch</small>
+
+                <h2>
+                    Sai University
+                </h2>
+
+                <p>
+                    One Hub Road, Old Mahabalipuram Road, Paiyanur,
+                    Tamil Nadu, Chennai – 603104
+                </p>
+
+            </div>
+
+
+            <div class="contact-box">
+
+                <p>
+                    <strong>Email:</strong>
+                    admissions@saiuniversity.edu.in
+                </p>
+
+                <p>
+                    <strong>General Enquiry:</strong>
+                    044 7143 7200
+                </p>
+
+                <p>
+                    <strong>Admissions:</strong>
+                    +91 91500 75661 / 62 / 63
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div>
+
+                <h3>
+                    Sai University
+                </h3>
+
+                <p>
+                    A multidisciplinary university focused on liberal
+                    education, research, innovation and societal impact.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <ul>
+
+                    <li>About</li>
+
+                    <li>Schools</li>
+
+                    <li>Campus Life</li>
+
+                    <li>Admissions</li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    Paiyanur, OMR<br>
+                    Chennai, Tamil Nadu<br>
+                    India - 603104
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                HTML Practical Programs |
+                Experiment 8 — Semantic Elements
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

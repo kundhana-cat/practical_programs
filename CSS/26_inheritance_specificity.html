@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Inheritance & Specificity</title>
+
+    <style>
+        /* =========================
+           BASIC RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, #4f46e5, transparent 30%),
+                radial-gradient(circle at bottom right, #9333ea, transparent 30%),
+                #0f172a;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: min(1100px, 100%);
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 15px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #c7d2fe;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #cbd5e1;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* =========================
+           SECTION
+        ========================== */
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        /* =========================
+           CARDS
+        ========================== */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            padding: 28px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .card > p {
+            color: #cbd5e1;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           INHERITANCE DEMO
+        ========================== */
+
+        .inheritance-demo {
+            color: #a5b4fc;
+            font-size: 18px;
+            border: 1px solid rgba(165, 180, 252, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .inheritance-demo p {
+            margin-top: 10px;
+        }
+
+        .inheritance-demo span {
+            font-weight: 700;
+        }
+
+        .inheritance-demo .not-inherited {
+            color: #f87171;
+        }
+
+        /* =========================
+           SPECIFICITY DEMO
+        ========================== */
+
+        .specificity-box {
+            padding: 22px;
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        /* Element selector */
+        p {
+            color: #cbd5e1;
+        }
+
+        /* Class selector has higher specificity */
+        .specificity-text {
+            color: #60a5fa;
+        }
+
+        /* ID selector has higher specificity */
+        #special-text {
+            color: #f472b6;
+        }
+
+        /* Inline style has even higher priority */
+        .inline-demo {
+            color: #34d399 !important;
+        }
+
+        .specificity-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .specificity-list li {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .number {
+            display: inline-flex;
+            width: 27px;
+            height: 27px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #4f46e5;
+            color: white;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* =========================
+           SPECIFICITY SCORE
+        ========================== */
+
+        .score-table {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+
+        th,
+        td {
+            padding: 13px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        th {
+            color: #a5b4fc;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        td {
+            color: #cbd5e1;
+        }
+
+        /* =========================
+           CODE BOX
+        ========================== */
+
+        .code-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #020617;
+            border: 1px solid #1e293b;
+            overflow-x: auto;
+        }
+
+        .code-box code {
+            color: #a5b4fc;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+            margin-top: 45px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 750px) {
+
+            body {
+                padding: 30px 15px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .header h1 {
+                font-size: 29px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header class="header">
+
+            <span class="tag">CSS PRACTICAL</span>
+
+            <h1>Inheritance & Specificity</h1>
+
+            <p>
+                A visual demonstration of how CSS properties are inherited
+                and how selector specificity determines which style wins.
+            </p>
+
+        </header>
+
+
+        <!-- Inheritance -->
+        <section class="section">
+
+            <h2 class="section-title">
+                01. CSS Inheritance
+            </h2>
+
+            <div class="card-grid">
+
+                <article class="card">
+
+                    <h2>Inherited Properties</h2>
+
+                    <p>
+                        Some CSS properties automatically pass from a
+                        parent element to its child elements.
+                    </p>
+
+                    <div class="inheritance-demo">
+
+                        Parent Element
+
+                        <p>
+                            This paragraph inherits the
+                            <strong>color</strong> and
+                            <span>font-family</span>
+                            from its parent.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <h2>Explicit Override</h2>
+
+                    <p>
+                        A child can override an inherited property by
+                        declaring its own value.
+                    </p>
+
+                    <div class="inheritance-demo">
+
+                        Parent Text
+
+                        <p class="not-inherited">
+                            This child overrides the inherited color
+                            with its own color.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Specificity -->
+        <section class="section">
+
+            <h2 class="section-title">
+                02. CSS Specificity
+            </h2>
+
+            <div class="card-grid">
+
+                <article class="card">
+
+                    <h2>Selector Priority</h2>
+
+                    <p>
+                        When multiple CSS rules target the same element,
+                        the selector with greater specificity wins.
+                    </p>
+
+                    <div class="specificity-box">
+
+                        <p>
+                            Element Selector
+                        </p>
+
+                        <p class="specificity-text">
+                            Class Selector
+                        </p>
+
+                        <p id="special-text">
+                            ID Selector
+                        </p>
+
+                        <p
+                            class="inline-demo"
+                            style="color: yellow;"
+                        >
+                            Inline Style
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <h2>Specificity Order</h2>
+
+                    <p>
+                        The general priority order is:
+                    </p>
+
+                    <ul class="specificity-list">
+
+                        <li>
+                            <span class="number">1</span>
+                            Element selector
+                        </li>
+
+                        <li>
+                            <span class="number">2</span>
+                            Class / Attribute / Pseudo-class
+                        </li>
+
+                        <li>
+                            <span class="number">3</span>
+                            ID selector
+                        </li>
+
+                        <li>
+                            <span class="number">4</span>
+                            Inline style
+                        </li>
+
+                        <li>
+                            <span class="number">5</span>
+                            !important
+                        </li>
+
+                    </ul>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Specificity Table -->
+        <section class="section">
+
+            <div class="card">
+
+                <h2>Specificity Comparison</h2>
+
+                <div class="score-table">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Selector</th>
+                                <th>Example</th>
+                                <th>Specificity</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Element</td>
+                                <td>p</td>
+                                <td>0-0-0-1</td>
+                            </tr>
+
+                            <tr>
+                                <td>Class</td>
+                                <td>.text</td>
+                                <td>0-0-1-0</td>
+                            </tr>
+
+                            <tr>
+                                <td>ID</td>
+                                <td>#title</td>
+                                <td>0-1-0-0</td>
+                            </tr>
+
+                            <tr>
+                                <td>Inline</td>
+                                <td>style="..."</td>
+                                <td>1-0-0-0</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Code Example -->
+        <section class="section">
+
+            <div class="card">
+
+                <h2>CSS Example</h2>
+
+                <div class="code-box">
+
+                    <code>
+                        p { color: gray; }<br>
+                        .text { color: blue; }<br>
+                        #title { color: red; }<br>
+                        &lt;p id="title" class="text"&gt;Hello&lt;/p&gt;
+                    </code>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            CSS Inheritance & Specificity • HTML & CSS Practical
+        </footer>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1303 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kundhana | Personal Portfolio</title>
+
+    <meta name="description"
+          content="Personal portfolio webpage created using HTML and CSS.">
+
+    <meta name="keywords"
+          content="HTML, CSS, Portfolio, Web Developer, Student">
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #ffffff;
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(99, 102, 241, 0.35),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(236, 72, 153, 0.25),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 80% 90%,
+                    rgba(14, 165, 233, 0.25),
+                    transparent 30%
+                ),
+                #070b18;
+
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           BACKGROUND ORBS
+        ========================= */
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.45;
+        }
+
+        .orb-one {
+            width: 250px;
+            height: 250px;
+            background: #6366f1;
+            top: 10%;
+            left: -80px;
+        }
+
+        .orb-two {
+            width: 300px;
+            height: 300px;
+            background: #ec4899;
+            bottom: 5%;
+            right: -100px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(7, 11, 24, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           COMMON GLASS
+        ========================= */
+
+        .glass {
+            background: rgba(255,255,255,0.07);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.25),
+                inset 0 1px 1px rgba(255,255,255,0.08);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 92vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 100px 8%;
+        }
+
+
+        .hero-container {
+            max-width: 1100px;
+            width: 100%;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+
+        .available {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.25);
+
+            color: #86efac;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 25px;
+        }
+
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+
+            box-shadow:
+                0 0 12px #22c55e;
+        }
+
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 0.98;
+
+            letter-spacing: -4px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    90deg,
+                    #a78bfa,
+                    #60a5fa,
+                    #f472b6
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+
+        .hero-description {
+            max-width: 650px;
+
+            color: #aeb8ca;
+
+            font-size: 18px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+            display: inline-block;
+
+            padding: 13px 23px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .primary-btn {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #2563eb
+                );
+
+            box-shadow:
+                0 10px 30px rgba(99,102,241,0.25);
+        }
+
+
+        .primary-btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 15px 35px rgba(99,102,241,0.4);
+        }
+
+
+        .secondary-btn {
+            color: #e2e8f0;
+
+            background: rgba(255,255,255,0.06);
+
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+
+        .secondary-btn:hover {
+            background: rgba(255,255,255,0.12);
+
+            transform: translateY(-4px);
+        }
+
+
+        /* =========================
+           HERO GLASS CARD
+        ========================= */
+
+        .hero-card {
+            padding: 30px;
+
+            border-radius: 28px;
+
+            transform: rotate(2deg);
+
+            transition: 0.4s;
+        }
+
+
+        .hero-card:hover {
+            transform: rotate(0deg) translateY(-8px);
+        }
+
+
+        .hero-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .window-dots {
+            display: flex;
+            gap: 7px;
+        }
+
+
+        .window-dots span {
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.35);
+        }
+
+
+        .code-label {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+
+        .code {
+            font-family: Consolas, monospace;
+
+            color: #c4b5fd;
+
+            font-size: 14px;
+
+            line-height: 2;
+        }
+
+
+        .code .blue {
+            color: #60a5fa;
+        }
+
+
+        .code .pink {
+            color: #f472b6;
+        }
+
+
+        .code .green {
+            color: #86efac;
+        }
+
+
+        .code .yellow {
+            color: #fde68a;
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 100px 8%;
+        }
+
+
+        .section-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+
+        .section-label {
+            color: #a78bfa;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+        }
+
+
+        .section-heading h2 {
+            font-size: 42px;
+
+            margin-top: 10px;
+        }
+
+
+        .section-heading p {
+            color: #94a3b8;
+
+            max-width: 650px;
+
+            margin: 12px auto 0;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-card {
+            padding: 40px;
+
+            border-radius: 25px;
+
+            text-align: center;
+        }
+
+
+        .about-card p {
+            color: #b8c2d3;
+
+            font-size: 17px;
+
+            max-width: 850px;
+
+            margin: auto;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .skill-card {
+            padding: 28px 20px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            transition: 0.3s;
+        }
+
+
+        .skill-card:hover {
+            transform: translateY(-7px);
+
+            background: rgba(255,255,255,0.1);
+        }
+
+
+        .skill-icon {
+            width: 55px;
+            height: 55px;
+
+            margin: auto auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139,92,246,0.3),
+                    rgba(59,130,246,0.2)
+                );
+
+            color: #c4b5fd;
+
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+
+        .skill-card h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+
+        .skill-card p {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+
+        .project-card {
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            transition: 0.35s;
+        }
+
+
+        .project-card:hover {
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(139,92,246,0.4);
+        }
+
+
+        .project-image {
+            height: 190px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(99,102,241,0.4),
+                    rgba(236,72,153,0.3)
+                );
+        }
+
+
+        .project-content {
+            padding: 25px;
+        }
+
+
+        .project-content h3 {
+            margin-bottom: 8px;
+        }
+
+
+        .project-content p {
+            color: #94a3b8;
+
+            font-size: 14px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .project-link {
+            color: #a78bfa;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        .project-link:hover {
+            color: #c4b5fd;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-card {
+            padding: 50px;
+
+            border-radius: 28px;
+
+            text-align: center;
+        }
+
+
+        .contact-card h2 {
+            font-size: 40px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .contact-card p {
+            color: #94a3b8;
+
+            max-width: 600px;
+
+            margin: auto auto 30px;
+        }
+
+
+        .contact-info {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 30px;
+        }
+
+
+        .contact-item {
+            padding: 10px 17px;
+
+            border-radius: 30px;
+
+            color: #cbd5e1;
+
+            background: rgba(255,255,255,0.05);
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px 8%;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+
+            text-align: center;
+
+            color: #64748b;
+        }
+
+
+        footer strong {
+            color: #a78bfa;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+
+            .hero-card {
+                max-width: 600px;
+                margin: auto;
+            }
+
+
+            .skills-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+
+            nav {
+                gap: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+
+            .hero {
+                padding-top: 70px;
+            }
+
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            section {
+                padding: 70px 5%;
+            }
+
+
+            .section-heading h2 {
+                font-size: 34px;
+            }
+
+
+            .contact-card {
+                padding: 30px 20px;
+            }
+
+
+            .contact-card h2 {
+                font-size: 32px;
+            }
+        }
+
+
+        @media (max-width: 400px) {
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- Background Glow -->
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="navbar">
+
+            <div class="logo">
+                K<span>.</span>
+            </div>
+
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-container">
+
+            <div>
+
+                <div class="available">
+                    <span class="status-dot"></span>
+                    Available for opportunities
+                </div>
+
+
+                <h1>
+                    Hi, I'm
+                    <span class="gradient-text">
+                        Kundhana.
+                    </span>
+                </h1>
+
+
+                <p class="hero-description">
+                    A passionate student and aspiring technology professional
+                    who enjoys building beautiful websites, exploring modern
+                    technologies and turning creative ideas into practical
+                    digital experiences.
+                </p>
+
+
+                <div class="buttons">
+
+                    <a
+                        href="#projects"
+                        class="btn primary-btn"
+                    >
+                        Explore My Work →
+                    </a>
+
+
+                    <a
+                        href="#contact"
+                        class="btn secondary-btn"
+                    >
+                        Let's Connect
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Glass Code Card -->
+
+            <div class="glass hero-card">
+
+                <div class="hero-card-top">
+
+                    <div class="window-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="code-label">
+                        portfolio.js
+                    </span>
+
+                </div>
+
+
+                <div class="code">
+
+                    <span class="blue">const</span>
+                    developer = {
+
+                    <br>
+
+                    &nbsp;&nbsp;name:
+                    <span class="green">
+                        "Kundhana"
+                    </span>,
+
+                    <br>
+
+                    &nbsp;&nbsp;role:
+                    <span class="green">
+                        "Developer"
+                    </span>,
+
+                    <br>
+
+                    &nbsp;&nbsp;skills: [
+
+                    <br>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="yellow">
+                        "HTML"
+                    </span>,
+
+                    <br>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="yellow">
+                        "CSS"
+                    </span>,
+
+                    <br>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="yellow">
+                        "JavaScript"
+                    </span>
+
+                    <br>
+
+                    &nbsp;&nbsp;],
+
+                    <br>
+
+                    &nbsp;&nbsp;passion:
+                    <span class="pink">
+                        "Creating"
+                    </span>
+
+                    <br>
+
+                    };
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    ABOUT ME
+                </span>
+
+                <h2>
+                    A little about me
+                </h2>
+
+                <p>
+                    Learning, creating and continuously improving.
+                </p>
+
+            </div>
+
+
+            <div class="glass about-card">
+
+                <p>
+                    I am a passionate student interested in web development,
+                    programming and modern technology. I enjoy designing
+                    responsive websites and creating projects that are both
+                    useful and visually engaging. I am continuously learning
+                    new technologies and looking for opportunities to apply
+                    my knowledge through real-world projects.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SKILLS ================= -->
+
+    <section id="skills">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    WHAT I WORK WITH
+                </span>
+
+                <h2>
+                    My Skills
+                </h2>
+
+                <p>
+                    Technologies and concepts I am currently learning and
+                    working with.
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+
+                <div class="glass skill-card">
+
+                    <div class="skill-icon">
+                        H
+                    </div>
+
+                    <h3>HTML</h3>
+
+                    <p>Semantic Web Structure</p>
+
+                </div>
+
+
+                <div class="glass skill-card">
+
+                    <div class="skill-icon">
+                        C
+                    </div>
+
+                    <h3>CSS</h3>
+
+                    <p>Responsive UI Design</p>
+
+                </div>
+
+
+                <div class="glass skill-card">
+
+                    <div class="skill-icon">
+                        JS
+                    </div>
+
+                    <h3>JavaScript</h3>
+
+                    <p>Interactive Web Apps</p>
+
+                </div>
+
+
+                <div class="glass skill-card">
+
+                    <div class="skill-icon">
+                        P
+                    </div>
+
+                    <h3>Python</h3>
+
+                    <p>Programming & Logic</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECTS ================= -->
+
+    <section id="projects">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    SELECTED WORK
+                </span>
+
+                <h2>
+                    My Projects
+                </h2>
+
+                <p>
+                    A few examples of projects and ideas I have worked on.
+                </p>
+
+            </div>
+
+
+            <div class="projects-grid">
+
+
+                <!-- Project 1 -->
+
+                <article class="glass project-card">
+
+                    <div class="project-image">
+                        ✈
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>
+                            Travel Website
+                        </h3>
+
+                        <p>
+                            A responsive travel website designed with
+                            modern layouts and interactive sections.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="project-link"
+                        >
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Project 2 -->
+
+                <article class="glass project-card">
+
+                    <div class="project-image">
+                        ◈
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>
+                            Smart Dashboard
+                        </h3>
+
+                        <p>
+                            A clean dashboard interface designed to present
+                            information in an organized and visual way.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="project-link"
+                        >
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Project 3 -->
+
+                <article class="glass project-card">
+
+                    <div class="project-image">
+                        ♢
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>
+                            Wishlist App
+                        </h3>
+
+                        <p>
+                            A creative web application for organizing
+                            products, places and personal goals.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="project-link"
+                        >
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+        <div class="section-container">
+
+            <div class="glass contact-card">
+
+                <span class="section-label">
+                    GET IN TOUCH
+                </span>
+
+                <h2>
+                    Let's create something
+                    <span class="gradient-text">
+                        amazing.
+                    </span>
+                </h2>
+
+                <p>
+                    Have an idea, project or opportunity?
+                    Feel free to connect with me.
+                </p>
+
+
+                <div class="buttons">
+
+                    <a
+                        href="mailto:yourmail@example.com"
+                        class="btn primary-btn"
+                    >
+                        Send an Email
+                    </a>
+
+                </div>
+
+
+                <div class="contact-info">
+
+                    <span class="contact-item">
+                        📧 yourmail@example.com
+                    </span>
+
+                    <span class="contact-item">
+                        💻 GitHub
+                    </span>
+
+                    <span class="contact-item">
+                        🔗 LinkedIn
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 <strong>Kundhana</strong>.
+            Designed & built with HTML and CSS.
+        </p>
+
+    </footer>
+
+
+</body>
+</html>
+```

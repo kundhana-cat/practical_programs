@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Audio & Video Gallery | HTML Practical</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 70px;
+            background: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            background:
+                linear-gradient(135deg, rgba(17,24,39,0.95), rgba(37,99,235,0.85));
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #93c5fd;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #dbeafe;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 13px 28px;
+            border-radius: 30px;
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1150px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+        }
+
+        /* MEDIA GRID */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .media-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.13);
+        }
+
+        .media-header {
+            padding: 24px 25px 10px;
+        }
+
+        .media-header h3 {
+            font-size: 23px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .media-header p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+
+        .audio-container {
+            padding: 30px 25px 35px;
+        }
+
+        .audio-icon {
+            width: 75px;
+            height: 75px;
+            margin: 10px auto 25px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        /* FEATURES */
+        .features {
+            margin-top: 70px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CODE INFO */
+        .info {
+            margin-top: 60px;
+            padding: 35px;
+            background: #111827;
+            color: white;
+            border-radius: 20px;
+        }
+
+        .info h2 {
+            margin-bottom: 15px;
+        }
+
+        .info p {
+            color: #d1d5db;
+            line-height: 1.7;
+        }
+
+        .tags {
+            margin-top: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #1f2937;
+            border: 1px solid #374151;
+            padding: 8px 14px;
+            border-radius: 20px;
+            margin: 5px;
+            color: #93c5fd;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav a {
+                margin-left: 12px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            nav {
+                height: auto;
+                padding: 18px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .hero {
+                min-height: 350px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">Media<span>Hub</span></div>
+
+        <div>
+            <a href="../index.html">Home</a>
+            <a href="html-05.html">Previous</a>
+            <a href="html-07.html">Next</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Experience <span>Sound & Vision</span></h1>
+
+            <p>
+                A modern demonstration of HTML5 audio and video elements.
+                Explore multimedia content directly inside your web browser.
+            </p>
+
+            <a href="#media" class="hero-button">
+                Explore Media ↓
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <main>
+
+        <!-- MEDIA SECTION -->
+        <section id="media">
+
+            <div class="section-title">
+
+                <h2>Multimedia Experience</h2>
+
+                <p>
+                    HTML5 makes it simple to embed audio and video without
+                    external plugins.
+                </p>
+
+            </div>
+
+
+            <div class="media-grid">
+
+                <!-- VIDEO CARD -->
+                <div class="media-card">
+
+                    <div class="media-header">
+
+                        <h3>🎬 Featured Video</h3>
+
+                        <p>
+                            Enjoy a beautiful nature video using the HTML5
+                            video element.
+                        </p>
+
+                    </div>
+
+                    <video controls poster="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80">
+
+                        <source
+                            src="https://www.w3schools.com/html/mov_bbb.mp4"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support the video element.
+
+                    </video>
+
+                </div>
+
+
+                <!-- AUDIO CARD -->
+                <div class="media-card">
+
+                    <div class="media-header">
+
+                        <h3>🎧 Relaxing Audio</h3>
+
+                        <p>
+                            Listen to an audio track using the HTML5 audio
+                            element.
+                        </p>
+
+                    </div>
+
+                    <div class="audio-container">
+
+                        <div class="audio-icon">
+                            ♪
+                        </div>
+
+                        <audio controls>
+
+                            <source
+                                src="https://www.w3schools.com/html/horse.mp3"
+                                type="audio/mpeg"
+                            >
+
+                            Your browser does not support the audio element.
+
+                        </audio>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">🎥</div>
+
+                <h3>Video Element</h3>
+
+                <p>
+                    Displays video directly on a webpage with controls
+                    such as play, pause and volume.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">🎵</div>
+
+                <h3>Audio Element</h3>
+
+                <p>
+                    Allows users to play audio files directly inside
+                    the browser.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">⚡</div>
+
+                <h3>HTML5 Native</h3>
+
+                <p>
+                    Modern browsers support multimedia without requiring
+                    additional plugins.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+        <section class="info">
+
+            <h2>What This Experiment Demonstrates</h2>
+
+            <p>
+                This practical demonstrates how HTML5 multimedia elements
+                can be used to embed and control audio and video content
+                directly within a webpage.
+            </p>
+
+            <div class="tags">
+
+                <span class="tag">&lt;audio&gt;</span>
+
+                <span class="tag">&lt;video&gt;</span>
+
+                <span class="tag">&lt;source&gt;</span>
+
+                <span class="tag">controls</span>
+
+                <span class="tag">poster</span>
+
+                <span class="tag">HTML5</span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            <strong>HTML Practical Programs</strong>
+            &nbsp; | &nbsp;
+            Experiment 6 — Audio & Video
+        </p>
+
+    </footer>
+
+</body>
+</html>

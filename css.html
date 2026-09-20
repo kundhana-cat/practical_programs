@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="CSS Practical Programs">
+<meta name="keywords" content="CSS programs, CSS practicals, CSS experiments">
+
+<title>CSS Programs | Technology Web</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI",Arial,sans-serif;
+    min-height: 100vh;
+    color: white;
+
+    background:
+        radial-gradient(circle at 10% 20%,rgba(70,150,255,.25),transparent 30%),
+        radial-gradient(circle at 90% 10%,rgba(80,220,255,.20),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(80,100,255,.18),transparent 35%),
+        linear-gradient(135deg,#07111f,#0d1728,#080d19);
+
+    overflow-x: hidden;
+}
+
+nav {
+    padding: 18px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255,255,255,.07);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,.12);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #72b5ff;
+}
+
+.home-btn {
+    color: white;
+    text-decoration: none;
+
+    padding: 10px 18px;
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.09);
+    border: 1px solid rgba(255,255,255,.15);
+}
+
+.hero {
+    text-align: center;
+    padding: 65px 20px 35px;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 8px 18px;
+    border-radius: 30px;
+
+    background: rgba(70,150,255,.12);
+    border: 1px solid rgba(100,180,255,.25);
+
+    color: #9acbff;
+
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    background: linear-gradient(
+        90deg,#fff,#9ecbff,#d7a4ff,#ffb0c6
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: auto;
+
+    color: rgba(255,255,255,.65);
+
+    line-height: 1.7;
+}
+
+.controls {
+    width: 90%;
+    max-width: 1250px;
+
+    margin: 25px auto;
+
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search {
+    flex: 1;
+    min-width: 250px;
+    max-width: 500px;
+
+    padding: 14px 20px;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(255,255,255,.14);
+
+    background: rgba(255,255,255,.07);
+
+    backdrop-filter: blur(15px);
+
+    color: white;
+    outline: none;
+}
+
+.search::placeholder {
+    color: rgba(255,255,255,.45);
+}
+
+.filter {
+    padding: 12px 17px;
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,.13);
+
+    background: rgba(255,255,255,.07);
+
+    color: rgba(255,255,255,.75);
+
+    cursor: pointer;
+}
+
+.filter.active,
+.filter:hover {
+    background: linear-gradient(135deg,#4b9cff,#736cff);
+    color: white;
+}
+
+.program-section {
+    width: 90%;
+    max-width: 1250px;
+    margin: 40px auto;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.heading h2 {
+    font-size: 25px;
+}
+
+.count {
+    color: rgba(255,255,255,.5);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(270px,1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 24px;
+    min-height: 205px;
+
+    border-radius: 24px;
+
+    background: rgba(255,255,255,.07);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    transition: .35s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(100,170,255,.4);
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+}
+
+.number {
+    display: inline-flex;
+
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(70,150,255,.15);
+
+    color: #8dc5ff;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: rgba(255,255,255,.55);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.view {
+    margin-top: 17px;
+
+    padding: 10px 17px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(255,255,255,.08);
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.view:hover {
+    background: linear-gradient(135deg,#4b9cff,#736cff);
+}
+
+.output {
+    width: 92%;
+    max-width: 1350px;
+
+    margin: 70px auto;
+
+    padding: 25px;
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,.06);
+
+    backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255,255,255,.13);
+}
+
+.output h2 {
+    margin-bottom: 5px;
+}
+
+.output small {
+    color: rgba(255,255,255,.5);
+}
+
+.frame {
+    width: 100%;
+    height: 620px;
+
+    margin-top: 20px;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background: white;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+footer {
+    text-align: center;
+    padding: 35px;
+
+    color: rgba(255,255,255,.45);
+}
+
+@media(max-width:700px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .frame {
+        height: 500px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        Technology<span>Web</span>
+    </div>
+
+    <a href="index.html" class="home-btn">
+        ← Dashboard
+    </a>
+
+</nav>
+
+<section class="hero">
+
+    <div class="badge">
+        CSS Practical Programs
+    </div>
+
+    <h1>CSS Laboratory</h1>
+
+    <p>
+        Explore selectors, layouts, animations,
+        responsive design, effects and complete
+        CSS webpages.
+    </p>
+
+</section>
+
+<div class="controls">
+
+    <input
+        class="search"
+        id="search"
+        placeholder="Search CSS programs..."
+        oninput="render()"
+    >
+
+    <button class="filter active" onclick="setFilter('all',this)">
+        All
+    </button>
+
+    <button class="filter" onclick="setFilter('fundamentals',this)">
+        Fundamentals
+    </button>
+
+    <button class="filter" onclick="setFilter('layout',this)">
+        Layout
+    </button>
+
+    <button class="filter" onclick="setFilter('websites',this)">
+        Websites
+    </button>
+
+    <button class="filter" onclick="setFilter('effects',this)">
+        Effects
+    </button>
+
+    <button class="filter" onclick="setFilter('responsive',this)">
+        Responsive
+    </button>
+
+    <button class="filter" onclick="setFilter('advanced',this)">
+        Advanced
+    </button>
+
+</div>
+
+<section class="program-section">
+
+    <div class="heading">
+
+        <h2>CSS Programs</h2>
+
+        <span class="count" id="count">
+            75 Programs
+        </span>
+
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+</section>
+
+<section class="output">
+
+    <h2 id="title">
+        Live Program Output
+    </h2>
+
+    <small id="file">
+        Select a CSS program above.
+    </small>
+
+    <div class="frame" id="frame">
+
+        <iframe
+            src="about:blank"
+            title="CSS Program Output"
+        ></iframe>
+
+    </div>
+
+</section>
+
+<footer>
+    Technology Web • CSS Practical Laboratory
+</footer>
+
+<script>
+
+const files = [
+
+"01_inline_internal_external.html",
+"02_selectors.html",
+"03_colors_backgrounds_borders.html",
+"04_fonts_text.html",
+"05_box_model.html",
+"06_width_height_sizing.html",
+"07_positioning.html",
+"08_float_clear.html",
+"09_navigation_bar.html",
+"10_pseudo_classes.html",
+"11_pseudo_elements.html",
+"12_lists_tables.html",
+"13_styled_form.html",
+"14_flexbox.html",
+"15_grid.html",
+"16_responsive_media_queries.html",
+"17_transitions.html",
+"18_animations.html",
+"19_animations.html",
+"19_responsive_nav.html",
+"20_portfolio.html",
+"21_college_profile.html",
+"22_login_page.html",
+"23_product_card.html",
+"24_photo_gallery.html",
+"25_homepage.html",
+"26_inheritance_specificity.html",
+"27_selector_types.html",
+"28_combinators.html",
+"29_css_variables.html",
+"30_background_images.html",
+"31_gradients.html",
+"32_shadows.html",
+"33_border_radius_shapes.html",
+"34_opacity_transparency.html",
+"35_overflow.html",
+"36_z_index.html",
+"37_display.html",
+"38_visibility.html",
+"39_dropdown.html",
+"40_image_hover.html",
+"41_tooltip.html",
+"42_button_hover.html",
+"43_filters.html",
+"44_object_fit_position.html",
+"45.html",
+"46_card_flexbox.html",
+"47_dashboard_grid.html",
+"48_two_column_grid.html",
+"49_three_column_flex.html",
+"50_sticky_header.html",
+"51_fixed_sidebar.html",
+"52_responsive_footer.html",
+"53.html",
+"54_contact_form_responsive.html",
+"55.html",
+"56_restaurant.html",
+"57_shopping.html",
+"58_travel_homepage.html",
+"59_news_grid.html",
+"60_portfolio_sections.html",
+"61_grid_template_areas.html",
+"62_flex_alignment_order.html",
+"63_cssgrid.html",
+"64_mobile_first.html",
+"65_csstransitions.html",
+"66_2dand3d.html",
+"67.html",
+"68_loading_spinner.html",
+"69_slide_card.html",
+"70_css_modal.html",
+"71_dark_mode_variables.html",
+"72_responsive_typography.html",
+"73_clamp_min_max.html",
+"74_calc.html",
+"75_complete_responsive.html"
+
+];
+
+let currentFilter = "all";
+
+function title(file) {
+
+    let name = file
+        .replace(".html","")
+        .replace(/^\d+[-_]?/,"")
+        .replace(/[-_]/g," ");
+
+    if(!name.trim()) {
+        name = "CSS Program " + file.split(".")[0];
+    }
+
+    return name.replace(/\b\w/g,c => c.toUpperCase());
+
+}
+
+function category(file,index) {
+
+    if(index < 13) return "fundamentals";
+
+    if(index < 16) return "layout";
+
+    if(index < 25) return "websites";
+
+    if(index < 30) return "advanced";
+
+    if(index < 44) return "effects";
+
+    if(index < 55) return "responsive";
+
+    if(index < 60) return "websites";
+
+    return "advanced";
+
+}
+
+function render() {
+
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    const grid =
+        document.getElementById("grid");
+
+    grid.innerHTML = "";
+
+    let result = 0;
+
+    files.forEach((file,index) => {
+
+        const name = title(file);
+        const cat = category(file,index);
+
+        if(
+            (currentFilter === "all" || cat === currentFilter)
+            &&
+            (
+                name.toLowerCase().includes(search)
+                ||
+                file.toLowerCase().includes(search)
+            )
+        ) {
+
+            result++;
+
+            const card = document.createElement("div");
+
+            card.className = "card";
+
+            card.innerHTML = `
+
+                <div class="number">
+                    ${String(index + 1).padStart(2,"0")}
+                </div>
+
+                <h3>${name}</h3>
+
+                <p>
+                    CSS practical program
+                    ${index + 1}
+                </p>
+
+                <button
+                    class="view"
+                    onclick="openProgram('${file}','${name}')"
+                >
+                    View Program →
+                </button>
+
+            `;
+
+            grid.appendChild(card);
+
+        }
+
+    });
+
+    document.getElementById("count").textContent =
+        `${result} Program${result !== 1 ? "s" : ""}`;
+
+}
+
+function setFilter(filter,button) {
+
+    currentFilter = filter;
+
+    document
+        .querySelectorAll(".filter")
+        .forEach(x => x.classList.remove("active"));
+
+    button.classList.add("active");
+
+    render();
+
+}
+
+function openProgram(file,name) {
+
+    document.getElementById("title").textContent = name;
+
+    document.getElementById("file").textContent =
+        `CSS/${file}`;
+
+    document.getElementById("frame").innerHTML = `
+        <iframe
+            src="CSS/${file}"
+            title="${name}"
+        ></iframe>
+    `;
+
+    document.querySelector(".output")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>

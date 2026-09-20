@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Keyframe Animations</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #243b7a,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    #63258f,
+                    transparent 35%
+                ),
+                #0b1020;
+
+            color: white;
+            padding: 30px;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            color: #93c5fd;
+
+            font-size: 13px;
+            letter-spacing: 1px;
+
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            margin-bottom: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #7dd3fc
+                );
+
+            background-clip: text;
+            color: transparent;
+        }
+
+        header p {
+            max-width: 700px;
+            margin: auto;
+
+            color: #aab4d0;
+
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           DEMO GRID
+        ========================= */
+
+        .demo-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .demo-card {
+            min-height: 340px;
+
+            padding: 28px;
+
+            border-radius: 24px;
+
+            background:
+                rgba(255, 255, 255, 0.07);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.25);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .demo-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .demo-card p {
+            color: #9da8c2;
+
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           DEMO AREA
+        ========================= */
+
+        .demo-area {
+            height: 190px;
+
+            margin-top: 20px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            background:
+                rgba(0, 0, 0, 0.2);
+
+            border:
+                1px dashed rgba(255, 255, 255, 0.15);
+        }
+
+
+        /* =========================
+           1. MOVING BOX
+        ========================= */
+
+        .moving-box {
+            width: 75px;
+            height: 75px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            animation:
+                moveBox 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes moveBox {
+
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: translateX(100px);
+            }
+
+        }
+
+
+        /* =========================
+           2. ROTATING BOX
+        ========================= */
+
+        .rotating-box {
+            width: 80px;
+            height: 80px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #06b6d4,
+                    #2563eb
+                );
+
+            animation:
+                rotateBox 3s linear infinite;
+        }
+
+        @keyframes rotateBox {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================
+           3. BOUNCING BALL
+        ========================= */
+
+        .ball {
+            width: 60px;
+            height: 60px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f97316,
+                    #ef4444
+                );
+
+            animation:
+                bounceBall 1.2s ease-in-out infinite;
+        }
+
+        @keyframes bounceBall {
+
+            0%,
+            100% {
+                transform: translateY(55px);
+            }
+
+            50% {
+                transform: translateY(-55px);
+            }
+
+        }
+
+
+        /* =========================
+           4. PULSING CIRCLE
+        ========================= */
+
+        .pulse {
+            width: 80px;
+            height: 80px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #10b981,
+                    #059669
+                );
+
+            animation:
+                pulseEffect 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseEffect {
+
+            0% {
+                transform: scale(0.8);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.8);
+                opacity: 0.6;
+            }
+
+        }
+
+
+        /* =========================
+           5. COLOR ANIMATION
+        ========================= */
+
+        .color-box {
+            width: 100px;
+            height: 80px;
+
+            border-radius: 18px;
+
+            animation:
+                colorChange 4s linear infinite;
+        }
+
+        @keyframes colorChange {
+
+            0% {
+                background: #2563eb;
+            }
+
+            25% {
+                background: #7c3aed;
+            }
+
+            50% {
+                background: #ec4899;
+            }
+
+            75% {
+                background: #f97316;
+            }
+
+            100% {
+                background: #2563eb;
+            }
+
+        }
+
+
+        /* =========================
+           6. SLIDING TEXT
+        ========================= */
+
+        .slide-text {
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            color: #7dd3fc;
+
+            animation:
+                slideText 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes slideText {
+
+            0% {
+                transform: translateX(-90px);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateX(90px);
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================
+           7. LOADING SPINNER
+        ========================= */
+
+        .spinner {
+
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            border:
+                6px solid rgba(255,255,255,0.15);
+
+            border-top-color: #60a5fa;
+
+            animation:
+                spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================
+           8. CARD ANIMATION
+        ========================= */
+
+        .floating-card {
+
+            width: 120px;
+            height: 80px;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #ec4899
+                );
+
+            font-weight: 700;
+
+            animation:
+                floatCard 2.5s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(20px) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(3deg);
+            }
+
+        }
+
+
+        /* =========================
+           CODE SECTION
+        ========================= */
+
+        .code-section {
+
+            margin-top: 30px;
+
+            padding: 25px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255, 255, 255, 0.05);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-section h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        pre {
+
+            overflow-x: auto;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            background: #070b16;
+
+            color: #93c5fd;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 30px 10px 10px;
+
+            color: #78839e;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            body {
+                padding: 18px;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-card {
+                min-height: 320px;
+                padding: 23px;
+            }
+
+            header {
+                padding: 30px 10px;
+            }
+
+            pre {
+                font-size: 12px;
+            }
+        }
+
+
+        @media (max-width: 400px) {
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .demo-area {
+                height: 170px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+
+        <!-- HEADER -->
+
+        <header>
+
+            <span class="badge">
+                CSS PRACTICAL • EXPERIMENT 67
+            </span>
+
+            <h1>
+                Keyframe Animations
+            </h1>
+
+            <p>
+                Explore powerful CSS animations created using
+                @keyframes. Each example runs automatically
+                without JavaScript.
+            </p>
+
+        </header>
+
+
+        <!-- ANIMATION GRID -->
+
+        <section class="demo-grid">
+
+
+            <!-- MOVING BOX -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Moving Animation
+                    </h2>
+
+                    <p>
+                        The element continuously moves from
+                        left to right using translateX().
+                    </p>
+
+                </div>
+
+                <div class="demo-area">
+
+                    <div class="moving-box"></div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ROTATING -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Rotation Animation
+                    </h2>
+
+                    <p>
+                        The element rotates continuously using
+                        the rotate() transformation.
+                    </p>
+
+                </div>
+
+                <div class="demo-area">
+
+                    <div class="rotating-box"></div>
+
+                </div>
+
+            </article>
+
+
+            <!-- BOUNCE -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Bouncing Animation
+                    </h2>
+
+                    <p>
+                        The ball moves up and down to create
+                        a bouncing effect.
+                    </p>
+
+                </div>
+
+                <div class="demo-area">
+
+                    <div class="ball"></div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PULSE -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Pulse Animation
+                    </h2>
+
+                    <p>
+                        The circle continuously changes its
+                        size and opacity.
+                    </p>
+
+                </div>
+
+                <div class="demo-area">
+
+                    <div class="pulse"></div>
+
+                </div>
+
+            </article>
+
+
+            <!-- COLOR -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Color Animation
+                    </h2>
+
+                    <p>
+                        The background color smoothly changes
+                        through multiple colors.
+                    </p>
+
+                </div>
+
+                <div class="demo-area">
+
+                    <div class="color-box"></div>
+
+                </div>
+
+            </article>
+
+
+            <!-- TEXT -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Sliding Text
+                    </h2>
+
+                    <p>
+                        Text continuously slides from one side
+                        to another using keyframes.
+                    </p>
+
+                </div>
+
+                <div class="demo-area">
+
+                    <div class="slide-text">
+                        ANIMATE
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SPINNER -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Loading Spinner
+                    </h2>
+
+                    <p>
+                        A circular loading animation created
+                        entirely with CSS keyframes.
+                    </p>
+
+                </div>
+
+                <div class="demo-area">
+
+                    <div class="spinner"></div>
+
+                </div>
+
+            </article>
+
+
+            <!-- FLOATING CARD -->
+
+            <article class="demo-card">
+
+                <div>
+
+                    <h2>
+                        Floating Animation
+                    </h2>
+
+                    <p>
+                        The card smoothly moves vertically
+                        while slightly rotating.
+                    </p>
+
+                </div>
+
+                <div class="demo-area">
+
+                    <div class="floating-card">
+                        FLOAT
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- CODE -->
+
+        <section class="code-section">
+
+            <h2>
+                Keyframe Animation Syntax
+            </h2>
+
+            <pre>
+.box {
+    animation: move 3s ease-in-out infinite;
+}
+
+@keyframes move {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(100px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+            </pre>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            CSS Keyframe Animations • Practical Program
+
+        </footer>
+
+
+    </div>
+
+</body>
+
+</html>

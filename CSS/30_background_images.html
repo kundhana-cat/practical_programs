@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Background Images & Positioning</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #07111f;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            padding: 22px 8%;
+            background: rgba(10, 25, 45, 0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #61dafb;
+        }
+
+        nav a {
+            color: #dcecff;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #61dafb;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 70vh;
+
+            background-image:
+                linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.7)),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #e3edf7;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 28px;
+            background: #61dafb;
+            color: #07111f;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(97,218,251,0.3);
+        }
+
+        /* ================= MAIN ================= */
+
+        main {
+            width: min(1150px, 90%);
+            margin: auto;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #9eb1c8;
+        }
+
+        /* ================= BACKGROUND CARDS ================= */
+
+        .background-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .background-card {
+            min-height: 330px;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: 0.4s;
+        }
+
+        .background-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .background-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                transparent,
+                rgba(0,0,0,0.85)
+            );
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            z-index: 2;
+        }
+
+        .card-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: #dce7f3;
+        }
+
+        /* Different Background Images */
+
+        .mountains {
+            background-image: url(
+                "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80"
+            );
+
+            background-position: center;
+        }
+
+        .ocean {
+            background-image: url(
+                "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80"
+            );
+
+            background-position: center;
+        }
+
+        .forest {
+            background-image: url(
+                "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=80"
+            );
+
+            background-position: left center;
+        }
+
+        .city {
+            background-image: url(
+                "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1000&q=80"
+            );
+
+            background-position: right center;
+        }
+
+        /* ================= POSITIONING DEMO ================= */
+
+        .position-demo {
+            margin-top: 80px;
+        }
+
+        .position-box {
+            height: 400px;
+            border-radius: 22px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.15),
+                    rgba(0,0,0,0.35)
+                ),
+                url(
+                    "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=80"
+                );
+
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 25px;
+
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .position-item {
+            padding: 20px;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+        }
+
+        .position-item h3 {
+            color: #61dafb;
+            margin-bottom: 7px;
+        }
+
+        .position-item p {
+            color: #d9e5f0;
+            font-size: 0.9rem;
+        }
+
+        /* ================= CODE SECTION ================= */
+
+        .code-section {
+            margin-top: 70px;
+            background: #0b1b2d;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .code-section h2 {
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background: #050b13;
+            padding: 25px;
+            border-radius: 15px;
+            overflow-x: auto;
+            color: #bfeeff;
+            font-size: 0.9rem;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #050b13;
+            color: #8da0b6;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .background-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .position-box {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .position-item {
+                min-height: 150px;
+            }
+
+            nav a {
+                margin-left: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            header {
+                padding: 18px 5%;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            main {
+                width: 92%;
+            }
+
+            .hero {
+                min-height: 65vh;
+            }
+
+            .background-card {
+                min-height: 280px;
+            }
+
+            pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">CSS<span>Studio</span></div>
+
+            <div>
+                <a href="#home">Home</a>
+                <a href="#backgrounds">Examples</a>
+                <a href="#positioning">Positioning</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>Background Images</h1>
+
+            <p>
+                Explore how CSS background images can be combined
+                with size, position, repeat and overlays to create
+                beautiful webpage sections.
+            </p>
+
+            <a href="#backgrounds" class="btn">
+                Explore Examples
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <main>
+
+        <!-- BACKGROUND EXAMPLES -->
+
+        <section id="backgrounds">
+
+            <div class="section-title">
+                <h2>Different Background Images</h2>
+
+                <p>
+                    Each card uses a different background image
+                    and positioning technique.
+                </p>
+            </div>
+
+
+            <div class="background-grid">
+
+                <article class="background-card mountains">
+
+                    <div class="card-content">
+
+                        <h3>Mountains</h3>
+
+                        <p>
+                            Background positioned at the center.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="background-card ocean">
+
+                    <div class="card-content">
+
+                        <h3>Ocean</h3>
+
+                        <p>
+                            A full-cover background with center positioning.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="background-card forest">
+
+                    <div class="card-content">
+
+                        <h3>Forest</h3>
+
+                        <p>
+                            Background positioned toward the left.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="background-card city">
+
+                    <div class="card-content">
+
+                        <h3>City</h3>
+
+                        <p>
+                            Background positioned toward the right.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- POSITIONING -->
+
+        <section class="position-demo" id="positioning">
+
+            <div class="section-title">
+
+                <h2>Background Positioning</h2>
+
+                <p>
+                    CSS allows you to control exactly where
+                    a background image appears.
+                </p>
+
+            </div>
+
+
+            <div class="position-box">
+
+                <div class="position-item">
+
+                    <h3>center</h3>
+
+                    <p>
+                        Places the background image in the
+                        center of the element.
+                    </p>
+
+                </div>
+
+
+                <div class="position-item">
+
+                    <h3>cover</h3>
+
+                    <p>
+                        Scales the image so the entire element
+                        is covered.
+                    </p>
+
+                </div>
+
+
+                <div class="position-item">
+
+                    <h3>no-repeat</h3>
+
+                    <p>
+                        Prevents the background image from
+                        repeating across the element.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CODE -->
+
+        <section class="code-section">
+
+            <h2>CSS Used</h2>
+
+<pre>
+.background {
+    background-image: url("image.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+}
+
+.left {
+    background-position: left center;
+}
+
+.right {
+    background-position: right center;
+}
+
+.top {
+    background-position: center top;
+}
+
+.bottom {
+    background-position: center bottom;
+}
+</pre>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            CSS Practical Program • Background Images & Positioning
+        </p>
+
+    </footer>
+
+</body>
+</html>

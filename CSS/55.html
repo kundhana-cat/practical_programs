@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduNova College | Responsive College Homepage</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f7f9fc;
+            color: #182033;
+            line-height: 1.6;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #e8ebf2;
+            box-shadow: 0 5px 20px rgba(20, 30, 60, 0.06);
+        }
+
+        .navbar {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            min-height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+
+            display: grid;
+            place-items: center;
+
+            background: linear-gradient(135deg, #315bea, #7449e8);
+            color: white;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo-text {
+            font-size: 21px;
+            font-weight: 800;
+            color: #182033;
+        }
+
+        .logo-text span {
+            color: #4c55e8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav a {
+            color: #4d5568;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #4c55e8;
+        }
+
+        .nav-button {
+            padding: 11px 19px;
+            border-radius: 10px;
+            background: #4c55e8;
+            color: white !important;
+        }
+
+        .nav-button:hover {
+            background: #3540c8;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 620px;
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(18, 28, 70, 0.96),
+                    rgba(53, 63, 170, 0.90)
+                ),
+                url("https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80")
+                center/cover;
+
+            color: white;
+        }
+
+        .hero-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-content {
+            max-width: 680px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-bottom: 22px;
+
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.1);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 70px);
+            line-height: 1.08;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #aebcff;
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: #e2e6ff;
+            font-size: 17px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 23px;
+            border-radius: 11px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: white;
+            color: #3540c8;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        .secondary-btn {
+            color: white;
+            border: 1px solid rgba(255,255,255,0.45);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+        /* Hero Card */
+
+        .hero-card {
+            padding: 30px;
+            border-radius: 25px;
+
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        }
+
+        .hero-card h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .hero-feature:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+
+            display: grid;
+            place-items: center;
+
+            background: rgba(255,255,255,0.14);
+            font-size: 18px;
+        }
+
+        .hero-feature strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .hero-feature small {
+            color: #d9ddff;
+        }
+
+        /* ================= GENERAL ================= */
+
+        .section {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 50px;
+        }
+
+        .section-label {
+            color: #4c55e8;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-heading h2 {
+            margin: 10px 0 15px;
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.15;
+        }
+
+        .section-heading p {
+            color: #687085;
+        }
+
+        /* ================= PROGRAMS ================= */
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .program-card {
+            padding: 30px;
+            background: white;
+            border: 1px solid #e9edf4;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(30,40,80,0.05);
+            transition: 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(50,60,130,0.12);
+        }
+
+        .program-icon {
+            width: 55px;
+            height: 55px;
+            margin-bottom: 22px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 15px;
+            background: #eef0ff;
+            color: #4c55e8;
+            font-size: 24px;
+        }
+
+        .program-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .program-card p {
+            color: #70788b;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .learn-more {
+            color: #4c55e8;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            background: white;
+        }
+
+        .about-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            padding: 90px 0;
+        }
+
+        .about-image {
+            min-height: 420px;
+            border-radius: 25px;
+
+            background:
+                url("https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80")
+                center/cover;
+
+            box-shadow: 20px 20px 0 #eef0ff;
+        }
+
+        .about-content h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1.15;
+            margin: 10px 0 20px;
+        }
+
+        .about-content p {
+            color: #687085;
+            margin-bottom: 20px;
+        }
+
+        .about-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .about-list li {
+            margin: 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .about-list li::before {
+            content: "✓";
+            display: inline-grid;
+            place-items: center;
+
+            width: 23px;
+            height: 23px;
+            margin-right: 10px;
+
+            border-radius: 50%;
+            background: #e9ebff;
+            color: #4c55e8;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats {
+            background: #111936;
+            color: white;
+        }
+
+        .stats-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 55px 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .stat h3 {
+            font-size: 38px;
+            color: #aebcff;
+        }
+
+        .stat p {
+            color: #c1c7dc;
+            font-size: 14px;
+        }
+
+        /* ================= CAMPUS ================= */
+
+        .campus-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 25px;
+        }
+
+        .campus-large,
+        .campus-small {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            min-height: 250px;
+
+            background-position: center;
+            background-size: cover;
+        }
+
+        .campus-large {
+            min-height: 520px;
+            background-image:
+                url("https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=1200&q=80");
+        }
+
+        .campus-small:first-child {
+            background-image:
+                url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80");
+        }
+
+        .campus-small:last-child {
+            background-image:
+                url("https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=800&q=80");
+        }
+
+        .campus-side {
+            display: grid;
+            gap: 25px;
+        }
+
+        .campus-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+
+            background: linear-gradient(
+                transparent 35%,
+                rgba(8,14,35,0.85)
+            );
+
+            color: white;
+        }
+
+        .campus-overlay h3 {
+            font-size: 21px;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto 90px;
+
+            padding: 65px;
+            border-radius: 28px;
+
+            text-align: center;
+            color: white;
+
+            background:
+                linear-gradient(120deg, #3540c8, #7449e8);
+            box-shadow: 0 20px 50px rgba(60,65,180,0.22);
+        }
+
+        .cta h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            color: #e4e6ff;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #0b1025;
+            color: white;
+            padding: 65px 0 25px;
+        }
+
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 45px;
+        }
+
+        .footer-brand p {
+            color: #a9afc5;
+            font-size: 14px;
+            margin-top: 15px;
+            max-width: 330px;
+        }
+
+        footer h3 {
+            margin-bottom: 17px;
+            font-size: 16px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: #a9afc5;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            width: 90%;
+            max-width: 1200px;
+            margin: 45px auto 0;
+            padding-top: 20px;
+
+            border-top: 1px solid #252b46;
+
+            text-align: center;
+            color: #8d94ad;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 950px) {
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                padding: 70px 0;
+            }
+
+            .hero-card {
+                max-width: 600px;
+            }
+
+            .program-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                min-height: 350px;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                min-height: 65px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .nav-button {
+                display: inline-block;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-container {
+                padding: 70px 0;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-container {
+                padding: 65px 0;
+                gap: 45px;
+            }
+
+            .about-image {
+                min-height: 280px;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+                padding: 45px 0;
+            }
+
+            .stat h3 {
+                font-size: 30px;
+            }
+
+            .campus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .campus-large {
+                min-height: 330px;
+            }
+
+            .campus-side {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .campus-small {
+                min-height: 200px;
+            }
+
+            .cta {
+                padding: 45px 25px;
+                margin-bottom: 65px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .navbar {
+                width: 92%;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .logo-icon {
+                width: 39px;
+                height: 39px;
+            }
+
+            .hero-container {
+                width: 92%;
+            }
+
+            .hero h1 {
+                font-size: 37px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            .hero-card {
+                padding: 22px;
+            }
+
+            .section,
+            .about-container,
+            .stats-container,
+            .footer-container {
+                width: 92%;
+            }
+
+            .campus-side {
+                grid-template-columns: 1fr;
+            }
+
+            .campus-small {
+                min-height: 220px;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+        <div class="navbar">
+
+            <a href="#" class="logo">
+                <div class="logo-icon">E</div>
+                <div class="logo-text">Edu<span>Nova</span></div>
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#campus">Campus</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <a href="#admissions" class="nav-button">Apply Now</a>
+
+        </div>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-container">
+
+                <div class="hero-content">
+
+                    <span class="badge">
+                        ✦ Admissions Open 2026
+                    </span>
+
+                    <h1>
+                        Shape Your Future With
+                        <span>EduNova</span>
+                    </h1>
+
+                    <p>
+                        Discover a modern learning environment where
+                        knowledge, innovation and real-world experiences
+                        come together to prepare students for tomorrow.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#programs" class="btn primary-btn">
+                            Explore Programs
+                        </a>
+
+                        <a href="#about" class="btn secondary-btn">
+                            Discover Our College
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="hero-card">
+
+                    <h3>Why Choose EduNova?</h3>
+
+                    <div class="hero-feature">
+                        <div class="feature-icon">🎓</div>
+
+                        <div>
+                            <strong>Industry-Focused Education</strong>
+                            <small>Learn skills that matter.</small>
+                        </div>
+                    </div>
+
+                    <div class="hero-feature">
+                        <div class="feature-icon">💡</div>
+
+                        <div>
+                            <strong>Innovation & Research</strong>
+                            <small>Turn ideas into solutions.</small>
+                        </div>
+                    </div>
+
+                    <div class="hero-feature">
+                        <div class="feature-icon">🌎</div>
+
+                        <div>
+                            <strong>Global Opportunities</strong>
+                            <small>Build an international mindset.</small>
+                        </div>
+                    </div>
+
+                    <div class="hero-feature">
+                        <div class="feature-icon">🤝</div>
+
+                        <div>
+                            <strong>Student Community</strong>
+                            <small>Grow together with peers.</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROGRAMS ================= -->
+
+        <section class="section" id="programs">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    Academic Excellence
+                </span>
+
+                <h2>Explore Our Programs</h2>
+
+                <p>
+                    Choose from carefully designed programs that combine
+                    academic knowledge with practical experience.
+                </p>
+
+            </div>
+
+
+            <div class="program-grid">
+
+                <article class="program-card">
+
+                    <div class="program-icon">💻</div>
+
+                    <h3>Computer Science</h3>
+
+                    <p>
+                        Explore programming, artificial intelligence,
+                        data science, cloud computing and modern technology.
+                    </p>
+
+                    <a href="#" class="learn-more">
+                        Learn More →
+                    </a>
+
+                </article>
+
+
+                <article class="program-card">
+
+                    <div class="program-icon">🔬</div>
+
+                    <h3>Science & Research</h3>
+
+                    <p>
+                        Build strong scientific foundations through
+                        research, experimentation and innovative projects.
+                    </p>
+
+                    <a href="#" class="learn-more">
+                        Learn More →
+                    </a>
+
+                </article>
+
+
+                <article class="program-card">
+
+                    <div class="program-icon">📊</div>
+
+                    <h3>Business & Management</h3>
+
+                    <p>
+                        Develop leadership, entrepreneurship and
+                        business skills for a changing global economy.
+                    </p>
+
+                    <a href="#" class="learn-more">
+                        Learn More →
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section class="about" id="about">
+
+            <div class="about-container">
+
+                <div class="about-image"></div>
+
+
+                <div class="about-content">
+
+                    <span class="section-label">
+                        About EduNova
+                    </span>
+
+                    <h2>
+                        Education Beyond the Classroom
+                    </h2>
+
+                    <p>
+                        EduNova College provides an environment where
+                        students are encouraged to question, create,
+                        collaborate and solve real-world problems.
+                    </p>
+
+                    <p>
+                        Our approach combines academic excellence,
+                        practical learning, technology and personal
+                        development.
+                    </p>
+
+                    <ul class="about-list">
+
+                        <li>Experienced faculty members</li>
+
+                        <li>Modern laboratories and classrooms</li>
+
+                        <li>Industry-oriented learning</li>
+
+                        <li>Student clubs and activities</li>
+
+                        <li>Career development opportunities</li>
+
+                    </ul>
+
+                    <a href="#" class="btn nav-button">
+                        Know More About Us
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATS ================= -->
+
+        <section class="stats">
+
+            <div class="stats-container">
+
+                <div class="stat">
+                    <h3>25+</h3>
+                    <p>Years of Excellence</p>
+                </div>
+
+                <div class="stat">
+                    <h3>8K+</h3>
+                    <p>Alumni Network</p>
+                </div>
+
+                <div class="stat">
+                    <h3>95%</h3>
+                    <p>Graduate Success</p>
+                </div>
+
+                <div class="stat">
+                    <h3>40+</h3>
+                    <p>Academic Programs</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CAMPUS ================= -->
+
+        <section class="section" id="campus">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    Campus Life
+                </span>
+
+                <h2>Discover Our Campus</h2>
+
+                <p>
+                    A vibrant environment designed to inspire learning,
+                    creativity and meaningful student experiences.
+                </p>
+
+            </div>
+
+
+            <div class="campus-grid">
+
+                <div class="campus-large">
+                    <div class="campus-overlay">
+                        <div>
+                            <h3>Modern Learning Spaces</h3>
+                            <p>Designed for collaboration and innovation.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="campus-side">
+
+                    <div class="campus-small">
+                        <div class="campus-overlay">
+                            <div>
+                                <h3>Student Community</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="campus-small">
+                        <div class="campus-overlay">
+                            <div>
+                                <h3>Innovation Hub</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="cta" id="admissions">
+
+            <h2>Ready to Begin Your Journey?</h2>
+
+            <p>
+                Take the next step toward your academic and professional
+                goals. Explore our programs and start your application.
+            </p>
+
+            <a href="#contact" class="btn primary-btn">
+                Start Your Application
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="contact">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+                    <div class="logo-icon">E</div>
+
+                    <div class="logo-text" style="color:white;">
+                        Edu<span>Nova</span>
+                    </div>
+                </div>
+
+                <p>
+                    Empowering students with knowledge, skills and
+                    experiences to create a better future.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Explore</h3>
+
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#campus">Campus</a></li>
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Admissions</h3>
+
+                <ul>
+                    <li><a href="#">Apply Now</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Scholarships</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Contact</h3>
+
+                <ul>
+                    <li><a href="#">📍 Chennai, India</a></li>
+                    <li><a href="#">📞 +91 98765 43210</a></li>
+                    <li><a href="#">✉ admissions@edunova.edu</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+            © 2026 EduNova College. All Rights Reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>

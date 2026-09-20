@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wanderly | Responsive Travel Website</title>
+
+    <meta name="description"
+          content="A complete responsive travel website created using HTML5, CSS3, Flexbox, Grid and media queries.">
+
+    <meta name="keywords"
+          content="travel, tourism, HTML5, CSS3, Flexbox, Grid, responsive website">
+
+
+    <style>
+
+        /* ========================================
+           RESET & GLOBAL STYLES
+        ======================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f7f9fc;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+
+        /* ========================================
+           HEADER
+        ======================================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.94);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+
+        .navbar {
+            min-height: 75px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #0f766e;
+        }
+
+
+        .logo span {
+            color: #f97316;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            list-style: none;
+        }
+
+
+        .nav-links a {
+            color: #374151;
+            font-size: 15px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #0f766e;
+        }
+
+
+        .nav-button {
+            padding: 10px 18px;
+
+            background: #0f766e;
+            color: white !important;
+
+            border-radius: 8px;
+        }
+
+
+        .nav-button:hover {
+            background: #115e59;
+        }
+
+
+        /* ========================================
+           HERO
+        ======================================== */
+
+        .hero {
+            min-height: 650px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(4, 47, 46, 0.9),
+                    rgba(4, 47, 46, 0.35)
+                ),
+                url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85")
+                center / cover no-repeat;
+
+            color: white;
+        }
+
+
+        .hero-content {
+            max-width: 680px;
+        }
+
+
+        .hero-label {
+            display: inline-block;
+
+            padding: 7px 14px;
+
+            border: 1px solid rgba(255,255,255,0.3);
+
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.12);
+
+            backdrop-filter: blur(8px);
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+
+            line-height: 1;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .hero h1 span {
+            color: #fb923c;
+        }
+
+
+        .hero p {
+            max-width: 600px;
+
+            color: #e2e8f0;
+
+            font-size: 18px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+            display: inline-block;
+
+            padding: 13px 24px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .primary-btn {
+            background: #f97316;
+            color: white;
+        }
+
+
+        .primary-btn:hover {
+            background: #ea580c;
+            transform: translateY(-3px);
+        }
+
+
+        .secondary-btn {
+            color: white;
+
+            border: 1px solid rgba(255,255,255,0.5);
+
+            background: rgba(255,255,255,0.1);
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        .secondary-btn:hover {
+            background: white;
+            color: #0f766e;
+        }
+
+
+        /* ========================================
+           SECTION COMMON STYLES
+        ======================================== */
+
+        section {
+            padding: 90px 0;
+        }
+
+
+        .section-heading {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+
+        .section-heading span {
+            color: #f97316;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .section-heading h2 {
+            color: #0f172a;
+
+            font-size: 40px;
+
+            margin: 8px 0 12px;
+        }
+
+
+        .section-heading p {
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #64748b;
+        }
+
+
+        /* ========================================
+           DESTINATION GRID
+        ======================================== */
+
+        .destination-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 24px;
+        }
+
+
+        .destination-card {
+            position: relative;
+
+            min-height: 390px;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            background: white;
+
+            box-shadow:
+                0 10px 30px rgba(15,23,42,0.08);
+
+            transition: 0.35s;
+        }
+
+
+        .destination-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 18px 40px rgba(15,23,42,0.14);
+        }
+
+
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+
+            min-height: 390px;
+
+            object-fit: cover;
+
+            transition: 0.5s;
+        }
+
+
+        .destination-card:hover img {
+            transform: scale(1.06);
+        }
+
+
+        .destination-info {
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            padding: 25px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,0.8)
+                );
+        }
+
+
+        .destination-info h3 {
+            font-size: 24px;
+        }
+
+
+        .destination-info p {
+            color: #e2e8f0;
+        }
+
+
+        /* ========================================
+           FEATURES - FLEXBOX
+        ======================================== */
+
+        .features {
+            background: white;
+        }
+
+
+        .feature-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .feature-card {
+
+            flex: 1 1 220px;
+
+            max-width: 260px;
+
+            padding: 30px 22px;
+
+            text-align: center;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 15px;
+
+            background: #ffffff;
+
+            transition: 0.3s;
+        }
+
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+
+            border-color: #99f6e4;
+
+            box-shadow:
+                0 12px 30px rgba(15,118,110,0.1);
+        }
+
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            background: #ccfbf1;
+
+            color: #0f766e;
+
+            font-size: 25px;
+        }
+
+
+        .feature-card h3 {
+            margin-bottom: 8px;
+        }
+
+
+        .feature-card p {
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        /* ========================================
+           PACKAGES - GRID
+        ======================================== */
+
+        .package-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 24px;
+        }
+
+
+        .package-card {
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            transition: 0.3s;
+        }
+
+
+        .package-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 15px 35px rgba(15,23,42,0.1);
+        }
+
+
+        .package-card.featured {
+            border: 2px solid #0f766e;
+        }
+
+
+        .package-tag {
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: #ccfbf1;
+
+            color: #0f766e;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        .package-card h3 {
+            font-size: 24px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .price {
+            color: #0f766e;
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            margin: 15px 0;
+        }
+
+
+        .package-card ul {
+            list-style: none;
+
+            margin: 20px 0;
+        }
+
+
+        .package-card li {
+            padding: 7px 0;
+
+            color: #64748b;
+        }
+
+
+        .package-card li::before {
+            content: "✓";
+
+            color: #16a34a;
+
+            font-weight: bold;
+
+            margin-right: 8px;
+        }
+
+
+        .package-btn {
+            display: block;
+
+            text-align: center;
+
+            padding: 11px;
+
+            border-radius: 8px;
+
+            background: #0f766e;
+
+            color: white;
+
+            font-weight: 700;
+        }
+
+
+        .package-btn:hover {
+            background: #115e59;
+        }
+
+
+        /* ========================================
+           STATS - FLEXBOX
+        ======================================== */
+
+        .stats {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f766e,
+                    #115e59
+                );
+
+            color: white;
+        }
+
+
+        .stats-container {
+
+            display: flex;
+
+            justify-content: space-around;
+
+            align-items: center;
+
+            gap: 30px;
+
+            flex-wrap: wrap;
+
+            text-align: center;
+        }
+
+
+        .stat {
+            flex: 1 1 180px;
+        }
+
+
+        .stat h3 {
+            font-size: 42px;
+        }
+
+
+        .stat p {
+            color: #ccfbf1;
+        }
+
+
+        /* ========================================
+           CONTACT
+        ======================================== */
+
+        .contact-wrapper {
+
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 30px;
+        }
+
+
+        .contact-info,
+        .contact-form {
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 10px 30px rgba(15,23,42,0.06);
+        }
+
+
+        .contact-info h3,
+        .contact-form h3 {
+            font-size: 25px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .contact-info p {
+            color: #64748b;
+
+            margin-bottom: 20px;
+        }
+
+
+        .contact-detail {
+            padding: 14px 0;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            color: #475569;
+        }
+
+
+        .contact-detail strong {
+            display: block;
+
+            color: #0f172a;
+        }
+
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 15px;
+        }
+
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        input,
+        textarea,
+        select {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            font: inherit;
+
+            outline: none;
+        }
+
+
+        textarea {
+            height: 130px;
+
+            resize: vertical;
+        }
+
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #0f766e;
+
+            box-shadow:
+                0 0 0 3px rgba(15,118,110,0.1);
+        }
+
+
+        .submit-btn {
+
+            width: 100%;
+
+            border: none;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            background: #0f766e;
+
+            color: white;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            font-weight: 700;
+        }
+
+
+        .submit-btn:hover {
+            background: #115e59;
+        }
+
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+
+        footer {
+
+            background: #0f172a;
+
+            color: #94a3b8;
+
+            padding: 45px 0 25px;
+        }
+
+
+        .footer-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr;
+
+            gap: 40px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .footer-brand h2 {
+            color: white;
+
+            margin-bottom: 10px;
+        }
+
+
+        .footer-brand p {
+            max-width: 400px;
+        }
+
+
+        .footer-column h3 {
+            color: white;
+
+            font-size: 16px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .footer-column a {
+            display: block;
+
+            color: #94a3b8;
+
+            margin: 7px 0;
+
+            transition: 0.3s;
+        }
+
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+
+        .copyright {
+
+            padding-top: 20px;
+
+            border-top: 1px solid #1e293b;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+
+        /* ========================================
+           MEDIA QUERIES
+        ======================================== */
+
+
+        /* TABLET */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                gap: 16px;
+            }
+
+
+            .destination-grid,
+            .package-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .contact-wrapper {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .footer-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                padding: 15px 0;
+            }
+
+
+            .nav-links {
+
+                gap: 14px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .nav-button {
+                display: none;
+            }
+
+
+            .hero {
+
+                min-height: 600px;
+
+                text-align: center;
+            }
+
+
+            .hero-content {
+                margin: auto;
+            }
+
+
+            .hero-buttons {
+
+                justify-content: center;
+            }
+
+
+            .hero p {
+                font-size: 16px;
+            }
+
+
+            section {
+                padding: 65px 0;
+            }
+
+
+            .section-heading h2 {
+                font-size: 32px;
+            }
+
+
+            .destination-grid,
+            .package-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .destination-card {
+                min-height: 350px;
+            }
+
+
+            .destination-card img {
+                min-height: 350px;
+            }
+
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .stats-container {
+                flex-direction: column;
+            }
+
+        }
+
+
+        /* SMALL MOBILE */
+
+        @media (max-width: 400px) {
+
+            .hero h1 {
+                font-size: 42px;
+
+                letter-spacing: -2px;
+            }
+
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+
+            .btn {
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         HEADER
+    ======================================== -->
+
+    <header>
+
+        <div class="container navbar">
+
+            <a href="#home" class="logo">
+                Wander<span>ly</span>
+            </a>
+
+
+            <nav>
+
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#destinations">Destinations</a>
+                    </li>
+
+                    <li>
+                        <a href="#packages">Packages</a>
+                    </li>
+
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+
+                    <li>
+                        <a href="#contact" class="nav-button">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ========================================
+         HERO
+    ======================================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <span class="hero-label">
+                        ✦ Explore. Discover. Remember.
+                    </span>
+
+
+                    <h1>
+                        Your next
+                        <span>adventure</span>
+                        starts here.
+                    </h1>
+
+
+                    <p>
+                        Discover beautiful destinations, plan unforgettable
+                        journeys and experience the world your way.
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#destinations"
+                            class="btn primary-btn"
+                        >
+                            Explore Destinations
+                        </a>
+
+
+                        <a
+                            href="#packages"
+                            class="btn secondary-btn"
+                        >
+                            View Packages
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             DESTINATIONS
+        ======================================== -->
+
+        <section id="destinations">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>DISCOVER</span>
+
+                    <h2>
+                        Popular Destinations
+                    </h2>
+
+                    <p>
+                        Explore some of the world's most beautiful
+                        destinations and create memories that last forever.
+                    </p>
+
+                </div>
+
+
+                <div class="destination-grid">
+
+
+                    <article class="destination-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+                            alt="Tropical beach destination"
+                        >
+
+                        <div class="destination-info">
+
+                            <h3>
+                                Maldives
+                            </h3>
+
+                            <p>
+                                Beaches · Islands · Relaxation
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="destination-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80"
+                            alt="Paris city view"
+                        >
+
+                        <div class="destination-info">
+
+                            <h3>
+                                Paris
+                            </h3>
+
+                            <p>
+                                Culture · Food · Architecture
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="destination-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=900&q=80"
+                            alt="Italian coastal village"
+                        >
+
+                        <div class="destination-info">
+
+                            <h3>
+                                Italy
+                            </h3>
+
+                            <p>
+                                History · Cuisine · Coastlines
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             FEATURES - FLEXBOX
+        ======================================== -->
+
+        <section class="features" id="about">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>WHY WANDERLY</span>
+
+                    <h2>
+                        Travel Made Simple
+                    </h2>
+
+                    <p>
+                        Everything you need for a smooth and memorable trip.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-container">
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ✈
+                        </div>
+
+                        <h3>
+                            Easy Planning
+                        </h3>
+
+                        <p>
+                            Plan your trips with simple and organized tools.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ★
+                        </div>
+
+                        <h3>
+                            Best Experiences
+                        </h3>
+
+                        <p>
+                            Discover experiences that match your interests.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ✓
+                        </div>
+
+                        <h3>
+                            Trusted Service
+                        </h3>
+
+                        <p>
+                            Travel with confidence and reliable support.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ♡
+                        </div>
+
+                        <h3>
+                            Memorable Trips
+                        </h3>
+
+                        <p>
+                            Create experiences that you will remember forever.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             PACKAGES - GRID
+        ======================================== -->
+
+        <section id="packages">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>TRAVEL PACKAGES</span>
+
+                    <h2>
+                        Choose Your Journey
+                    </h2>
+
+                    <p>
+                        Flexible packages designed for different types
+                        of travelers.
+                    </p>
+
+                </div>
+
+
+                <div class="package-grid">
+
+
+                    <article class="package-card">
+
+                        <span class="package-tag">
+                            STARTER
+                        </span>
+
+                        <h3>
+                            Explorer
+                        </h3>
+
+                        <p>
+                            Perfect for short getaways.
+                        </p>
+
+                        <div class="price">
+                            ₹12,999
+                        </div>
+
+                        <ul>
+                            <li>3 Days / 2 Nights</li>
+                            <li>Hotel Stay</li>
+                            <li>Breakfast</li>
+                            <li>Local Sightseeing</li>
+                        </ul>
+
+                        <a href="#contact" class="package-btn">
+                            Choose Package
+                        </a>
+
+                    </article>
+
+
+                    <article class="package-card featured">
+
+                        <span class="package-tag">
+                            POPULAR
+                        </span>
+
+                        <h3>
+                            Wanderer
+                        </h3>
+
+                        <p>
+                            A balanced travel experience.
+                        </p>
+
+                        <div class="price">
+                            ₹24,999
+                        </div>
+
+                        <ul>
+                            <li>5 Days / 4 Nights</li>
+                            <li>Premium Hotel</li>
+                            <li>Daily Breakfast</li>
+                            <li>Guided Tours</li>
+                        </ul>
+
+                        <a href="#contact" class="package-btn">
+                            Choose Package
+                        </a>
+
+                    </article>
+
+
+                    <article class="package-card">
+
+                        <span class="package-tag">
+                            PREMIUM
+                        </span>
+
+                        <h3>
+                            Voyager
+                        </h3>
+
+                        <p>
+                            A complete premium experience.
+                        </p>
+
+                        <div class="price">
+                            ₹39,999
+                        </div>
+
+                        <ul>
+                            <li>7 Days / 6 Nights</li>
+                            <li>Luxury Hotel</li>
+                            <li>All Meals</li>
+                            <li>Private Experiences</li>
+                        </ul>
+
+                        <a href="#contact" class="package-btn">
+                            Choose Package
+                        </a>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             STATS
+        ======================================== -->
+
+        <section class="stats">
+
+            <div class="container stats-container">
+
+
+                <div class="stat">
+
+                    <h3>25K+</h3>
+
+                    <p>
+                        Happy Travelers
+                    </p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <h3>120+</h3>
+
+                    <p>
+                        Destinations
+                    </p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <h3>98%</h3>
+
+                    <p>
+                        Positive Experiences
+                    </p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <h3>24/7</h3>
+
+                    <p>
+                        Travel Support
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             CONTACT
+        ======================================== -->
+
+        <section id="contact">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>CONTACT US</span>
+
+                    <h2>
+                        Plan Your Next Trip
+                    </h2>
+
+                    <p>
+                        Tell us about your travel plans and we'll help
+                        you get started.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-wrapper">
+
+
+                    <div class="contact-info">
+
+                        <h3>
+                            Let's Talk
+                        </h3>
+
+                        <p>
+                            Have questions about destinations, packages
+                            or planning your trip? Get in touch with us.
+                        </p>
+
+
+                        <div class="contact-detail">
+
+                            <strong>
+                                Email
+                            </strong>
+
+                            hello@wanderly.com
+
+                        </div>
+
+
+                        <div class="contact-detail">
+
+                            <strong>
+                                Phone
+                            </strong>
+
+                            +91 98765 43210
+
+                        </div>
+
+
+                        <div class="contact-detail">
+
+                            <strong>
+                                Location
+                            </strong>
+
+                            Chennai, India
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-form">
+
+                        <h3>
+                            Send an Enquiry
+                        </h3>
+
+
+                        <form>
+
+                            <div class="form-row">
+
+                                <div class="form-group">
+
+                                    <label for="name">
+                                        Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        placeholder="Your name"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="email">
+                                        Email
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="Your email"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="destination">
+                                    Destination
+                                </label>
+
+                                <select id="destination">
+
+                                    <option>
+                                        Select destination
+                                    </option>
+
+                                    <option>
+                                        Maldives
+                                    </option>
+
+                                    <option>
+                                        Paris
+                                    </option>
+
+                                    <option>
+                                        Italy
+                                    </option>
+
+                                    <option>
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="message">
+                                    Message
+                                </label>
+
+                                <textarea
+                                    id="message"
+                                    placeholder="Tell us about your trip..."
+                                ></textarea>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="submit-btn"
+                            >
+                                Send Enquiry
+                            </button>
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+
+                <div class="footer-brand">
+
+                    <h2>
+                        Wanderly
+                    </h2>
+
+                    <p>
+                        Making travel planning simple, beautiful
+                        and memorable.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        Explore
+                    </h3>
+
+                    <a href="#destinations">
+                        Destinations
+                    </a>
+
+                    <a href="#packages">
+                        Packages
+                    </a>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        Support
+                    </h3>
+
+                    <a href="#contact">
+                        Contact
+                    </a>
+
+                    <a href="#">
+                        Privacy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="copyright">
+
+                © 2026 Wanderly.
+                Built with HTML5 & CSS3.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

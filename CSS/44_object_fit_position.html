@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Object-Fit & Object-Position</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #07111f;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            padding: 20px 8%;
+            background: rgba(10, 25, 45, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #61dafb;
+        }
+
+        nav a {
+            color: #dbeafe;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #61dafb;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 65px;
+            background:
+                radial-gradient(circle at top, #163452, transparent 60%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #61dafb;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: auto;
+            color: #9eb1c8;
+            font-size: 1.05rem;
+        }
+
+        /* ================= MAIN ================= */
+
+        main {
+            width: min(1150px, 90%);
+            margin: auto;
+            padding-bottom: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #91a4ba;
+        }
+
+        /* ================= CARDS ================= */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #0c1c2f;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .image-box {
+            height: 280px;
+            background: #14283e;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* ================= OBJECT-FIT ================= */
+
+        .fill img {
+            object-fit: fill;
+        }
+
+        .contain img {
+            object-fit: contain;
+        }
+
+        .cover img {
+            object-fit: cover;
+        }
+
+        .none img {
+            object-fit: none;
+        }
+
+        .scale-down img {
+            object-fit: scale-down;
+        }
+
+        /* ================= OBJECT-POSITION ================= */
+
+        .position-box {
+            height: 300px;
+            background: #14283e;
+            overflow: hidden;
+        }
+
+        .position-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .top img {
+            object-position: top;
+        }
+
+        .bottom img {
+            object-position: bottom;
+        }
+
+        .left img {
+            object-position: left;
+        }
+
+        .right img {
+            object-position: right;
+        }
+
+        .center img {
+            object-position: center;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: #94a9bf;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .code-tag {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: rgba(97, 218, 251, 0.1);
+            color: #61dafb;
+            font-family: monospace;
+            font-size: 0.82rem;
+        }
+
+        /* ================= COMPARISON ================= */
+
+        .comparison {
+            margin-top: 80px;
+        }
+
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .comparison-card {
+            background: #0c1c2f;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 22px;
+            border-radius: 20px;
+        }
+
+        .comparison-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .comparison-card img {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .comparison-card.positioned img {
+            object-position: 80% center;
+        }
+
+        /* ================= CODE ================= */
+
+        .code-section {
+            margin-top: 70px;
+            background: #0c1c2f;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .code-section h2 {
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background: #050b13;
+            color: #bfeeff;
+            padding: 25px;
+            border-radius: 15px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #050b13;
+            color: #8193a8;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .grid,
+            .comparison-box {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .image-box,
+            .position-box {
+                height: 250px;
+            }
+
+            pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+        <nav>
+
+            <div class="logo">
+                CSS<span>Studio</span>
+            </div>
+
+            <div>
+                <a href="#home">Home</a>
+                <a href="#fit">Object-Fit</a>
+                <a href="#position">Object-Position</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <h1>
+            Object-<span>Fit</span> & Object-<span>Position</span>
+        </h1>
+
+        <p>
+            Learn how CSS controls the size, cropping and positioning
+            of images inside fixed containers.
+        </p>
+
+    </section>
+
+
+    <main>
+
+        <!-- OBJECT FIT -->
+
+        <section id="fit">
+
+            <div class="section-title">
+
+                <h2>Object-Fit</h2>
+
+                <p>
+                    Object-fit controls how an image fits inside
+                    its container.
+                </p>
+
+            </div>
+
+
+            <div class="grid">
+
+                <!-- FILL -->
+
+                <article class="card">
+
+                    <div class="image-box fill">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"
+                            alt="Mountain landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>fill</h3>
+
+                        <p>
+                            Stretches the image to completely fill
+                            the container. The original aspect ratio
+                            may be distorted.
+                        </p>
+
+                        <span class="code-tag">
+                            object-fit: fill;
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CONTAIN -->
+
+                <article class="card">
+
+                    <div class="image-box contain">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"
+                            alt="Mountain landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>contain</h3>
+
+                        <p>
+                            Keeps the complete image visible while
+                            maintaining its original aspect ratio.
+                        </p>
+
+                        <span class="code-tag">
+                            object-fit: contain;
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- COVER -->
+
+                <article class="card">
+
+                    <div class="image-box cover">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"
+                            alt="Mountain landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>cover</h3>
+
+                        <p>
+                            Covers the complete container while
+                            maintaining the image's aspect ratio.
+                        </p>
+
+                        <span class="code-tag">
+                            object-fit: cover;
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- NONE -->
+
+                <article class="card">
+
+                    <div class="image-box none">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"
+                            alt="Mountain landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>none</h3>
+
+                        <p>
+                            The image keeps its original size without
+                            being resized to fit the container.
+                        </p>
+
+                        <span class="code-tag">
+                            object-fit: none;
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- SCALE DOWN -->
+
+                <article class="card">
+
+                    <div class="image-box scale-down">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"
+                            alt="Mountain landscape"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>scale-down</h3>
+
+                        <p>
+                            Uses either none or contain, whichever
+                            results in a smaller rendered image.
+                        </p>
+
+                        <span class="code-tag">
+                            object-fit: scale-down;
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- OBJECT POSITION -->
+
+        <section id="position" style="margin-top: 80px;">
+
+            <div class="section-title">
+
+                <h2>Object-Position</h2>
+
+                <p>
+                    Object-position controls where the image is
+                    positioned inside its container.
+                </p>
+
+            </div>
+
+
+            <div class="grid">
+
+                <!-- CENTER -->
+
+                <article class="card">
+
+                    <div class="position-box center">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+                            alt="Beach"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>center</h3>
+
+                        <p>
+                            Positions the image in the center
+                            of the container.
+                        </p>
+
+                        <span class="code-tag">
+                            object-position: center;
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TOP -->
+
+                <article class="card">
+
+                    <div class="position-box top">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+                            alt="Beach"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>top</h3>
+
+                        <p>
+                            Keeps the top part of the image visible
+                            when cropping occurs.
+                        </p>
+
+                        <span class="code-tag">
+                            object-position: top;
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BOTTOM -->
+
+                <article class="card">
+
+                    <div class="position-box bottom">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+                            alt="Beach"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>bottom</h3>
+
+                        <p>
+                            Positions the image toward the bottom
+                            of the container.
+                        </p>
+
+                        <span class="code-tag">
+                            object-position: bottom;
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- LEFT -->
+
+                <article class="card">
+
+                    <div class="position-box left">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+                            alt="Beach"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>left</h3>
+
+                        <p>
+                            Positions the image toward the
+                            left side.
+                        </p>
+
+                        <span class="code-tag">
+                            object-position: left;
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RIGHT -->
+
+                <article class="card">
+
+                    <div class="position-box right">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+                            alt="Beach"
+                        >
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>right</h3>
+
+                        <p>
+                            Positions the image toward the
+                            right side.
+                        </p>
+
+                        <span class="code-tag">
+                            object-position: right;
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMPARISON -->
+
+        <section class="comparison">
+
+            <div class="section-title">
+
+                <h2>Practical Comparison</h2>
+
+                <p>
+                    Object-fit and object-position can be used together.
+                </p>
+
+            </div>
+
+
+            <div class="comparison-box">
+
+                <div class="comparison-card">
+
+                    <h3>object-fit: cover</h3>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+                        alt="Mountain"
+                    >
+
+                </div>
+
+
+                <div class="comparison-card positioned">
+
+                    <h3>cover + custom position</h3>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+                        alt="Mountain positioned"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CODE -->
+
+        <section class="code-section">
+
+            <h2>CSS Syntax</h2>
+
+<pre>
+.image {
+    width: 100%;
+    height: 300px;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Other object-fit values */
+
+.image {
+    object-fit: fill;
+}
+
+.image {
+    object-fit: contain;
+}
+
+.image {
+    object-fit: none;
+}
+
+.image {
+    object-fit: scale-down;
+}
+
+/* Object positioning */
+
+.image {
+    object-position: top;
+}
+
+.image {
+    object-position: right center;
+}
+
+.image {
+    object-position: 80% center;
+}
+</pre>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            CSS Practical Program • Object-Fit & Object-Position
+        </p>
+
+    </footer>
+
+</body>
+</html>
